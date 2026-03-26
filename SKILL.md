@@ -1,21 +1,24 @@
-# sysadmin-main Skill Entry
+# Script.Powershell.7 Skill Entry
 
 Use the canonical script tree under `PowerShell Script/`.
 
 ## Core Rules
 
-- This branch supports Windows PowerShell 5.1 only.
+- This checkout tracks `origin` `PadtGit/Script.Powershell.7` on branch `main`.
 - `PowerShell Script/*` is the primary implementation surface.
-- Keep `Set-StrictMode -Version 3.0`, `$ErrorActionPreference = 'Stop'`, and `SupportsShouldProcess` behavior intact unless the task explicitly changes them.
-- Preserve usable `-WhatIf` behavior wherever the script already supports safe preview without elevation.
-- Write generated validation output to `artifacts/validation/`, not to tracked repo files.
+- `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1` remains tracked and should be considered when work touches network-reset behavior.
+- Keep existing `Set-StrictMode`, `$ErrorActionPreference`, and `SupportsShouldProcess` behavior intact unless the task explicitly changes them.
+- Preserve usable `-WhatIf` behavior wherever a script already supports safe preview without elevation.
+- Write generated validation output to `artifacts/validation/`, not tracked repo files.
+- Treat `sysadmin-main` in runtime paths as a stable storage label, not a repo name.
 
 ## Validation Entry Points
 
 - Root validator: `Invoke-WhatIfValidation.ps1`
 - Pester tests: `tests/`
-- Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PSScriptAnalyzer.ps1') -Path . -Recurse -SettingsPath (Join-Path $PWD 'tools\PSScriptAnalyzerSettings.psd1') -EnableExit -ExitCodeMode AllDiagnostics`
+- Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\tools\Invoke-PSScriptAnalyzer.ps1' -Path . -Recurse -SettingsPath '.\tools\PSScriptAnalyzerSettings.psd1' -EnableExit -ExitCodeMode AllDiagnostics`
+- Sandbox launcher: `Start-Process '.\sandbox\sysadmin-main-validation.wsb'`
 
 ## Detailed Workflow
 
-For the repo-specific maintenance workflow, agent roles, and PowerShell rules, use `.agents/skills/maintain-windows-admin-powershell/SKILL.md`.
+Use `AGENTS.md` for the repo-local maintenance flow and `docs/sysadmin-main-multi-agent-sop.md` for extended notes. This checkout does not currently include a deeper repo-local skill file or a GitHub Actions workflow surface to keep in sync.
