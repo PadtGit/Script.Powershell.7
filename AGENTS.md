@@ -19,6 +19,9 @@
 - `tools/Invoke-PSScriptAnalyzer.ps1`: analyzer helper that writes text, JSON, and SARIF artifacts.
 - `tools/PSScriptAnalyzerSettings.psd1`: canonical analyzer settings.
 - `sandbox/sysadmin-main-validation.wsb`: local Windows Sandbox profile for risky manual validation.
+- `artifacts/validation/Invoke-SandboxWhatIfValidation.ps1`: generated helper that runs the current high-risk `-WhatIf` set inside Windows Sandbox.
+- `artifacts/validation/sandbox-whatif-validation.wsb`: generated Windows Sandbox profile for automated `-WhatIf` capture.
+- `artifacts/validation/Copy-SandboxWhatIfOutput.ps1`: generated helper that copies the writable Sandbox output folder back into repo artifacts.
 - `docs/windows-sandbox-validation.md`: manual sandbox flow.
 - `docs/sysadmin-main-multi-agent-sop.md`: longer maintenance notes for this checkout.
 - `SKILL.md`: repo entrypoint that summarizes the local maintenance workflow.
@@ -94,6 +97,18 @@ Invoke-Pester -Configuration $config
 Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 ```
 
+- Automated sandbox `-WhatIf` launch:
+
+```powershell
+Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
+```
+
+- Sandbox output sync:
+
+```powershell
+& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\artifacts\validation\Copy-SandboxWhatIfOutput.ps1'
+```
+
 - Remote workflow note:
   This checkout does not currently have a `PowerShell Validation` GitHub Actions workflow on `origin` `PadtGit/Script.Powershell.7`. Use the local commands above as the supported validation workflow.
 
@@ -115,6 +130,8 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
    - Run the trusted smoke checks and `Invoke-WhatIfValidation.ps1` as appropriate for the change.
 5. Use Windows Sandbox for risky manual checks
    - Launch `sandbox/sysadmin-main-validation.wsb` for non-`WhatIf` validation of risky cleanup, installer, or network-reset scripts.
+   - Launch `artifacts/validation/sandbox-whatif-validation.wsb` when you want the Sandbox to run the current high-risk `-WhatIf` set automatically.
+   - Sync the writable Sandbox output folder back into `artifacts/validation/sandbox-whatif-output/` with `artifacts/validation/Copy-SandboxWhatIfOutput.ps1`.
    - Keep the host mapping read-only and treat the sandbox as disposable.
 6. Sync docs
    - Re-read the entrypoint docs and sandbox instructions after workflow wording changes.
@@ -131,6 +148,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - `tools\Invoke-PSScriptAnalyzer.ps1` writes to `artifacts/validation/psscriptanalyzer.txt`, `artifacts/validation/psscriptanalyzer.json`, and `artifacts/validation/psscriptanalyzer.sarif` by default.
 - Pester 5 does not support combining `-CI` with `-Configuration`; use `New-PesterConfiguration` for CI-style NUnit XML output.
 - `sandbox\sysadmin-main-validation.wsb` should map `C:\Users\Bob\Documents\Script.Powershell.7` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
+- `artifacts\validation\sandbox-whatif-validation.wsb` currently uses `C:\Users\Bob\Documents\SandboxValidationOutput\Script.Powershell.7` as the writable host-mapped output folder for automated Sandbox `-WhatIf` capture.
 - Keep the in-sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`; scripts and docs still rely on the stable runtime label `sysadmin-main`.
 - In service-control scripts, restart should depend on whether the current invocation actually stopped the service, not only on the initial service state.
 - Security-sensitive scripts should keep trusted output-root and reparse-point protections intact when moving or deleting data.
@@ -141,3 +159,4 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - 2026-03-23: Standardized analyzer validation on the repo-wide recursive command with explicit settings and `AllDiagnostics` exit handling.
 - 2026-03-25: Hardened analyzer crash handling and JSON artifact reset behavior, with dedicated tooling tests under `tests/tools/`.
 - 2026-03-26: Refreshed the playbook, entrypoint docs, and Windows Sandbox profile so they describe the actual `Script.Powershell.7` checkout on `main` and the supported local validation workflow.
+- 2026-03-28: Added an optional automated Windows Sandbox `-WhatIf` capture flow that writes raw output to a writable host-mapped folder and syncs it back into `artifacts/validation/sandbox-whatif-output/`.

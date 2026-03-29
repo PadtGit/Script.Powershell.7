@@ -1,0 +1,8 @@
+# pattern,tag,weight
+PowerShell Script/Adobe/**,supply_chain,1.0
+PowerShell Script/windows-maintenance/**,privileged_admin,1.0
+PowerShell Script/V7/windows-maintenance/**,privileged_admin,1.0
+PowerShell Script/WindowsServer/**,privileged_admin,1.0
+PowerShell Script/Printer/**,service_control,0.7
+Invoke-WhatIfValidation.ps1,validation_tooling,0.4
+tools/**,validation_tooling,0.4

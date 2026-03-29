@@ -18,7 +18,9 @@ Use the canonical script tree under `PowerShell Script/`.
 - Pester tests: `tests/`
 - Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\tools\Invoke-PSScriptAnalyzer.ps1' -Path . -Recurse -SettingsPath '.\tools\PSScriptAnalyzerSettings.psd1' -EnableExit -ExitCodeMode AllDiagnostics`
 - Sandbox launcher: `Start-Process '.\sandbox\sysadmin-main-validation.wsb'`
+- Automated sandbox `-WhatIf` launcher: `Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'`
+- Sandbox output sync: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\artifacts\validation\Copy-SandboxWhatIfOutput.ps1'`
 
 ## Detailed Workflow
 
-Use `AGENTS.md` for the repo-local maintenance flow and `docs/sysadmin-main-multi-agent-sop.md` for extended notes. This checkout does not currently include a deeper repo-local skill file or a GitHub Actions workflow surface to keep in sync.
+Use `AGENTS.md` for the repo-local maintenance flow and `docs/sysadmin-main-multi-agent-sop.md` for extended notes. Use `docs/windows-sandbox-validation.md` for both the disposable manual Sandbox shell and the optional automated `-WhatIf` capture wrapper. This checkout does not currently include a deeper repo-local skill file or a GitHub Actions workflow surface to keep in sync.

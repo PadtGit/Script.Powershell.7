@@ -1,0 +1,23 @@
+﻿[
+    {
+        "Name":  "Move-OrphanedInstallerFiles",
+        "ScriptPath":  "C:\\Users\\WDAGUtilityAccount\\Desktop\\sysadmin-main\\PowerShell Script\\windows-maintenance\\Move-OrphanedInstallerFiles.ps1",
+        "OutputPath":  "C:\\Users\\WDAGUtilityAccount\\Desktop\\sandbox-output\\Move-OrphanedInstallerFiles-sandbox-whatif.txt",
+        "ExitCode":  0,
+        "Status":  "Completed"
+    },
+    {
+        "Name":  "Nettoyage.Avance.Windows.Sauf.logserreur",
+        "ScriptPath":  "C:\\Users\\WDAGUtilityAccount\\Desktop\\sysadmin-main\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
+        "OutputPath":  "C:\\Users\\WDAGUtilityAccount\\Desktop\\sandbox-output\\Nettoyage.Avance.Windows.Sauf.logserreur-sandbox-whatif.txt",
+        "ExitCode":  0,
+        "Status":  "Completed"
+    },
+    {
+        "Name":  "Reset.Network.RebootPC",
+        "ScriptPath":  "C:\\Users\\WDAGUtilityAccount\\Desktop\\sysadmin-main\\PowerShell Script\\windows-maintenance\\Reset.Network.RebootPC.ps1",
+        "OutputPath":  "C:\\Users\\WDAGUtilityAccount\\Desktop\\sandbox-output\\Reset.Network.RebootPC-sandbox-whatif.txt",
+        "ExitCode":  0,
+        "Status":  "Completed"
+    }
+]

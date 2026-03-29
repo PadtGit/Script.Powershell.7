@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "size": 11,
+    "files": [
+      "AGENTS.md",
+      "README.md",
+      "SKILL.md",
+      "artifacts/validation/pester-results.xml",
+      "artifacts/validation/psscriptanalyzer.json",
+      "artifacts/validation/psscriptanalyzer.sarif",
+      "artifacts/validation/psscriptanalyzer.txt",
+      "artifacts/validation/whatif-validation.txt",
+      "docs/sysadmin-main-multi-agent-sop.md",
+      "docs/windows-sandbox-validation.md",
+      "sandbox/sysadmin-main-validation.wsb"
+    ],
+    "maintainers": [
+      {
+        "person_id": "it.gat.templeton@gmail.com",
+        "name": "System Admin",
+        "touches": 22,
+        "touch_share": 1.0,
+        "recency_share": 1.0,
+        "sensitive_share": 0.0,
+        "primary_tz_offset": "-04:00"
+      }
+    ],
+    "bus_factor": 1,
+    "owner_count": 1,
+    "totals": {
+      "touches": 22,
+      "recency_weight": 21.915065,
+      "sensitive_weight": 0
+    }
+  }
+]

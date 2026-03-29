@@ -1,0 +1,19 @@
+<Configuration>
+  <Networking>Disable</Networking>
+  <VGpu>Disable</VGpu>
+  <MappedFolders>
+    <MappedFolder>
+      <HostFolder>C:\Users\Bob\Documents\Script.Powershell.7</HostFolder>
+      <SandboxFolder>C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main</SandboxFolder>
+      <ReadOnly>true</ReadOnly>
+    </MappedFolder>
+    <MappedFolder>
+      <HostFolder>C:\Users\Bob\Documents\SandboxValidationOutput\Script.Powershell.7</HostFolder>
+      <SandboxFolder>C:\Users\WDAGUtilityAccount\Desktop\sandbox-output</SandboxFolder>
+      <ReadOnly>false</ReadOnly>
+    </MappedFolder>
+  </MappedFolders>
+  <LogonCommand>
+    <Command>powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main\artifacts\validation\Invoke-SandboxWhatIfValidation.ps1"</Command>
+  </LogonCommand>
+</Configuration>

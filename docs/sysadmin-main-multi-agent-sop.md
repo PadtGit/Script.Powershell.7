@@ -42,6 +42,7 @@
 5. Use Windows Sandbox for risky manual checks
    - Launch `sandbox/sysadmin-main-validation.wsb` for disposable non-`WhatIf` testing of risky scripts.
    - Keep the host mapping read-only.
+   - For repeatable `-WhatIf` capture of risky scripts, launch `artifacts/validation/sandbox-whatif-validation.wsb` and then sync the mapped outputs back with `artifacts/validation/Copy-SandboxWhatIfOutput.ps1`.
 6. Close with doc sync
    - Re-read the entrypoint docs after workflow wording changes.
    - Remove stale repo, branch, workflow, or filesystem references before finishing.
@@ -53,5 +54,6 @@
 - Use `Invoke-WhatIfValidation.ps1` for the fixed-list preview validator.
 - Keep smoke checks focused on the trusted `-WhatIf` commands documented in `AGENTS.md`.
 - Use `sandbox/sysadmin-main-validation.wsb` as the disposable validation shell for risky scripts. The profile maps `C:\Users\Bob\Documents\Script.Powershell.7` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell there.
+- Use `artifacts/validation/sandbox-whatif-validation.wsb` when you want the Sandbox to run the current high-risk `-WhatIf` targets automatically and emit raw output into the writable host-mapped folder that `artifacts/validation/Copy-SandboxWhatIfOutput.ps1` syncs into `artifacts/validation/sandbox-whatif-output/`.
 - Inspect validation and test artifacts under `artifacts/validation/`.
 - `origin` `PadtGit/Script.Powershell.7` currently has no `PowerShell Validation` GitHub Actions workflow, so remote workflow dispatch is not part of the default maintenance flow for this checkout.

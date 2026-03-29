@@ -1,0 +1,408 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "community_maintainers": [
+      {
+        "id": 1,
+        "size": 11,
+        "maintainers": [
+          {
+            "person_id": "it.gat.templeton@gmail.com",
+            "name": "System Admin",
+            "touches": 22,
+            "touch_share": 1.0,
+            "recency_share": 1.0,
+            "sensitive_share": 0.0,
+            "primary_tz_offset": "-04:00"
+          }
+        ],
+        "bus_factor": 1,
+        "owner_count": 1,
+        "totals": {
+          "touches": 22,
+          "recency_weight": 21.915065,
+          "sensitive_weight": 0
+        }
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "community_id": 1,
+      "id": "AGENTS.md"
+    },
+    {
+      "community_id": 1,
+      "id": "README.md"
+    },
+    {
+      "community_id": 1,
+      "id": "SKILL.md"
+    },
+    {
+      "community_id": 1,
+      "id": "artifacts/validation/pester-results.xml"
+    },
+    {
+      "community_id": 1,
+      "id": "artifacts/validation/psscriptanalyzer.json"
+    },
+    {
+      "community_id": 1,
+      "id": "artifacts/validation/psscriptanalyzer.sarif"
+    },
+    {
+      "community_id": 1,
+      "id": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "community_id": 1,
+      "id": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "community_id": 1,
+      "id": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "community_id": 1,
+      "id": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "community_id": 1,
+      "id": "sandbox/sysadmin-main-validation.wsb"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "README.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "SKILL.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "artifacts/validation/pester-results.xml"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "artifacts/validation/psscriptanalyzer.json"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "artifacts/validation/psscriptanalyzer.sarif"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "SKILL.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "artifacts/validation/pester-results.xml"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "artifacts/validation/psscriptanalyzer.json"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "artifacts/validation/psscriptanalyzer.sarif"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "artifacts/validation/pester-results.xml"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "artifacts/validation/psscriptanalyzer.json"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "artifacts/validation/psscriptanalyzer.sarif"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "artifacts/validation/psscriptanalyzer.json"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "artifacts/validation/psscriptanalyzer.sarif"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/pester-results.xml",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.json",
+      "target": "artifacts/validation/psscriptanalyzer.sarif"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.json",
+      "target": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.json",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.json",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.json",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.json",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.sarif",
+      "target": "artifacts/validation/psscriptanalyzer.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.sarif",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.sarif",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.sarif",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.sarif",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.txt",
+      "target": "artifacts/validation/whatif-validation.txt"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.txt",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.txt",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/psscriptanalyzer.txt",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/whatif-validation.txt",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/whatif-validation.txt",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "artifacts/validation/whatif-validation.txt",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "docs/sysadmin-main-multi-agent-sop.md",
+      "target": "docs/windows-sandbox-validation.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "docs/sysadmin-main-multi-agent-sop.md",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "docs/windows-sandbox-validation.md",
+      "target": "sandbox/sysadmin-main-validation.wsb"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\netsh.exe int ip reset".
+What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\netsh.exe winsock reset".
+What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\ipconfig.exe /release".
+What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\ipconfig.exe /flushdns".
+What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\ipconfig.exe /renew".
+What if: Performing the operation "Restart in 5 seconds" on target "Local computer".
+
+
+CommandCount       : 5
+ExecutedCount      : 0
+RebootDelaySeconds : 5
+Status             : WhatIf
+Reason             : 
+
+
+
