@@ -2,7 +2,7 @@
 
 ## Why This Shape
 
-- Keep the repo self-describing. This checkout does not include the older `.agents/`, `.codex/agents/`, or `.github/workflows/` surfaces that some earlier docs referenced.
+- Keep the repo self-describing. This checkout includes `.github/workflows/powershell-validation.yml` for CI validation but still does not use the older `.agents/` or `.codex/agents/` surfaces that some earlier docs referenced.
 - Use a repo-local maintenance loop: inspect, implement, test, validate locally, and sync docs.
 - Keep this SOP, `AGENTS.md`, `SKILL.md`, `README.md`, `docs/windows-sandbox-validation.md`, and `sandbox/sysadmin-main-validation.wsb` aligned whenever command or workflow wording changes.
 
@@ -52,8 +52,9 @@
 - Use the repo-wide recursive analyzer command with `tools\Invoke-PSScriptAnalyzer.ps1`, `tools\PSScriptAnalyzerSettings.psd1`, `-EnableExit`, and `-ExitCodeMode AllDiagnostics`.
 - Use the CI-style Pester configuration that writes results to `artifacts/validation/pester-results.xml`.
 - Use `Invoke-WhatIfValidation.ps1` for the fixed-list preview validator.
+- Use `tools\Invoke-CIValidation.ps1` when you want the repo-local workflow entrypoint that the GitHub Actions job also runs.
 - Keep smoke checks focused on the trusted `-WhatIf` commands documented in `AGENTS.md`.
 - Use `sandbox/sysadmin-main-validation.wsb` as the disposable validation shell for risky scripts. The profile maps `C:\Users\Bob\Documents\Script.Powershell.7` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell there.
 - Use `artifacts/validation/sandbox-whatif-validation.wsb` when you want the Sandbox to run the current high-risk `-WhatIf` targets automatically and emit raw output into the writable host-mapped folder that `artifacts/validation/Copy-SandboxWhatIfOutput.ps1` syncs into `artifacts/validation/sandbox-whatif-output/`.
 - Inspect validation and test artifacts under `artifacts/validation/`.
-- `origin` `PadtGit/Script.Powershell.7` currently has no `PowerShell Validation` GitHub Actions workflow, so remote workflow dispatch is not part of the default maintenance flow for this checkout.
+- `.github/workflows/powershell-validation.yml` runs the shared validation flow on future `push`, `pull_request`, and `workflow_dispatch` events once the change is pushed.
