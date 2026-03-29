@@ -1,6 +1,7 @@
 ﻿
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Adobe\Install.AdobeAcrobat.Clean.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
+             Script\Adobe\Install.AdobeAcrobat.Clean.ps1
 ExitCode   : 0
 Success    : True
 Output     : 
@@ -16,7 +17,8 @@ Output     :
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Printer\Delete.all.offline.printer.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
+             Script\Printer\Delete.all.offline.printer.ps1
 ExitCode   : 0
 Success    : True
 Output     : 
@@ -30,7 +32,7 @@ Output     :
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Printer\Deleter.NamePrinter.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell Script\Printer\Deleter.NamePrinter.ps1
 ExitCode   : 0
 Success    : True
 Output     : 
@@ -44,15 +46,16 @@ Output     :
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Printer\Export.printer.list.BASIC.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
+             Script\Printer\Export.printer.list.BASIC.ps1
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Export printer list" on target 
-             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260326-191954514.csv".
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260328-232845926.csv".
              
              
              OutputPath    : 
-             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260326-191954514.csv
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260328-232845926.csv
              PrinterCount  : 1
              ExportProfile : Basic
              Status        : WhatIf
@@ -61,15 +64,16 @@ Output     : What if: Performing the operation "Export printer list" on target
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Printer\Export.printer.list.FULL.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
+             Script\Printer\Export.printer.list.FULL.ps1
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Export printer list" on target 
-             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260326-191955709.csv".
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260328-232846943.csv".
              
              
              OutputPath    : 
-             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260326-191955709.csv
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260328-232846943.csv
              PrinterCount  : 1
              ExportProfile : Full
              Status        : WhatIf
@@ -78,7 +82,8 @@ Output     : What if: Performing the operation "Export printer list" on target
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Printer\Restart.spool.delete.printerQ.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
+             Script\Printer\Restart.spool.delete.printerQ.ps1
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Stop service" on target "Spooler".
@@ -95,7 +100,7 @@ Output     : What if: Performing the operation "Stop service" on target "Spooler
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell 
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
              Script\Printer\Restart.Spool.DeletePrinterQSimple.ps1
 ExitCode   : 0
 Success    : True
@@ -111,7 +116,8 @@ Output     : What if: Performing the operation "Stop service" on target "Spooler
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\Printer\restart.SpoolDeleteQV4.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
+             Script\Printer\restart.SpoolDeleteQV4.ps1
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Stop Print Spooler" on target "Spooler".
@@ -120,7 +126,7 @@ Output     : What if: Performing the operation "Stop Print Spooler" on target "S
              ServiceName  : Spooler
              Service      : Spooler
              QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
-             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260326-191957777-e3c412ff.log
+             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260328-232848684-b00a9b6a.log
              FileCount    : 0
              DeletedCount : 0
              DeletedFiles : 0
@@ -132,7 +138,7 @@ Output     : What if: Performing the operation "Stop Print Spooler" on target "S
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell 
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
              Script\windows-maintenance\Move-OrphanedInstallerFiles.ps1
 ExitCode   : 0
 Success    : True
@@ -416,7 +422,7 @@ Output     : What if: Performing the operation "Move to
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell 
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
              Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1
 ExitCode   : 0
 Success    : True
@@ -432,7 +438,7 @@ Output     :
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell 
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
              Script\windows-maintenance\Nettoyage.Complet.Caches.Windows.ps1
 ExitCode   : 0
 Success    : True
@@ -448,7 +454,7 @@ Output     :
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell 
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell 
              Script\windows-maintenance\Reset.Network.RebootPC.ps1
 ExitCode   : 0
 Success    : True
@@ -469,7 +475,7 @@ Output     : What if: Performing the operation "Run command" on target "C:\WINDO
              
              
 
-ScriptPath : C:\Users\Bob\Documents\Script.Powershell.7\PowerShell Script\WindowsServer\FichierOphelin.ps1
+ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell Script\WindowsServer\FichierOphelin.ps1
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Move to 

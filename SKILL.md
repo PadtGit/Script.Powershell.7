@@ -17,10 +17,11 @@ Use the canonical script tree under `PowerShell Script/`.
 - Root validator: `Invoke-WhatIfValidation.ps1`
 - Pester tests: `tests/`
 - Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\tools\Invoke-PSScriptAnalyzer.ps1' -Path . -Recurse -SettingsPath '.\tools\PSScriptAnalyzerSettings.psd1' -EnableExit -ExitCodeMode AllDiagnostics`
+- CI validation runner: `.\tools\Invoke-CIValidation.ps1`
 - Sandbox launcher: `Start-Process '.\sandbox\sysadmin-main-validation.wsb'`
 - Automated sandbox `-WhatIf` launcher: `Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'`
 - Sandbox output sync: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\artifacts\validation\Copy-SandboxWhatIfOutput.ps1'`
 
 ## Detailed Workflow
 
-Use `AGENTS.md` for the repo-local maintenance flow and `docs/sysadmin-main-multi-agent-sop.md` for extended notes. Use `docs/windows-sandbox-validation.md` for both the disposable manual Sandbox shell and the optional automated `-WhatIf` capture wrapper. This checkout does not currently include a deeper repo-local skill file or a GitHub Actions workflow surface to keep in sync.
+Use `AGENTS.md` for the repo-local maintenance flow and `docs/sysadmin-main-multi-agent-sop.md` for extended notes. Use `docs/windows-sandbox-validation.md` for both the disposable manual Sandbox shell and the optional automated `-WhatIf` capture wrapper. Keep the repo-local entrypoints and `.github/workflows/powershell-validation.yml` aligned when the validation flow changes.

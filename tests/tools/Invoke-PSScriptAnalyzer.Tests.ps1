@@ -128,8 +128,8 @@ function Measure-ThrowingRule {
             $jsonText = Get-Content -LiteralPath $jsonPath -Raw
             $diagnostics = @($jsonText | ConvertFrom-Json)
 
-            ($results | Where-Object { $_.RuleName -eq 'PSScriptAnalyzerInvocationFailure' }).Count | Should -Be 0
-            ($diagnostics | Where-Object { $_.RuleName -eq 'PSScriptAnalyzerInvocationFailure' }).Count | Should -Be 0
+            @($results | Where-Object { $_.RuleName -eq 'PSScriptAnalyzerInvocationFailure' }).Count | Should -Be 0
+            @($diagnostics | Where-Object { $_.RuleName -eq 'PSScriptAnalyzerInvocationFailure' }).Count | Should -Be 0
         }
         finally {
             Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue

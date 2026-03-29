@@ -17,7 +17,9 @@
 - `tests/*`: Pester coverage for current scripts and tooling.
 - `Invoke-WhatIfValidation.ps1`: fixed-list `-WhatIf` validator.
 - `tools/Invoke-PSScriptAnalyzer.ps1`: analyzer helper that writes text, JSON, and SARIF artifacts.
+- `tools/Invoke-CIValidation.ps1`: shared validation runner used by local CI-style checks and GitHub Actions.
 - `tools/PSScriptAnalyzerSettings.psd1`: canonical analyzer settings.
+- `.github/workflows/powershell-validation.yml`: Windows GitHub Actions workflow that runs the repo validation suite and uploads artifacts.
 - `sandbox/sysadmin-main-validation.wsb`: local Windows Sandbox profile for risky manual validation.
 - `artifacts/validation/Invoke-SandboxWhatIfValidation.ps1`: generated helper that runs the current high-risk `-WhatIf` set inside Windows Sandbox.
 - `artifacts/validation/sandbox-whatif-validation.wsb`: generated Windows Sandbox profile for automated `-WhatIf` capture.
@@ -26,7 +28,7 @@
 - `docs/sysadmin-main-multi-agent-sop.md`: longer maintenance notes for this checkout.
 - `SKILL.md`: repo entrypoint that summarizes the local maintenance workflow.
 - `README.md`: brief repo overview and doc entrypoints.
-- This checkout does not currently include local `.agents/`, `.codex/agents/`, or `.github/workflows/` surfaces. Keep docs truthful to what exists in-tree.
+- This checkout does not currently include local `.agents/` or `.codex/agents/` surfaces. Keep docs truthful to what exists in-tree, including `.github/workflows/powershell-validation.yml`.
 
 ## Safety Invariants
 
@@ -84,6 +86,12 @@ $config.TestResult.OutputFormat = 'NUnitXml'
 Invoke-Pester -Configuration $config
 ```
 
+- Shared CI validation runner:
+
+```powershell
+.\tools\Invoke-CIValidation.ps1
+```
+
 - Trusted local smoke checks:
 
 ```powershell
@@ -110,7 +118,7 @@ Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
 ```
 
 - Remote workflow note:
-  This checkout does not currently have a `PowerShell Validation` GitHub Actions workflow on `origin` `PadtGit/Script.Powershell.7`. Use the local commands above as the supported validation workflow.
+  This checkout now includes `.github/workflows/powershell-validation.yml`, which runs the shared validation suite on future `push`, `pull_request`, and `workflow_dispatch` events after the change is pushed. Keep the local commands above as the fallback path when Actions is unavailable.
 
 ## Maintenance Loop
 
@@ -140,7 +148,7 @@ Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
 ## Known Pitfalls and Discoveries
 
 - This repo origin is `PadtGit/Script.Powershell.7` on branch `main`; do not document `PadtGit/sysadmin` or `--ref Powershell.5` as the local workflow here.
-- `origin` currently has no GitHub Actions workflow named `PowerShell Validation`; local validation is the supported path for this checkout.
+- `.github/workflows/powershell-validation.yml` is the current GitHub Actions validation entrypoint for this checkout; keep it aligned with the local commands and `tools\Invoke-CIValidation.ps1`.
 - Imported files may carry `Zone.Identifier`; validation commands should keep `-ExecutionPolicy Bypass` even after local MOTW cleanup.
 - Generated validation logs belong in `artifacts/validation/`; do not reintroduce tracked root-level result files.
 - The standard analyzer baseline is the repo-wide recursive command using `tools\Invoke-PSScriptAnalyzer.ps1` with `tools\PSScriptAnalyzerSettings.psd1`, `-EnableExit`, and `-ExitCodeMode AllDiagnostics`.
@@ -160,3 +168,4 @@ Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
 - 2026-03-25: Hardened analyzer crash handling and JSON artifact reset behavior, with dedicated tooling tests under `tests/tools/`.
 - 2026-03-26: Refreshed the playbook, entrypoint docs, and Windows Sandbox profile so they describe the actual `Script.Powershell.7` checkout on `main` and the supported local validation workflow.
 - 2026-03-28: Added an optional automated Windows Sandbox `-WhatIf` capture flow that writes raw output to a writable host-mapped folder and syncs it back into `artifacts/validation/sandbox-whatif-output/`.
+- 2026-03-28: Added `tools\Invoke-CIValidation.ps1` and `.github/workflows/powershell-validation.yml` so future GitHub Actions runs execute analyzer, Pester, fixed-list `-WhatIf`, and trusted smoke-check validation with uploaded artifacts.

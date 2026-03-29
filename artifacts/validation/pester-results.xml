@@ -1,120 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="27" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2026-03-26" time="19:19:52">
-  <environment user="Bob" user-domain="SOLEIL" machine-name="SOLEIL" platform="Microsoft Windows 11 Pro for Workstations|C:\WINDOWS|\Device\Harddisk0\Partition3" nunit-version="2.5.8.0" cwd="C:\Users\Bob\Documents\Script.Powershell.7" clr-version="10.0.5" os-version="10.0.26200" />
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="27" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2026-03-28" time="23:28:26">
+  <environment user="Bob" machine-name="SOLEIL" nunit-version="2.5.8.0" clr-version="10.0.5" os-version="10.0.26200" user-domain="SOLEIL" platform="Microsoft Windows 11 Pro for Workstations|C:\WINDOWS|\Device\Harddisk0\Partition3" cwd="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7" />
   <culture-info current-culture="en-CA" current-uiculture="en-GB" />
-  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="19.8159" asserts="0" description="Pester">
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="15.9079" asserts="0" description="Pester">
     <results>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\Adobe\Install.AdobeAcrobat.Clean.Tests.ps1" executed="True" result="Success" success="True" time="2.2943" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\Adobe\Install.AdobeAcrobat.Clean.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Adobe\Install.AdobeAcrobat.Clean.Tests.ps1" executed="True" result="Success" success="True" time="1.5399" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Adobe\Install.AdobeAcrobat.Clean.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 Adobe Acrobat refresh behavior" executed="True" result="Success" success="True" time="1.5106" asserts="0" description="V5 Adobe Acrobat refresh behavior">
+          <test-suite type="TestFixture" name="V5 Adobe Acrobat refresh behavior" executed="True" result="Success" success="True" time="0.9334" asserts="0" description="V5 Adobe Acrobat refresh behavior">
             <results>
-              <test-case description="blocks installer execution when publisher validation fails" name="V5 Adobe Acrobat refresh behavior.blocks installer execution when publisher validation fails" time="0.7978" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="returns a WhatIf result and suppresses Start-Process during preview without elevation" name="V5 Adobe Acrobat refresh behavior.returns a WhatIf result and suppresses Start-Process during preview without elevation" time="0.4815" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="returns a skipped result when the package path is missing during a real run" name="V5 Adobe Acrobat refresh behavior.returns a skipped result when the package path is missing during a real run" time="0.0619" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="blocks installer execution when publisher validation fails" name="V5 Adobe Acrobat refresh behavior.blocks installer execution when publisher validation fails" time="0.481" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a WhatIf result and suppresses Start-Process during preview without elevation" name="V5 Adobe Acrobat refresh behavior.returns a WhatIf result and suppresses Start-Process during preview without elevation" time="0.3149" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a skipped result when the package path is missing during a real run" name="V5 Adobe Acrobat refresh behavior.returns a skipped result when the package path is missing during a real run" time="0.0298" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\Deleter.NamePrinter.Tests.ps1" executed="True" result="Success" success="True" time="1.3722" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\Deleter.NamePrinter.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\Deleter.NamePrinter.Tests.ps1" executed="True" result="Success" success="True" time="0.9149" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\Deleter.NamePrinter.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 named printer removal behavior" executed="True" result="Success" success="True" time="1.2542" asserts="0" description="V5 named printer removal behavior">
+          <test-suite type="TestFixture" name="V5 named printer removal behavior" executed="True" result="Success" success="True" time="0.814" asserts="0" description="V5 named printer removal behavior">
             <results>
-              <test-case description="returns a skipped result when the printer name pattern is not configured" name="V5 named printer removal behavior.returns a skipped result when the printer name pattern is not configured" time="1.2153" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a skipped result when the printer name pattern is not configured" name="V5 named printer removal behavior.returns a skipped result when the printer name pattern is not configured" time="0.7878" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\Export.printer.list.Security.Tests.ps1" executed="True" result="Success" success="True" time="3.8558" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\Export.printer.list.Security.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\Export.printer.list.Security.Tests.ps1" executed="True" result="Success" success="True" time="3.2659" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\Export.printer.list.Security.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 printer export hardening" executed="True" result="Success" success="True" time="3.7096" asserts="0" description="V5 printer export hardening">
+          <test-suite type="TestFixture" name="V5 printer export hardening" executed="True" result="Success" success="True" time="3.1645" asserts="0" description="V5 printer export hardening">
             <results>
-              <test-case description="uses a secured per-user path and unique file name for the basic export preview" name="V5 printer export hardening.uses a secured per-user path and unique file name for the basic export preview" time="1.5475" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="uses a secured per-user path and unique file name for the full export preview" name="V5 printer export hardening.uses a secured per-user path and unique file name for the full export preview" time="1.4526" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="restricts the export directory in code" name="V5 printer export hardening.restricts the export directory in code" time="0.0352" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="does not rewrite ACLs when the export directory already exists" name="V5 printer export hardening.does not rewrite ACLs when the export directory already exists" time="0.2709" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="hardens a newly created export directory once" name="V5 printer export hardening.hardens a newly created export directory once" time="0.3388" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="uses a secured per-user path and unique file name for the basic export preview" name="V5 printer export hardening.uses a secured per-user path and unique file name for the basic export preview" time="1.3338" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="uses a secured per-user path and unique file name for the full export preview" name="V5 printer export hardening.uses a secured per-user path and unique file name for the full export preview" time="1.481" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="restricts the export directory in code" name="V5 printer export hardening.restricts the export directory in code" time="0.0144" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="does not rewrite ACLs when the export directory already exists" name="V5 printer export hardening.does not rewrite ACLs when the export directory already exists" time="0.1715" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="hardens a newly created export directory once" name="V5 printer export hardening.hardens a newly created export directory once" time="0.1482" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\Restart.Spool.DeletePrinterQSimple.Tests.ps1" executed="True" result="Success" success="True" time="0.8215" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\Restart.Spool.DeletePrinterQSimple.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\Restart.Spool.DeletePrinterQSimple.Tests.ps1" executed="True" result="Success" success="True" time="0.7078" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\Restart.Spool.DeletePrinterQSimple.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 simple spool cleanup" executed="True" result="Success" success="True" time="0.6861" asserts="0" description="V5 simple spool cleanup">
+          <test-suite type="TestFixture" name="V5 simple spool cleanup" executed="True" result="Success" success="True" time="0.6118" asserts="0" description="V5 simple spool cleanup">
             <results>
-              <test-case description="returns structured WhatIf output" name="V5 simple spool cleanup.returns structured WhatIf output" time="0.6733" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns structured WhatIf output" name="V5 simple spool cleanup.returns structured WhatIf output" time="0.6072" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\restart.SpoolDeleteQV4.Tests.ps1" executed="True" result="Success" success="True" time="1.1741" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\Printer\restart.SpoolDeleteQV4.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\restart.SpoolDeleteQV4.Tests.ps1" executed="True" result="Success" success="True" time="0.6256" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\Printer\restart.SpoolDeleteQV4.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 logged spool cleanup behavior" executed="True" result="Success" success="True" time="1.0197" asserts="0" description="V5 logged spool cleanup behavior">
+          <test-suite type="TestFixture" name="V5 logged spool cleanup behavior" executed="True" result="Success" success="True" time="0.5271" asserts="0" description="V5 logged spool cleanup behavior">
             <results>
-              <test-case description="resolves a secure log path and suppresses transcript, service, and file mutations during WhatIf preview" name="V5 logged spool cleanup behavior.resolves a secure log path and suppresses transcript, service, and file mutations during WhatIf preview" time="0.4952" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="does not restart the service when this invocation never stopped it" name="V5 logged spool cleanup behavior.does not restart the service when this invocation never stopped it" time="0.2197" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="restarts the service only when it was running and carries the FP temp cleanup rule" name="V5 logged spool cleanup behavior.restarts the service only when it was running and carries the FP temp cleanup rule" time="0.2444" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="resolves a secure log path and suppresses transcript, service, and file mutations during WhatIf preview" name="V5 logged spool cleanup behavior.resolves a secure log path and suppresses transcript, service, and file mutations during WhatIf preview" time="0.2444" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="does not restart the service when this invocation never stopped it" name="V5 logged spool cleanup behavior.does not restart the service when this invocation never stopped it" time="0.1351" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="restarts the service only when it was running and carries the FP temp cleanup rule" name="V5 logged spool cleanup behavior.restarts the service only when it was running and carries the FP temp cleanup rule" time="0.1236" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1" executed="True" result="Success" success="True" time="6.3211" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1" executed="True" result="Success" success="True" time="5.7426" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="Invoke-PSScriptAnalyzer helper" executed="True" result="Success" success="True" time="6.1508" asserts="0" description="Invoke-PSScriptAnalyzer helper">
+          <test-suite type="TestFixture" name="Invoke-PSScriptAnalyzer helper" executed="True" result="Success" success="True" time="5.6063" asserts="0" description="Invoke-PSScriptAnalyzer helper">
             <results>
-              <test-case description="fails validation when analyzer invocation crashes and records the failure in JSON output" name="Invoke-PSScriptAnalyzer helper.fails validation when analyzer invocation crashes and records the failure in JSON output" time="1.761" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="overwrites the JSON artifact with an empty array when no findings are returned" name="Invoke-PSScriptAnalyzer helper.overwrites the JSON artifact with an empty array when no findings are returned" time="1.7102" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="does not surface analyzer invocation failures for the previously crashing repo files" name="Invoke-PSScriptAnalyzer helper.does not surface analyzer invocation failures for the previously crashing repo files" time="2.6513" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="fails validation when analyzer invocation crashes and records the failure in JSON output" name="Invoke-PSScriptAnalyzer helper.fails validation when analyzer invocation crashes and records the failure in JSON output" time="1.4616" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="overwrites the JSON artifact with an empty array when no findings are returned" name="Invoke-PSScriptAnalyzer helper.overwrites the JSON artifact with an empty array when no findings are returned" time="1.304" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="does not surface analyzer invocation failures for the previously crashing repo files" name="Invoke-PSScriptAnalyzer helper.does not surface analyzer invocation failures for the previously crashing repo files" time="2.832" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Move-OrphanedInstallerFiles.Tests.ps1" executed="True" result="Success" success="True" time="0.8913" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Move-OrphanedInstallerFiles.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Move-OrphanedInstallerFiles.Tests.ps1" executed="True" result="Success" success="True" time="0.5878" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Move-OrphanedInstallerFiles.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 installer orphan move behavior" executed="True" result="Success" success="True" time="0.7447" asserts="0" description="V5 installer orphan move behavior">
+          <test-suite type="TestFixture" name="V5 installer orphan move behavior" executed="True" result="Success" success="True" time="0.4868" asserts="0" description="V5 installer orphan move behavior">
             <results>
-              <test-case description="skips reparse points and suppresses Move-Item during WhatIf preview" name="V5 installer orphan move behavior.skips reparse points and suppresses Move-Item during WhatIf preview" time="0.3945" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="adds a timestamp suffix before moving when the quarantine target already exists" name="V5 installer orphan move behavior.adds a timestamp suffix before moving when the quarantine target already exists" time="0.2228" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="returns a skipped result without creating quarantine when no installer references exist" name="V5 installer orphan move behavior.returns a skipped result without creating quarantine when no installer references exist" time="0.0754" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="skips reparse points and suppresses Move-Item during WhatIf preview" name="V5 installer orphan move behavior.skips reparse points and suppresses Move-Item during WhatIf preview" time="0.2332" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="adds a timestamp suffix before moving when the quarantine target already exists" name="V5 installer orphan move behavior.adds a timestamp suffix before moving when the quarantine target already exists" time="0.1739" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a skipped result without creating quarantine when no installer references exist" name="V5 installer orphan move behavior.returns a skipped result without creating quarantine when no installer references exist" time="0.0486" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1" executed="True" result="Success" success="True" time="1.2306" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1" executed="True" result="Success" success="True" time="1.0455" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 advanced cleanup" executed="True" result="Success" success="True" time="1.1039" asserts="0" description="V5 advanced cleanup">
+          <test-suite type="TestFixture" name="V5 advanced cleanup" executed="True" result="Success" success="True" time="0.9297" asserts="0" description="V5 advanced cleanup">
             <results>
-              <test-case description="supports safe preview without elevation and returns the cleanup status contract" name="V5 advanced cleanup.supports safe preview without elevation and returns the cleanup status contract" time="0.7425" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="counts only successful removals and skips Windows.old trust resolution when removal is disabled" name="V5 advanced cleanup.counts only successful removals and skips Windows.old trust resolution when removal is disabled" time="0.2922" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="supports safe preview without elevation and returns the cleanup status contract" name="V5 advanced cleanup.supports safe preview without elevation and returns the cleanup status contract" time="0.6646" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="counts only successful removals and skips Windows.old trust resolution when removal is disabled" name="V5 advanced cleanup.counts only successful removals and skips Windows.old trust resolution when removal is disabled" time="0.224" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Complet.Caches.Windows.Tests.ps1" executed="True" result="Success" success="True" time="0.1467" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Complet.Caches.Windows.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Complet.Caches.Windows.Tests.ps1" executed="True" result="Success" success="True" time="0.1212" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Nettoyage.Complet.Caches.Windows.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 complete cleanup hardening" executed="True" result="Success" success="True" time="0.0163" asserts="0" description="V5 complete cleanup hardening">
+          <test-suite type="TestFixture" name="V5 complete cleanup hardening" executed="True" result="Success" success="True" time="0.0159" asserts="0" description="V5 complete cleanup hardening">
             <results>
-              <test-case description="uses trusted cleanup specs and reparse-point guards" name="V5 complete cleanup hardening.uses trusted cleanup specs and reparse-point guards" time="0.0088" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="uses trusted cleanup specs and reparse-point guards" name="V5 complete cleanup hardening.uses trusted cleanup specs and reparse-point guards" time="0.0101" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Reset.Network.RebootPC.Tests.ps1" executed="True" result="Success" success="True" time="0.9562" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\windows-maintenance\Reset.Network.RebootPC.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Reset.Network.RebootPC.Tests.ps1" executed="True" result="Success" success="True" time="0.787" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\windows-maintenance\Reset.Network.RebootPC.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 network reset and reboot behavior" executed="True" result="Success" success="True" time="0.8042" asserts="0" description="V5 network reset and reboot behavior">
+          <test-suite type="TestFixture" name="V5 network reset and reboot behavior" executed="True" result="Success" success="True" time="0.6672" asserts="0" description="V5 network reset and reboot behavior">
             <results>
-              <test-case description="returns a preview-safe WhatIf summary" name="V5 network reset and reboot behavior.returns a preview-safe WhatIf summary" time="0.7001" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="returns a skipped result in Windows Sandbox without running commands" name="V5 network reset and reboot behavior.returns a skipped result in Windows Sandbox without running commands" time="0.0548" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a preview-safe WhatIf summary" name="V5 network reset and reboot behavior.returns a preview-safe WhatIf summary" time="0.6194" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a skipped result in Windows Sandbox without running commands" name="V5 network reset and reboot behavior.returns a skipped result in Windows Sandbox without running commands" time="0.0097" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="TestFixture" name="C:\Users\Bob\Documents\Script.Powershell.7\tests\WindowsServer\FichierOphelin.Tests.ps1" executed="True" result="Success" success="True" time="0.7522" asserts="0" description="C:\Users\Bob\Documents\Script.Powershell.7\tests\WindowsServer\FichierOphelin.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\WindowsServer\FichierOphelin.Tests.ps1" executed="True" result="Success" success="True" time="0.5697" asserts="0" description="C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\tests\WindowsServer\FichierOphelin.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="V5 installer orphan cleanup behavior" executed="True" result="Success" success="True" time="0.6195" asserts="0" description="V5 installer orphan cleanup behavior">
+          <test-suite type="TestFixture" name="V5 installer orphan cleanup behavior" executed="True" result="Success" success="True" time="0.4851" asserts="0" description="V5 installer orphan cleanup behavior">
             <results>
-              <test-case description="skips reparse points and suppresses Move-Item during WhatIf preview" name="V5 installer orphan cleanup behavior.skips reparse points and suppresses Move-Item during WhatIf preview" time="0.2601" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="adds a timestamp suffix before moving when the quarantine target already exists" name="V5 installer orphan cleanup behavior.adds a timestamp suffix before moving when the quarantine target already exists" time="0.2044" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="returns a skipped result without creating quarantine when no installer references exist" name="V5 installer orphan cleanup behavior.returns a skipped result without creating quarantine when no installer references exist" time="0.0909" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="skips reparse points and suppresses Move-Item during WhatIf preview" name="V5 installer orphan cleanup behavior.skips reparse points and suppresses Move-Item during WhatIf preview" time="0.2056" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="adds a timestamp suffix before moving when the quarantine target already exists" name="V5 installer orphan cleanup behavior.adds a timestamp suffix before moving when the quarantine target already exists" time="0.2058" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="returns a skipped result without creating quarantine when no installer references exist" name="V5 installer orphan cleanup behavior.returns a skipped result without creating quarantine when no installer references exist" time="0.0521" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>

@@ -8,6 +8,8 @@ Use Windows Sandbox for manual validation of risky scripts such as:
 - installer orphan move
 - broad cleanup scripts
 
+The GitHub Actions workflow covers analyzer, Pester, fixed-list `-WhatIf`, and trusted smoke checks. Sandbox validation stays local because it depends on a disposable host-mapped Windows Sandbox environment.
+
 ## Repo Template
 
 - Sandbox file: `sandbox/sysadmin-main-validation.wsb`
