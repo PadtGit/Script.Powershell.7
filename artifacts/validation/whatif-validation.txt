@@ -51,11 +51,11 @@ ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Export printer list" on target 
-             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260328-232845926.csv".
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260329-003008430.csv".
              
              
              OutputPath    : 
-             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260328-232845926.csv
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260329-003008430.csv
              PrinterCount  : 1
              ExportProfile : Basic
              Status        : WhatIf
@@ -69,11 +69,11 @@ ScriptPath : C:\Users\Bob\.codex\worktrees\d65b\Script.Powershell.7\PowerShell
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Export printer list" on target 
-             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260328-232846943.csv".
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260329-003009406.csv".
              
              
              OutputPath    : 
-             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260328-232846943.csv
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260329-003009406.csv
              PrinterCount  : 1
              ExportProfile : Full
              Status        : WhatIf
@@ -126,7 +126,7 @@ Output     : What if: Performing the operation "Stop Print Spooler" on target "S
              ServiceName  : Spooler
              Service      : Spooler
              QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
-             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260328-232848684-b00a9b6a.log
+             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260329-003011139-00d5420d.log
              FileCount    : 0
              DeletedCount : 0
              DeletedFiles : 0

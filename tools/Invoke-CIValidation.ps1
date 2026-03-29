@@ -166,6 +166,122 @@ function Ensure-ModuleInstalled {
     }
 }
 
+function Ensure-WindowsPowerShellModuleInstalled {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Name,
+
+        [version]$RequiredVersion,
+
+        [version]$MinimumVersion
+    )
+
+    if (-not (Test-Path -LiteralPath $WindowsPowerShellPath -PathType Leaf)) {
+        return
+    }
+
+    $RequiredVersionText = if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
+        $RequiredVersion.ToString()
+    }
+    else {
+        ''
+    }
+
+    $MinimumVersionText = if ($PSBoundParameters.ContainsKey('MinimumVersion')) {
+        $MinimumVersion.ToString()
+    }
+    else {
+        ''
+    }
+
+    $AllowInstall = if ($SkipModuleInstall) { '$false' } else { '$true' }
+
+    $CommandText = @"
+`$ErrorActionPreference = 'Stop'
+`$ProgressPreference = 'SilentlyContinue'
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+
+function Get-TargetModule {
+    param(
+        [string]`$Name,
+        [string]`$RequiredVersion,
+        [string]`$MinimumVersion
+    )
+
+    `$AvailableModules = @(Get-Module -ListAvailable -Name `$Name | Sort-Object Version -Descending)
+
+    if (-not [string]::IsNullOrWhiteSpace(`$RequiredVersion)) {
+        return `$AvailableModules |
+            Where-Object { `$_.Version -eq [version]`$RequiredVersion } |
+            Select-Object -First 1
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace(`$MinimumVersion)) {
+        return `$AvailableModules |
+            Where-Object { `$_.Version -ge [version]`$MinimumVersion } |
+            Select-Object -First 1
+    }
+
+    return `$AvailableModules | Select-Object -First 1
+}
+
+`$Module = Get-TargetModule -Name '$Name' -RequiredVersion '$RequiredVersionText' -MinimumVersion '$MinimumVersionText'
+if (-not `$Module) {
+    if (-not $AllowInstall) {
+        throw "Required module '$Name' is not available in Windows PowerShell and -SkipModuleInstall was specified."
+    }
+
+    if (Get-Command -Name Get-PSRepository -ErrorAction SilentlyContinue) {
+        `$Gallery = Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
+        if (-not `$Gallery -and (Get-Command -Name Register-PSRepository -ErrorAction SilentlyContinue)) {
+            Register-PSRepository -Default
+            `$Gallery = Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
+        }
+
+        if (`$Gallery -and `$Gallery.InstallationPolicy -ne 'Trusted') {
+            Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+        }
+    }
+
+    if (Get-Command -Name Install-PackageProvider -ErrorAction SilentlyContinue) {
+        `$NuGetProvider = Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue
+        if (-not `$NuGetProvider -or `$NuGetProvider.Version -lt [version]'2.8.5.201') {
+            Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Scope CurrentUser -Force | Out-Null
+        }
+    }
+
+    `$InstallSplat = @{
+        Name               = '$Name'
+        Scope              = 'CurrentUser'
+        Force              = `$true
+        AllowClobber       = `$true
+        SkipPublisherCheck = `$true
+        ErrorAction        = 'Stop'
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace('$RequiredVersionText')) {
+        `$InstallSplat.RequiredVersion = [version]'$RequiredVersionText'
+    }
+    elseif (-not [string]::IsNullOrWhiteSpace('$MinimumVersionText')) {
+        `$InstallSplat.MinimumVersion = [version]'$MinimumVersionText'
+    }
+
+    Install-Module @InstallSplat
+    `$Module = Get-TargetModule -Name '$Name' -RequiredVersion '$RequiredVersionText' -MinimumVersion '$MinimumVersionText'
+}
+
+if (-not `$Module) {
+    throw "Module '$Name' could not be resolved in Windows PowerShell after installation."
+}
+"@
+
+    Invoke-NativeStep -FilePath $WindowsPowerShellPath -ArgumentList @(
+        '-NoProfile',
+        '-ExecutionPolicy', 'Bypass',
+        '-Command', $CommandText
+    ) -FailureMessage "Failed to provision Windows PowerShell module '$Name'."
+}
+
 New-Item -ItemType Directory -Force -Path $ValidationRoot | Out-Null
 
 Push-Location -Path $RepoRoot
@@ -173,6 +289,7 @@ try {
     Write-Section 'Module Setup'
     Ensure-ModuleInstalled -Name PSScriptAnalyzer -RequiredVersion $RequiredPSScriptAnalyzerVersion
     Ensure-ModuleInstalled -Name Pester -MinimumVersion $MinimumPesterVersion
+    Ensure-WindowsPowerShellModuleInstalled -Name PSScriptAnalyzer -RequiredVersion $RequiredPSScriptAnalyzerVersion
 
     Write-Section 'PSScriptAnalyzer'
     Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
