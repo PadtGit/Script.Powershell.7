@@ -9,6 +9,36 @@ function Global:Get-SysadminMainRepoRoot {
     return $env:SYSADMIN_MAIN_REPO_ROOT
 }
 
+function Global:Get-WhatIfShellPath {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$RelativeScriptPath
+    )
+
+    $NormalizedRelativePath = $RelativeScriptPath -replace '/', '\'
+    if ($NormalizedRelativePath -match '^PowerShell Script\\V7\\') {
+        if ($PSVersionTable.PSEdition -eq 'Core') {
+            try {
+                return (Get-Process -Id $PID -ErrorAction Stop).Path
+            }
+            catch {
+                return 'pwsh'
+            }
+        }
+
+        $PowerShell7Command = Get-Command -Name 'pwsh.exe' -ErrorAction SilentlyContinue
+        if ($null -ne $PowerShell7Command) {
+            return $PowerShell7Command.Source
+        }
+
+        throw ('pwsh.exe was not found for V7 script preview: {0}' -f $RelativeScriptPath)
+    }
+
+    return (Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe')
+}
+
 function Global:Import-ScriptModuleForTest {
     [CmdletBinding()]
     param(
@@ -72,7 +102,7 @@ function Global:Invoke-WhatIfScriptObject {
         throw ('Script not found: {0}' -f $ScriptPath)
     }
 
-    $ShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+    $ShellPath = Get-WhatIfShellPath -RelativeScriptPath $RelativeScriptPath
 
     $EscapedScriptPath = $ScriptPath.Replace("'", "''")
     $Invocation = @"

@@ -22,7 +22,7 @@ jobs:
 
       - name: Run validation suite
         shell: pwsh
-        run: ./tools/Invoke-CIValidation.ps1
+        run: pwsh -NoProfile -ExecutionPolicy Bypass -File ./tools/Invoke-CIValidation.ps1
 
       - name: Upload validation artifacts
         if: always()

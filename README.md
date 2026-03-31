@@ -1,7 +1,7 @@
 # Script.Powershell.7
 
-Windows admin PowerShell scripts under `PowerShell Script/`, with primary Windows PowerShell 5.1 surfaces plus a remaining `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1` companion script.
+Windows admin PowerShell scripts under `PowerShell Script/`, with `pwsh` 7 as the default validation engine and the maintained high-risk scripts now mirrored under `PowerShell Script/V7/`.
 
-Start with `AGENTS.md` for the local maintenance playbook, `SKILL.md` for the short repo entrypoint, `docs/sysadmin-main-multi-agent-sop.md` for extended workflow notes, and `docs/windows-sandbox-validation.md` for risky manual validation plus the optional automated Sandbox `-WhatIf` capture flow.
+Start with `AGENTS.md` for the local maintenance playbook, `SKILL.md` for the short repo entrypoint, `docs/sysadmin-main-multi-agent-sop.md` for extended workflow notes, and `docs/windows-sandbox-validation.md` for risky manual validation plus the automated Sandbox `-WhatIf` capture flow.
 
-This checkout relies on analyzer, Pester, fixed-list `-WhatIf`, and Windows Sandbox validation; generated validation artifacts and optional sandbox-capture helpers live under `artifacts/validation/`. Future GitHub Actions runs now use `.github/workflows/powershell-validation.yml`, which calls `tools/Invoke-CIValidation.ps1` on Windows runners and uploads the validation artifacts.
+This checkout relies on analyzer, Pester, engine-aware fixed `-WhatIf`, trusted V7 smoke checks, and Windows Sandbox validation. Generated validation artifacts and optional sandbox-capture helpers live under `artifacts/validation/`. GitHub Actions uses `.github/workflows/powershell-validation.yml`, which runs `tools/Invoke-CIValidation.ps1` under `pwsh` on Windows runners and uploads the validation artifacts.

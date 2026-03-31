@@ -9,10 +9,10 @@
 ## Repo Ground Rules
 
 - Canonical scripts live under `PowerShell Script/`.
-- `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1` remains tracked and should be considered when network-reset behavior changes.
+- `PowerShell Script/V7/` is the preferred maintained surface for migrated high-risk scripts.
 - `Invoke-WhatIfValidation.ps1` is the repo-level validator entrypoint.
 - Generated validation output belongs under `artifacts/validation/`.
-- Most admin scripts target Windows PowerShell 5.1.
+- `pwsh` 7 is the default validation engine, while remaining legacy scripts stay on Windows PowerShell 5.1 until they are migrated.
 - Preserve each file's existing strict-mode, `$ErrorActionPreference`, and `SupportsShouldProcess` behavior.
 - Prefer safe `-WhatIf` preview behavior over hard admin-only preview blocks where the script can truthfully support preview without elevation.
 - Keep result objects compact and structured. Avoid noisy transcript-style output by default.
@@ -51,9 +51,9 @@
 
 - Use the repo-wide recursive analyzer command with `tools\Invoke-PSScriptAnalyzer.ps1`, `tools\PSScriptAnalyzerSettings.psd1`, `-EnableExit`, and `-ExitCodeMode AllDiagnostics`.
 - Use the CI-style Pester configuration that writes results to `artifacts/validation/pester-results.xml`.
-- Use `Invoke-WhatIfValidation.ps1` for the fixed-list preview validator.
-- Use `tools\Invoke-CIValidation.ps1` when you want the repo-local workflow entrypoint that the GitHub Actions job also runs.
-- Keep smoke checks focused on the trusted `-WhatIf` commands documented in `AGENTS.md`.
+- Use `Invoke-WhatIfValidation.ps1` for the engine-aware fixed-list preview validator.
+- Use `tools\Invoke-CIValidation.ps1` under `pwsh` when you want the repo-local workflow entrypoint that the GitHub Actions job also runs.
+- Keep smoke checks focused on the trusted V7 `-WhatIf` commands documented in `AGENTS.md`.
 - Use `sandbox/sysadmin-main-validation.wsb` as the disposable validation shell for risky scripts. The profile maps `C:\Users\Bob\Documents\Script.Powershell.7` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell there.
 - Use `artifacts/validation/sandbox-whatif-validation.wsb` when you want the Sandbox to run the current high-risk `-WhatIf` targets automatically and emit raw output into the writable host-mapped folder that `artifacts/validation/Copy-SandboxWhatIfOutput.ps1` syncs into `artifacts/validation/sandbox-whatif-output/`.
 - Inspect validation and test artifacts under `artifacts/validation/`.

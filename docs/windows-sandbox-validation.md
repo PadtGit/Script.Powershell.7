@@ -8,7 +8,7 @@ Use Windows Sandbox for manual validation of risky scripts such as:
 - installer orphan move
 - broad cleanup scripts
 
-The GitHub Actions workflow covers analyzer, Pester, fixed-list `-WhatIf`, and trusted smoke checks. Sandbox validation stays local because it depends on a disposable host-mapped Windows Sandbox environment.
+The GitHub Actions workflow covers analyzer, Pester, engine-aware fixed `-WhatIf`, and trusted V7 smoke checks. Sandbox validation stays local because it depends on a disposable host-mapped Windows Sandbox environment.
 
 ## Repo Template
 
@@ -24,12 +24,13 @@ The GitHub Actions workflow covers analyzer, Pester, fixed-list `-WhatIf`, and t
 - Networking is disabled.
 - vGPU is disabled.
 - The logon command opens PowerShell and sets the working location to `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
+- Automated V7 capture expects `pwsh.exe` to be available inside the Sandbox session.
 
 ## Manual Validation Flow
 
 1. Launch the `.wsb` file.
 2. Confirm PowerShell opens in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
-3. Run the target script with `-WhatIf` first.
+3. Start `pwsh` in the Sandbox if it is available, then run the target V7 script with `-WhatIf` first.
 4. Inspect the result object and any generated output under `artifacts/validation/`.
 5. Remember that the repo mapping is read-only; use the Sandbox only for disposable validation, not for writing changes back to the host repo.
 6. Only perform non-`WhatIf` validation when you are intentionally testing in the disposable Sandbox environment.
@@ -37,7 +38,7 @@ The GitHub Actions workflow covers analyzer, Pester, fixed-list `-WhatIf`, and t
 
 ## Automated `-WhatIf` Capture
 
-Use this when you want the Sandbox to run the current high-risk preview set automatically and save the raw output back to the host:
+Use this when you want the Sandbox to run the current high-risk V7 preview set automatically and save the raw output back to the host:
 
 1. Launch `artifacts/validation/sandbox-whatif-validation.wsb`.
 2. Wait for the Sandbox run to finish writing the raw files into `C:\Users\Bob\Documents\SandboxValidationOutput\Script.Powershell.7`.
@@ -51,8 +52,9 @@ Use this when you want the Sandbox to run the current high-risk preview set auto
 
 Current automated target set:
 
-- `PowerShell Script\windows-maintenance\Move-OrphanedInstallerFiles.ps1`
-- `PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1`
-- `PowerShell Script\windows-maintenance\Reset.Network.RebootPC.ps1`
+- `PowerShell Script\V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1`
+- `PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1`
+- `PowerShell Script\V7\windows-maintenance\Reset.Network.RebootPC.ps1`
+- `PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1`
 
-If the repo path or host-side writable output path changes, update this document and `artifacts/validation/sandbox-whatif-validation.wsb` together.
+If `pwsh.exe` is missing inside the Sandbox image, the helper writes a failed status for each V7 target instead of silently falling back to Windows PowerShell. If the repo path or host-side writable output path changes, update this document and `artifacts/validation/sandbox-whatif-validation.wsb` together.

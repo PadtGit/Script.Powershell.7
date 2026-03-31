@@ -6,7 +6,12 @@ Describe 'Invoke-PSScriptAnalyzer helper' {
         $script:RepoRoot = Get-SysadminMainRepoRoot
         $script:ToolPath = Join-Path $script:RepoRoot 'tools\Invoke-PSScriptAnalyzer.ps1'
         $script:SettingsPath = Join-Path $script:RepoRoot 'tools\PSScriptAnalyzerSettings.psd1'
-        $script:PowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+        try {
+            $script:PowerShellPath = (Get-Process -Id $PID -ErrorAction Stop).Path
+        }
+        catch {
+            $script:PowerShellPath = 'pwsh'
+        }
     }
 
     It 'fails validation when analyzer invocation crashes and records the failure in JSON output' {
@@ -113,7 +118,7 @@ function Measure-ThrowingRule {
             $sarifPath = Join-Path $tempRoot 'psscriptanalyzer.sarif'
             $targetPaths = @(
                 Join-Path $script:RepoRoot 'PowerShell Script\Printer\Restart.spool.delete.printerQ.ps1'
-                Join-Path $script:RepoRoot 'PowerShell Script\windows-maintenance\Reset.Network.RebootPC.ps1'
+                Join-Path $script:RepoRoot 'PowerShell Script\V7\windows-maintenance\Reset.Network.RebootPC.ps1'
             )
 
             $results = @(
