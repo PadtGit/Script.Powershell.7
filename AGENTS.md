@@ -4,7 +4,7 @@
 
 - This checkout tracks `origin` `PadtGit/Script.Powershell.7` on branch `main`.
 - Use `PowerShell Script/*` as the canonical script tree for this repo.
-- Most admin scripts target Windows PowerShell 5.1, and the repo still carries `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1` as a remaining V7 companion surface.
+- `pwsh` 7 is the default validation engine for this repo, and the maintained high-risk scripts now have preferred V7 surfaces under `PowerShell Script/V7/`.
 - Git metadata and `git.exe` are available in this workspace.
 - Generated validation output belongs under `artifacts/validation/`, not tracked repo result files.
 - Prefer small, reversible changes over bulk rewrites.
@@ -13,7 +13,11 @@
 ## Canonical Layout
 
 - `PowerShell Script/*`: primary script tree for this checkout.
-- `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1`: remaining V7 companion script still tracked here.
+- `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1`: V7 network reset and reboot script.
+- `PowerShell Script/V7/windows-maintenance/Move-OrphanedInstallerFiles.ps1`: V7 installer orphan move script.
+- `PowerShell Script/V7/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.ps1`: V7 advanced cleanup script.
+- `PowerShell Script/V7/Printer/Restart.Spool.DeletePrinterQSimple.ps1`: V7 simple spool cleanup script.
+- `PowerShell Script/V7/Printer/restart.SpoolDeleteQV4.ps1`: V7 logged spool cleanup script.
 - `tests/*`: Pester coverage for current scripts and tooling.
 - `Invoke-WhatIfValidation.ps1`: fixed-list `-WhatIf` validator.
 - `tools/Invoke-PSScriptAnalyzer.ps1`: analyzer helper that writes text, JSON, and SARIF artifacts.
@@ -45,19 +49,19 @@
 - Targeted preview:
 
 ```powershell
-& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File 'PowerShell Script\<category>\<script>.ps1' -WhatIf
+pwsh -NoProfile -ExecutionPolicy Bypass -File 'PowerShell Script\V7\<category>\<script>.ps1' -WhatIf
 ```
 
 - Fixed-list validator:
 
 ```powershell
-& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\Invoke-WhatIfValidation.ps1'
+pwsh -NoProfile -ExecutionPolicy Bypass -File '.\Invoke-WhatIfValidation.ps1'
 ```
 
 - Analyzer helper:
 
 ```powershell
-& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\tools\Invoke-PSScriptAnalyzer.ps1' `
+pwsh -NoProfile -ExecutionPolicy Bypass -File '.\tools\Invoke-PSScriptAnalyzer.ps1' `
   -Path . `
   -Recurse `
   -SettingsPath '.\tools\PSScriptAnalyzerSettings.psd1' `
@@ -89,14 +93,14 @@ Invoke-Pester -Configuration $config
 - Shared CI validation runner:
 
 ```powershell
-.\tools\Invoke-CIValidation.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File '.\tools\Invoke-CIValidation.ps1'
 ```
 
 - Trusted local smoke checks:
 
 ```powershell
-& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\PowerShell Script\Printer\Restart.Spool.DeletePrinterQSimple.ps1' -WhatIf
-& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1' -WhatIf
+pwsh -NoProfile -ExecutionPolicy Bypass -File '.\PowerShell Script\V7\Printer\Restart.Spool.DeletePrinterQSimple.ps1' -WhatIf
+pwsh -NoProfile -ExecutionPolicy Bypass -File '.\PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1' -WhatIf
 ```
 
 - Windows Sandbox launch:
@@ -155,8 +159,10 @@ Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
 - Pin PSScriptAnalyzer to version `1.25.0`; do not float to newer versions without an intentional repo update.
 - `tools\Invoke-PSScriptAnalyzer.ps1` writes to `artifacts/validation/psscriptanalyzer.txt`, `artifacts/validation/psscriptanalyzer.json`, and `artifacts/validation/psscriptanalyzer.sarif` by default.
 - Pester 5 does not support combining `-CI` with `-Configuration`; use `New-PesterConfiguration` for CI-style NUnit XML output.
+- `Invoke-WhatIfValidation.ps1` now dispatches V7 targets through `pwsh` and the remaining legacy targets through `powershell.exe`; keep new fixed-list entries honest about which engine they require.
 - `sandbox\sysadmin-main-validation.wsb` should map `C:\Users\Bob\Documents\Script.Powershell.7` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
 - `artifacts\validation\sandbox-whatif-validation.wsb` currently uses `C:\Users\Bob\Documents\SandboxValidationOutput\Script.Powershell.7` as the writable host-mapped output folder for automated Sandbox `-WhatIf` capture.
+- Automated Sandbox V7 capture depends on `pwsh.exe` being available inside the Sandbox session; the helper records per-target failures when PowerShell 7 is absent.
 - Keep the in-sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`; scripts and docs still rely on the stable runtime label `sysadmin-main`.
 - In service-control scripts, restart should depend on whether the current invocation actually stopped the service, not only on the initial service state.
 - Security-sensitive scripts should keep trusted output-root and reparse-point protections intact when moving or deleting data.
@@ -169,3 +175,4 @@ Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
 - 2026-03-26: Refreshed the playbook, entrypoint docs, and Windows Sandbox profile so they describe the actual `Script.Powershell.7` checkout on `main` and the supported local validation workflow.
 - 2026-03-28: Added an optional automated Windows Sandbox `-WhatIf` capture flow that writes raw output to a writable host-mapped folder and syncs it back into `artifacts/validation/sandbox-whatif-output/`.
 - 2026-03-28: Added `tools\Invoke-CIValidation.ps1` and `.github/workflows/powershell-validation.yml` so future GitHub Actions runs execute analyzer, Pester, fixed-list `-WhatIf`, and trusted smoke-check validation with uploaded artifacts.
+- 2026-03-30: Switched the repo to a V7-first validation flow, migrated the maintained high-risk scripts into `PowerShell Script\V7\`, and updated fixed-list validation, smoke checks, tests, and docs to prefer `pwsh`.

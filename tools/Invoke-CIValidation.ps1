@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+#Requires -Version 7.0
 
 [CmdletBinding()]
 param(
@@ -289,7 +289,6 @@ try {
     Write-Section 'Module Setup'
     Ensure-ModuleInstalled -Name PSScriptAnalyzer -RequiredVersion $RequiredPSScriptAnalyzerVersion
     Ensure-ModuleInstalled -Name Pester -MinimumVersion $MinimumPesterVersion
-    Ensure-WindowsPowerShellModuleInstalled -Name PSScriptAnalyzer -RequiredVersion $RequiredPSScriptAnalyzerVersion
 
     Write-Section 'PSScriptAnalyzer'
     Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
@@ -318,26 +317,28 @@ try {
     }
 
     Write-Section 'Fixed WhatIf Validation'
-    Invoke-NativeStep -FilePath $WindowsPowerShellPath -ArgumentList @(
+    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $RepoRoot -ChildPath 'Invoke-WhatIfValidation.ps1')
+        '-File', (Join-Path -Path $RepoRoot -ChildPath 'Invoke-WhatIfValidation.ps1'),
+        '-PowerShell7Path', $CurrentPowerShellPath,
+        '-WindowsPowerShellPath', $WindowsPowerShellPath
     ) -FailureMessage 'Fixed WhatIf validation failed.'
 
-    Write-Section 'Trusted Smoke Checks'
-    Invoke-NativeStep -FilePath $WindowsPowerShellPath -ArgumentList @(
+    Write-Section 'Trusted V7 Smoke Checks'
+    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\Printer\Restart.Spool.DeletePrinterQSimple.ps1'),
+        '-File', (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\Printer\Restart.Spool.DeletePrinterQSimple.ps1'),
         '-WhatIf'
-    ) -FailureMessage 'Printer smoke check failed.'
+    ) -FailureMessage 'V7 printer smoke check failed.'
 
-    Invoke-NativeStep -FilePath $WindowsPowerShellPath -ArgumentList @(
+    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'),
+        '-File', (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'),
         '-WhatIf'
-    ) -FailureMessage 'Cleanup smoke check failed.'
+    ) -FailureMessage 'V7 cleanup smoke check failed.'
 
     Write-Section 'Validation Complete'
     Write-Host 'All CI validation steps passed.' -ForegroundColor Green

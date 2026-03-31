@@ -1,9 +1,9 @@
 ﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
-Describe 'V5 advanced cleanup' {
+Describe 'V7 advanced cleanup' {
 
     BeforeAll {
-$script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
+        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
     }
 
     AfterAll {
@@ -13,8 +13,8 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
     }
 
     It 'supports safe preview without elevation and returns the cleanup status contract' {
-$result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
-$scriptPath = Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
+        $result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
+        $scriptPath = Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
         $content = Get-Content -LiteralPath $scriptPath -Raw
 
         $result.Object | Should -Not -BeNullOrEmpty

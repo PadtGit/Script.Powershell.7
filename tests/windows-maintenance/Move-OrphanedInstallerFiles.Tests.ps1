@@ -1,15 +1,28 @@
 ﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
-Describe 'V5 installer orphan move behavior' {
+Describe 'V7 installer orphan move behavior' {
 
     BeforeAll {
         . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
-$script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\windows-maintenance\Move-OrphanedInstallerFiles.ps1'
+        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1'
     }
 
     AfterAll {
         if ($null -ne $script:ModuleInfo) {
             Remove-Module -Name $script:ModuleInfo.ModuleName -Force -ErrorAction SilentlyContinue
+        }
+    }
+
+    It 'returns a preview-safe WhatIf result object' {
+        $result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1'
+
+        $result.Object | Should -Not -BeNullOrEmpty
+        @('InstallerPath', 'BackupPath', 'FileCount', 'OrphanCount', 'MovedCount', 'Status', 'Reason') |
+            ForEach-Object { $result.Object.PSObject.Properties.Name | Should -Contain $_ }
+        (@('WhatIf', 'Skipped') -contains $result.Object.Status) | Should -Be $true
+
+        if ($result.Object.Status -eq 'Skipped') {
+            $result.Object.Reason | Should -Be 'NoReferencesFound'
         }
     }
 

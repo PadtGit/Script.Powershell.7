@@ -1,6 +1,6 @@
 ﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
-Describe 'V5 logged spool cleanup behavior' {
+Describe 'V7 logged spool cleanup behavior' {
 
     BeforeAll {
         . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
@@ -10,13 +10,22 @@ Describe 'V5 logged spool cleanup behavior' {
         catch {
             Add-Type -AssemblyName 'System.ServiceProcess.ServiceController' -ErrorAction Stop
         }
-        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\restart.SpoolDeleteQV4.ps1'
+        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1'
     }
 
     AfterAll {
         if ($null -ne $script:ModuleInfo) {
             Remove-Module -Name $script:ModuleInfo.ModuleName -Force -ErrorAction SilentlyContinue
         }
+    }
+
+    It 'returns structured WhatIf output under direct script preview' {
+        $result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1'
+
+        $result.Object | Should -Not -BeNullOrEmpty
+        $result.Object.Status | Should -Be 'WhatIf'
+        $result.Object.DeletedCount | Should -Be 0
+        $result.Object.WhatIfRun | Should -BeTrue
     }
 
     It 'resolves a secure log path and suppresses transcript, service, and file mutations during WhatIf preview' {
@@ -235,7 +244,7 @@ Describe 'V5 logged spool cleanup behavior' {
             logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
             storageRoot    = 'C:\ProgramData\sysadmin-main'
             logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
-        scriptPath     = (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\Printer\restart.SpoolDeleteQV4.ps1')
+            scriptPath     = (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1')
         }
     }
 }

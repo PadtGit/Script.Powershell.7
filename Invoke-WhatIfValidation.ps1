@@ -1,15 +1,33 @@
-﻿#Requires -Version 5.1
+#Requires -Version 7.0
 
 [CmdletBinding()]
 param(
-    [string]$ResultPath = ''
+    [string]$ResultPath = '',
+
+    [string]$PowerShell7Path = '',
+
+    [string]$WindowsPowerShellPath = ''
 )
 
 Set-StrictMode -Version 3.0
 $ErrorActionPreference = 'Stop'
 
 $BasePath = Join-Path -Path $PSScriptRoot -ChildPath 'PowerShell Script'
-$PowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+
+try {
+    $CurrentPowerShellPath = (Get-Process -Id $PID -ErrorAction Stop).Path
+}
+catch {
+    $CurrentPowerShellPath = 'pwsh'
+}
+
+if ([string]::IsNullOrWhiteSpace($PowerShell7Path)) {
+    $PowerShell7Path = $CurrentPowerShellPath
+}
+
+if ([string]::IsNullOrWhiteSpace($WindowsPowerShellPath)) {
+    $WindowsPowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+}
 
 if ([string]::IsNullOrWhiteSpace($ResultPath)) {
     $ResultPath = Join-Path -Path $PSScriptRoot -ChildPath 'artifacts\validation\whatif-validation.txt'
@@ -20,32 +38,57 @@ if (-not [string]::IsNullOrWhiteSpace($ResultDirectory) -and -not (Test-Path -Li
     New-Item -ItemType Directory -Path $ResultDirectory -Force | Out-Null
 }
 
-$ScriptPaths = @(
-    'Adobe\Install.AdobeAcrobat.Clean.ps1',
-    'Printer\Delete.all.offline.printer.ps1',
-    'Printer\Deleter.NamePrinter.ps1',
-    'Printer\Export.printer.list.BASIC.ps1',
-    'Printer\Export.printer.list.FULL.ps1',
-    'Printer\Restart.spool.delete.printerQ.ps1',
-    'Printer\Restart.Spool.DeletePrinterQSimple.ps1',
-    'Printer\restart.SpoolDeleteQV4.ps1',
-    'windows-maintenance\Move-OrphanedInstallerFiles.ps1',
-    'windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1',
-    'windows-maintenance\Nettoyage.Complet.Caches.Windows.ps1',
-    'windows-maintenance\Reset.Network.RebootPC.ps1',
-    'WindowsServer\FichierOphelin.ps1'
-) | ForEach-Object {
-    Join-Path -Path $BasePath -ChildPath $_
+function Get-WhatIfValidationTargets {
+    @(
+        @{ RelativePath = 'Adobe\Install.AdobeAcrobat.Clean.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'Printer\Delete.all.offline.printer.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'Printer\Deleter.NamePrinter.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'Printer\Export.printer.list.BASIC.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'Printer\Export.printer.list.FULL.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'Printer\Restart.spool.delete.printerQ.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'V7\Printer\Restart.Spool.DeletePrinterQSimple.ps1'; Engine = 'PowerShell7' }
+        @{ RelativePath = 'V7\Printer\restart.SpoolDeleteQV4.ps1'; Engine = 'PowerShell7' }
+        @{ RelativePath = 'V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1'; Engine = 'PowerShell7' }
+        @{ RelativePath = 'V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'; Engine = 'PowerShell7' }
+        @{ RelativePath = 'windows-maintenance\Nettoyage.Complet.Caches.Windows.ps1'; Engine = 'WindowsPowerShell' }
+        @{ RelativePath = 'V7\windows-maintenance\Reset.Network.RebootPC.ps1'; Engine = 'PowerShell7' }
+        @{ RelativePath = 'WindowsServer\FichierOphelin.ps1'; Engine = 'WindowsPowerShell' }
+    ) | ForEach-Object {
+        [pscustomobject]@{
+            RelativePath = $_.RelativePath
+            ScriptPath   = Join-Path -Path $BasePath -ChildPath $_.RelativePath
+            Engine       = $_.Engine
+        }
+    }
+}
+
+function Resolve-WhatIfShellPath {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [pscustomobject]$Target
+    )
+
+    switch ($Target.Engine) {
+        'PowerShell7' {
+            return $PowerShell7Path
+        }
+
+        'WindowsPowerShell' {
+            return $WindowsPowerShellPath
+        }
+
+        default {
+            throw ('Unknown validation engine: {0}' -f $Target.Engine)
+        }
+    }
 }
 
 function Invoke-WhatIfValidation {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
-        [string]$PowerShellPath,
-
-        [Parameter(Mandatory = $true)]
-        [string[]]$ScriptPaths,
+        [pscustomobject[]]$Targets,
 
         [Parameter(Mandatory = $true)]
         [string]$ResultPath
@@ -54,32 +97,47 @@ function Invoke-WhatIfValidation {
     $Results = @()
     $FailureCount = 0
 
-    foreach ($ScriptPath in $ScriptPaths) {
-        if (-not (Test-Path -LiteralPath $ScriptPath -PathType Leaf)) {
+    foreach ($Target in $Targets) {
+        if (-not (Test-Path -LiteralPath $Target.ScriptPath -PathType Leaf)) {
             $Results += [pscustomobject]@{
-                ScriptPath = $ScriptPath
-                ExitCode   = 1
-                Success    = $false
-                Output     = 'Script not found.'
+                RelativePath = $Target.RelativePath
+                ScriptPath   = $Target.ScriptPath
+                Engine       = $Target.Engine
+                ExitCode     = 1
+                Success      = $false
+                Output       = 'Script not found.'
             }
             $FailureCount++
             continue
         }
 
+        $ShellPath = Resolve-WhatIfShellPath -Target $Target
         $CurrentErrorActionPreference = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
-        $OutputLines = @(
-            & $PowerShellPath -NoProfile -ExecutionPolicy Bypass -File $ScriptPath -WhatIf 2>&1 |
-                ForEach-Object { $_.ToString() }
-        )
-        $ExitCode = $LASTEXITCODE
-        $ErrorActionPreference = $CurrentErrorActionPreference
+
+        try {
+            $OutputLines = @(
+                & $ShellPath -NoProfile -ExecutionPolicy Bypass -File $Target.ScriptPath -WhatIf 2>&1 |
+                    ForEach-Object { $_.ToString() }
+            )
+            $ExitCode = $LASTEXITCODE
+        }
+        catch {
+            $OutputLines = @($_.Exception.Message)
+            $ExitCode = 1
+        }
+        finally {
+            $ErrorActionPreference = $CurrentErrorActionPreference
+        }
 
         $Results += [pscustomobject]@{
-            ScriptPath = $ScriptPath
-            ExitCode   = $ExitCode
-            Success    = ($ExitCode -eq 0)
-            Output     = ($OutputLines -join [Environment]::NewLine)
+            RelativePath = $Target.RelativePath
+            ScriptPath   = $Target.ScriptPath
+            Engine       = $Target.Engine
+            ShellPath    = $ShellPath
+            ExitCode     = $ExitCode
+            Success      = ($ExitCode -eq 0)
+            Output       = ($OutputLines -join [Environment]::NewLine)
         }
 
         if ($ExitCode -ne 0) {
@@ -100,4 +158,4 @@ function Invoke-WhatIfValidation {
     }
 }
 
-Invoke-WhatIfValidation -PowerShellPath $PowerShellPath -ScriptPaths $ScriptPaths -ResultPath $ResultPath
+Invoke-WhatIfValidation -Targets (Get-WhatIfValidationTargets) -ResultPath $ResultPath
