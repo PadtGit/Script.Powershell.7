@@ -5,9 +5,9 @@
     {
       "tool": {
         "driver": {
-          "name": "PSScriptAnalyzer",
+          "semanticVersion": "1.25.0",
           "rules": [],
-          "semanticVersion": "1.25.0"
+          "name": "PSScriptAnalyzer"
         }
       },
       "results": []
