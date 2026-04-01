@@ -1,8 +1,8 @@
 PSScriptAnalyzer Report
-Generated  : 2026-03-31 21:52:36
-Settings   : C:\Users\Bob\.codex\worktrees\7a67\Script.Powershell.7\tools\PSScriptAnalyzerSettings.psd1
+Generated  : 2026-04-01 05:16:24
+Settings   : C:\Users\Bob\Documents\Script.Powershell.7\tools\PSScriptAnalyzerSettings.psd1
 Module     : PSScriptAnalyzer v1.25.0
-RepoRoot   : C:\Users\Bob\.codex\worktrees\7a67\Script.Powershell.7
+RepoRoot   : C:\Users\Bob\Documents\Script.Powershell.7
 
 --- Summary ---
 Error       : 0

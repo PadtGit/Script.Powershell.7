@@ -3,14 +3,14 @@
   "version": "2.1.0",
   "runs": [
     {
+      "results": [],
       "tool": {
         "driver": {
           "semanticVersion": "1.25.0",
-          "rules": [],
-          "name": "PSScriptAnalyzer"
+          "name": "PSScriptAnalyzer",
+          "rules": []
         }
-      },
-      "results": []
+      }
     }
   ]
 }
