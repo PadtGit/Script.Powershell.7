@@ -6,6 +6,7 @@ Use the canonical script tree under `PowerShell Script/`, with `PowerShell Scrip
 
 - This checkout tracks `origin` `PadtGit/Script.Powershell.7` on branch `main`.
 - `PowerShell Script/*` is the primary implementation surface, and `PowerShell Script/V7/*` is the default target for maintained high-risk scripts.
+- Use `PLANS.md` for the standing repo-local ExecPlan rules and `plan.md` for the current worked example when a task needs a living execution plan.
 - Current V7 maintained scripts include:
   `PowerShell Script/V7/windows-maintenance/Reset.Network.RebootPC.ps1`,
   `PowerShell Script/V7/windows-maintenance/Move-OrphanedInstallerFiles.ps1`,
@@ -29,4 +30,4 @@ Use the canonical script tree under `PowerShell Script/`, with `PowerShell Scrip
 
 ## Detailed Workflow
 
-Use `AGENTS.md` for the repo-local maintenance flow and `docs/sysadmin-main-multi-agent-sop.md` for extended notes. Use `docs/windows-sandbox-validation.md` for both the disposable manual Sandbox shell and the automated `-WhatIf` capture wrapper. Keep the repo-local entrypoints and `.github/workflows/powershell-validation.yml` aligned when the validation flow changes.
+Use `AGENTS.md` for the repo-local maintenance flow, `PLANS.md` for the standing ExecPlan rules, and `plan.md` as the current worked example when you need a living plan. Use `docs/sysadmin-main-multi-agent-sop.md` for extended notes. Use `docs/windows-sandbox-validation.md` for both the disposable manual Sandbox shell and the automated `-WhatIf` capture wrapper. Keep the repo-local entrypoints and `.github/workflows/powershell-validation.yml` aligned when the validation flow changes.
