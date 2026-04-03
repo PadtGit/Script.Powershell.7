@@ -4,11 +4,12 @@
 
 - Keep the repo self-describing. This checkout includes `.github/workflows/powershell-validation.yml` for CI validation but still does not use the older `.agents/` or `.codex/agents/` surfaces that some earlier docs referenced.
 - Use a repo-local maintenance loop: inspect, implement, test, validate locally, and sync docs.
-- Keep this SOP, `AGENTS.md`, `SKILL.md`, `README.md`, `docs/windows-sandbox-validation.md`, and `sandbox/sysadmin-main-validation.wsb` aligned whenever command or workflow wording changes.
+- Keep this SOP, `AGENTS.md`, `PLANS.md`, `plan.md`, `SKILL.md`, `README.md`, `docs/windows-sandbox-validation.md`, and `sandbox/sysadmin-main-validation.wsb` aligned whenever command or workflow wording changes.
 
 ## Repo Ground Rules
 
 - Canonical scripts live under `PowerShell Script/`.
+- `PLANS.md` is the standing repo-local ExecPlan rules file, and `plan.md` is the current worked example.
 - `PowerShell Script/V7/` is the preferred maintained surface for migrated high-risk scripts.
 - `Invoke-WhatIfValidation.ps1` is the repo-level validator entrypoint.
 - Generated validation output belongs under `artifacts/validation/`.

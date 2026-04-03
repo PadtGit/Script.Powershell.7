@@ -6,9 +6,14 @@
 - Use `PowerShell Script/*` as the canonical script tree for this repo.
 - `pwsh` 7 is the default validation engine for this repo, and the maintained high-risk scripts now have preferred V7 surfaces under `PowerShell Script/V7/`.
 - Git metadata and `git.exe` are available in this workspace.
+- `PLANS.md` is the standing repo-local ExecPlan rules file, and `plan.md` is the current worked example.
 - Generated validation output belongs under `artifacts/validation/`, not tracked repo result files.
 - Prefer small, reversible changes over bulk rewrites.
 - Runtime storage roots and the sandbox working folder still use the label `sysadmin-main`; treat that as a stable runtime name, not the repo name.
+
+## ExecPlans
+
+When writing complex features or significant refactors, use an ExecPlan from design through implementation. In this repository, ExecPlans are described in `PLANS.md` at the repository root.
 
 ## Canonical Layout
 
@@ -19,6 +24,8 @@
 - `PowerShell Script/V7/Printer/Restart.Spool.DeletePrinterQSimple.ps1`: V7 simple spool cleanup script.
 - `PowerShell Script/V7/Printer/restart.SpoolDeleteQV4.ps1`: V7 logged spool cleanup script.
 - `tests/*`: Pester coverage for current scripts and tooling.
+- `PLANS.md`: repo-local ExecPlan rules.
+- `plan.md`: current worked ExecPlan example.
 - `Invoke-WhatIfValidation.ps1`: fixed-list `-WhatIf` validator.
 - `tools/Invoke-PSScriptAnalyzer.ps1`: analyzer helper that writes text, JSON, and SARIF artifacts.
 - `tools/Invoke-CIValidation.ps1`: shared validation runner used by local CI-style checks and GitHub Actions.
@@ -127,7 +134,8 @@ Start-Process '.\artifacts\validation\sandbox-whatif-validation.wsb'
 ## Maintenance Loop
 
 1. Explore
-   - Read this playbook first.
+   - Read this playbook and `PLANS.md` first.
+   - If the task is substantial, create or update `plan.md` so the work has a living execution plan before implementation begins.
    - Inspect the exact script, test, tool, and doc surfaces you plan to touch.
    - Use Git history for change analysis; do not substitute file timestamps for commit windows.
 2. Implement
