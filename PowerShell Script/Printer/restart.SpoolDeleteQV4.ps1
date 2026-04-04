@@ -223,7 +223,7 @@ function Invoke-LoggedPrintQueueCleanup {
             $Files = @(
                 Get-ChildItem -LiteralPath $SpoolDirectory -File -ErrorAction SilentlyContinue |
                     Where-Object {
-                        $_.Extension -in '.spl', '.shd' -or
+                        $AllowedExtensions -contains $_.Extension.ToLowerInvariant() -or
                         $_.Name -like $TemporaryFilePattern
                     }
             )

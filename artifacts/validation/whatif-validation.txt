@@ -58,10 +58,10 @@ Engine       : WindowsPowerShell
 ShellPath    : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
 ExitCode     : 0
 Success      : True
-Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260402-133008313.csv".
+Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260403-232245602.csv".
                
                
-               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260402-133008313.csv
+               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260403-232245602.csv
                PrinterCount  : 1
                ExportProfile : Basic
                Status        : WhatIf
@@ -76,10 +76,10 @@ Engine       : WindowsPowerShell
 ShellPath    : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
 ExitCode     : 0
 Success      : True
-Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260402-133009354.csv".
+Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260403-232246665.csv".
                
                
-               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260402-133009354.csv
+               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260403-232246665.csv
                PrinterCount  : 1
                ExportProfile : Full
                Status        : WhatIf
@@ -134,7 +134,7 @@ Output       : What if: Performing the operation "Stop Print Spooler" on target 
                ServiceName  : Spooler
                Service      : Spooler
                QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
-               LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260402-133011430-c61c9417.log
+               LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260403-232248883-51b78fe3.log
                FileCount    : 0
                DeletedCount : 0
                DeletedFiles : 0
@@ -164,6 +164,7 @@ Output       : What if: Performing the operation "Move to C:\ProgramData\sysadmi
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a062.msi" on target "C:\Windows\Installer\573a062.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a06e.msi" on target "C:\Windows\Installer\573a06e.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a189.msi" on target "C:\Windows\Installer\573a189.msi".
+               What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\73dec.msp" on target "C:\Windows\Installer\73dec.msp".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\93eb77.msi" on target "C:\Windows\Installer\93eb77.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc67.msi" on target "C:\Windows\Installer\a3dc67.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc6f.msi" on target "C:\Windows\Installer\a3dc6f.msi".
@@ -243,7 +244,7 @@ Output       : What if: Performing the operation "Move to C:\ProgramData\sysadmi
                InstallerPath : C:\Windows\Installer
                BackupPath    : C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans
                FileCount     : 246
-               OrphanCount   : 89
+               OrphanCount   : 90
                MovedCount    : 0
                Status        : WhatIf
                Reason        : 
@@ -322,6 +323,7 @@ Output       : What if: Performing the operation "Move to C:\ProgramData\sysadmi
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a062.msi" on target "C:\WINDOWS\Installer\573a062.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a06e.msi" on target "C:\WINDOWS\Installer\573a06e.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a189.msi" on target "C:\WINDOWS\Installer\573a189.msi".
+               What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\73dec.msp" on target "C:\WINDOWS\Installer\73dec.msp".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\93eb77.msi" on target "C:\WINDOWS\Installer\93eb77.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc67.msi" on target "C:\WINDOWS\Installer\a3dc67.msi".
                What if: Performing the operation "Move to C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc6f.msi" on target "C:\WINDOWS\Installer\a3dc6f.msi".
@@ -402,7 +404,7 @@ Output       : What if: Performing the operation "Move to C:\ProgramData\sysadmi
                InstallerPath : C:\WINDOWS\Installer
                BackupFolder  : C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans
                FileCount     : 246
-               OrphanCount   : 89
+               OrphanCount   : 90
                MovedCount    : 0
                Status        : WhatIf
                Reason        : 

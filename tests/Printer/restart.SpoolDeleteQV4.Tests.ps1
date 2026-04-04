@@ -28,6 +28,57 @@ Describe 'V7 logged spool cleanup behavior' {
         $result.Object.WhatIfRun | Should -BeTrue
     }
 
+    It 'honors AllowedExtensions when selecting spool files' {
+        $moduleName = $script:ModuleInfo.ModuleName
+
+        InModuleScope $moduleName {
+            param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
+
+            $script:StorageRoot = $storageRoot
+
+            $service = [pscustomobject]@{
+                Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
+            }
+            $splFile = [System.IO.FileInfo]::new((Join-Path $spoolDirectory 'job1.spl'))
+            $shdFile = [System.IO.FileInfo]::new((Join-Path $spoolDirectory 'job2.shd'))
+
+            Mock Resolve-SecureDirectory { $Path }
+            Mock Get-UniqueChildPath { $logPath }
+            Mock Get-Service { $service }
+            Mock Get-ChildItem { @($splFile, $shdFile) } -ParameterFilter { $LiteralPath -eq $spoolDirectory -and $File }
+            Mock Start-Transcript {}
+            Mock Stop-Transcript {}
+            Mock Stop-Service {}
+            Mock Start-Service {}
+            Mock Remove-Item {}
+
+            $result = Invoke-LoggedPrintQueueCleanup `
+                -RequireAdmin $false `
+                -IsAdministrator $false `
+                -ServiceName $serviceName `
+                -SpoolDirectory $spoolDirectory `
+                -TimeoutSeconds 30 `
+                -LogDirectory $logDirectory `
+                -LogFilePrefix 'print-queue' `
+                -AllowedExtensions @('.shd') `
+                -TemporaryFilePattern '' `
+                -Confirm:$false
+
+            $result.FileCount | Should -Be 1
+            $result.DeletedCount | Should -Be 1
+
+            Assert-MockCalled Remove-Item -Times 1 -Exactly -Scope It -ParameterFilter {
+                $LiteralPath -eq $shdFile.FullName
+            }
+        } -Parameters @{
+            serviceName    = 'Spooler'
+            spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot    = 'C:\ProgramData\sysadmin-main'
+            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
+        }
+    }
+
     It 'resolves a secure log path and suppresses transcript, service, and file mutations during WhatIf preview' {
         $moduleName = $script:ModuleInfo.ModuleName
 

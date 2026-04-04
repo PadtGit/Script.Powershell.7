@@ -6,9 +6,9 @@
       "results": [],
       "tool": {
         "driver": {
+          "rules": [],
           "semanticVersion": "1.25.0",
-          "name": "PSScriptAnalyzer",
-          "rules": []
+          "name": "PSScriptAnalyzer"
         }
       }
     }

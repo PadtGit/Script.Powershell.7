@@ -180,7 +180,9 @@ function Invoke-InstallerOrphanMove {
     $OrphanCount = 0
     $Status = 'Completed'
 
-    foreach ($RegistryItem in @(Get-ChildItem -Path $RegistryRoot -Recurse -ErrorAction SilentlyContinue)) {
+    $InstallPropertiesPath = Join-Path -Path $RegistryRoot -ChildPath '*\Products\*\InstallProperties'
+
+    foreach ($RegistryItem in @(Get-ChildItem -Path $InstallPropertiesPath -ErrorAction SilentlyContinue)) {
         try {
             $LocalPackage = [string](Get-ItemProperty -LiteralPath $RegistryItem.PSPath -ErrorAction Stop).LocalPackage
         }

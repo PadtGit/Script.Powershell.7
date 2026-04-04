@@ -52,13 +52,15 @@ Describe 'V7 installer orphan move behavior' {
             }
             Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
             Mock Get-ChildItem {
-                if ($Path -eq $registryRoot) {
+                $registryPattern = Join-Path -Path $registryRoot -ChildPath '*\Products\*\InstallProperties'
+
+                if ($Path -eq $registryPattern) {
                     return @($registryKey)
                 }
 
                 return @($referencedFile, $orphanFile, $reparseFile)
             } -ParameterFilter {
-                ($Path -eq $registryRoot -and $Recurse) -or
+                ($Path -eq (Join-Path -Path $registryRoot -ChildPath '*\Products\*\InstallProperties')) -or
                 ($LiteralPath -eq $installerPath -and $File)
             }
             Mock Get-ItemProperty { [pscustomobject]@{ LocalPackage = $referencedPath } } -ParameterFilter { $LiteralPath -eq $registryKey.PSPath }
@@ -123,13 +125,15 @@ Describe 'V7 installer orphan move behavior' {
             }
             Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
             Mock Get-ChildItem {
-                if ($Path -eq $registryRoot) {
+                $registryPattern = Join-Path -Path $registryRoot -ChildPath '*\Products\*\InstallProperties'
+
+                if ($Path -eq $registryPattern) {
                     return @($registryKey)
                 }
 
                 return @($orphanFile)
             } -ParameterFilter {
-                ($Path -eq $registryRoot -and $Recurse) -or
+                ($Path -eq (Join-Path -Path $registryRoot -ChildPath '*\Products\*\InstallProperties')) -or
                 ($LiteralPath -eq $installerPath -and $File)
             }
             Mock Get-ItemProperty { [pscustomobject]@{ LocalPackage = 'C:\TestData\Installer\kept.msi' } } -ParameterFilter { $LiteralPath -eq $registryKey.PSPath }
@@ -173,7 +177,7 @@ Describe 'V7 installer orphan move behavior' {
 
             Mock Test-Path { $LiteralPath -eq $installerPath }
             Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
-            Mock Get-ChildItem { @() } -ParameterFilter { $Path -eq $registryRoot -and $Recurse }
+            Mock Get-ChildItem { @() } -ParameterFilter { $Path -eq (Join-Path -Path $registryRoot -ChildPath '*\Products\*\InstallProperties') }
             Mock Test-IsReparsePoint { $false }
             Mock Resolve-SecureDirectory { $Path }
             Mock Move-Item {}
