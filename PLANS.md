@@ -65,7 +65,7 @@ When a plan changes workflow wording or repo entrypoints, it must keep `AGENTS.m
 
 ## Validation Expectations
 
-Validation is mandatory for work that changes script, tool, or workflow behavior. Plans must embed the exact commands that fit the task. Use the repository root, `C:\Users\Bob\Documents\Script.Powershell.7`, as the working directory unless the plan explicitly says otherwise.
+Validation is mandatory for work that changes script, tool, or workflow behavior. Plans must embed the exact commands that fit the task. Use the repository root as the working directory unless the plan explicitly says otherwise.
 
 Use these commands when the change affects scripts, validation tooling, or workflow behavior:
 

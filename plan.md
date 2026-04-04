@@ -78,7 +78,7 @@ Finally, update the repo entrypoint docs that already orient new contributors. `
 
 ## Concrete Steps
 
-Use `C:\Users\Bob\Documents\Script.Powershell.7` as the working directory for every command below.
+Use the repository root as the working directory for every command below.
 
 1. Confirm the starting state before creating any new planning docs.
 
