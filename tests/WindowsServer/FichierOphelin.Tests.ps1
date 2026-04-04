@@ -25,6 +25,7 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             $registryKey = [pscustomobject]@{
                 PSPath = 'HKLM:\Software\Test\Product'
             }
+            $registryPathPattern = '*\Products\*\InstallProperties'
             $referencedFile = [System.IO.FileInfo]::new($referencedPath)
             $orphanFile = [System.IO.FileInfo]::new($orphanPath)
             $reparseFile = [System.IO.FileInfo]::new($reparsePath)
@@ -39,13 +40,13 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             }
             Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
             Mock Get-ChildItem {
-                if ($Path -eq $registryRoot) {
+                if ($Path -like $registryPathPattern) {
                     return @($registryKey)
                 }
 
                 return @($referencedFile, $orphanFile, $reparseFile)
             } -ParameterFilter {
-                ($Path -eq $registryRoot -and $Recurse) -or
+                ($Path -like $registryPathPattern) -or
                 ($LiteralPath -eq $installerPath -and $File)
             }
             Mock Get-ItemProperty { [pscustomobject]@{ LocalPackage = $referencedPath } } -ParameterFilter { $LiteralPath -eq $registryKey.PSPath }
@@ -94,6 +95,7 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             $registryKey = [pscustomobject]@{
                 PSPath = 'HKLM:\Software\Test\Product'
             }
+            $registryPathPattern = '*\Products\*\InstallProperties'
             $orphanFile = [System.IO.FileInfo]::new($orphanPath)
 
             Mock Resolve-SecureDirectory { $Path }
@@ -110,13 +112,13 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             }
             Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
             Mock Get-ChildItem {
-                if ($Path -eq $registryRoot) {
+                if ($Path -like $registryPathPattern) {
                     return @($registryKey)
                 }
 
                 return @($orphanFile)
             } -ParameterFilter {
-                ($Path -eq $registryRoot -and $Recurse) -or
+                ($Path -like $registryPathPattern) -or
                 ($LiteralPath -eq $installerPath -and $File)
             }
             Mock Get-ItemProperty { [pscustomobject]@{ LocalPackage = 'C:\TestData\Installer\kept.msi' } } -ParameterFilter { $LiteralPath -eq $registryKey.PSPath }
@@ -157,10 +159,11 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             $script:StorageRoot = $storageRoot
 
             $installerDirectory = [System.IO.DirectoryInfo]::new($installerPath)
+            $registryPathPattern = '*\Products\*\InstallProperties'
 
             Mock Test-Path { $LiteralPath -eq $installerPath }
             Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
-            Mock Get-ChildItem { @() } -ParameterFilter { $Path -eq $registryRoot -and $Recurse }
+            Mock Get-ChildItem { @() } -ParameterFilter { $Path -like $registryPathPattern }
             Mock Test-IsReparsePoint { $false }
             Mock Resolve-SecureDirectory { $Path }
             Mock Move-Item {}
