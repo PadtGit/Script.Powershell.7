@@ -202,6 +202,11 @@ function Invoke-LoggedPrintQueueCleanup {
     $DeletedCount = 0
     $Status = 'Completed'
     $Files = @()
+    $NormalizedAllowedExtensions = @(
+        $AllowedExtensions |
+            Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+            ForEach-Object { $_.ToLowerInvariant() }
+    )
     $Service = Get-Service -Name $ServiceName -ErrorAction Stop
     $ServiceWasRunning = $Service.Status -eq [System.ServiceProcess.ServiceControllerStatus]::Running
     $ServiceWasStopped = $false
@@ -223,7 +228,7 @@ function Invoke-LoggedPrintQueueCleanup {
             $Files = @(
                 Get-ChildItem -LiteralPath $SpoolDirectory -File -ErrorAction SilentlyContinue |
                     Where-Object {
-                        $AllowedExtensions -contains $_.Extension.ToLowerInvariant() -or
+                        $NormalizedAllowedExtensions -contains $_.Extension.ToLowerInvariant() -or
                         $_.Name -like $TemporaryFilePattern
                     }
             )

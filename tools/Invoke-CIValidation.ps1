@@ -6,7 +6,7 @@ param(
 
     [version]$RequiredPSScriptAnalyzerVersion = [version]'1.25.0',
 
-    [version]$MinimumPesterVersion = [version]'5.0.0'
+    [version]$MinimumPesterVersion = [version]'5.7.1'
 )
 
 Set-StrictMode -Version Latest

@@ -112,8 +112,13 @@ function Invoke-ResetNetworkAndReboot {
         }
     }
 
+    $RebootCommandLine = '{0} /r /t {1} /f' -f $ShutdownPath, $RebootDelaySeconds
     if ($PSCmdlet.ShouldProcess('Local computer', ('Restart in {0} seconds' -f $RebootDelaySeconds))) {
         & $ShutdownPath /r /t $RebootDelaySeconds /f | Out-Null
+
+        if ($LASTEXITCODE -ne 0) {
+            throw ('Command failed: {0}' -f $RebootCommandLine)
+        }
     }
 
     if ($WhatIfPreference) {

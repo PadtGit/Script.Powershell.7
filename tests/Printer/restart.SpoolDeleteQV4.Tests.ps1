@@ -162,6 +162,59 @@ Describe 'V7 logged spool cleanup behavior' {
         }
     }
 
+    It 'matches AllowedExtensions case-insensitively' {
+        $moduleName = $script:ModuleInfo.ModuleName
+
+        InModuleScope $moduleName {
+            param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
+
+            $script:StorageRoot = $storageRoot
+
+            $service = [pscustomobject]@{
+                Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
+            }
+            $customFile = [System.IO.FileInfo]::new((Join-Path $spoolDirectory 'job1.foo'))
+            $defaultFile = [System.IO.FileInfo]::new((Join-Path $spoolDirectory 'job2.spl'))
+
+            Mock Resolve-SecureDirectory { $Path }
+            Mock Get-UniqueChildPath { $logPath }
+            Mock Get-Service { $service }
+            Mock Get-ChildItem { @($customFile, $defaultFile) } -ParameterFilter { $LiteralPath -eq $spoolDirectory -and $File }
+            Mock Start-Transcript {}
+            Mock Stop-Transcript {}
+            Mock Stop-Service {}
+            Mock Start-Service {}
+            Mock Remove-Item {}
+
+            $result = Invoke-LoggedPrintQueueCleanup `
+                -RequireAdmin $false `
+                -IsAdministrator $false `
+                -ServiceName $serviceName `
+                -SpoolDirectory $spoolDirectory `
+                -TimeoutSeconds 30 `
+                -LogDirectory $logDirectory `
+                -LogFilePrefix 'print-queue' `
+                -AllowedExtensions @('.FOO') `
+                -TemporaryFilePattern 'FP*.tmp' `
+                -Confirm:$false
+
+            $result.FileCount | Should -Be 1
+            $result.DeletedCount | Should -Be 1
+
+            Assert-MockCalled Stop-Service -Times 0 -Exactly -Scope It
+            Assert-MockCalled Start-Service -Times 0 -Exactly -Scope It
+            Assert-MockCalled Remove-Item -Times 1 -Exactly -Scope It -ParameterFilter {
+                $LiteralPath -eq $customFile.FullName
+            }
+        } -Parameters @{
+            serviceName    = 'Spooler'
+            spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot    = 'C:\ProgramData\sysadmin-main'
+            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-custom.log'
+        }
+    }
+
     It 'does not restart the service when this invocation never stopped it' {
         $moduleName = $script:ModuleInfo.ModuleName
 

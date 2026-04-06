@@ -94,4 +94,30 @@ Describe 'V7 network reset and reboot behavior' {
             commandPath = $env:ComSpec
         }
     }
+
+    It 'fails when the reboot command returns a non-zero exit code' {
+        $moduleName = $script:ModuleInfo.ModuleName
+
+        InModuleScope $moduleName {
+            param($commandPath)
+
+            {
+                Invoke-ResetNetworkAndReboot `
+                    -RequireAdmin $false `
+                    -IsAdministrator $true `
+                    -IsWindowsSandbox $false `
+                    -Commands @(
+                        @{
+                            FilePath  = $commandPath
+                            Arguments = @('/c', 'exit', '0')
+                        }
+                    ) `
+                    -ShutdownPath $commandPath `
+                    -RebootDelaySeconds 5 `
+                    -Confirm:$false
+            } | Should -Throw 'Command failed:*'
+        } -Parameters @{
+            commandPath = $env:ComSpec
+        }
+    }
 }
