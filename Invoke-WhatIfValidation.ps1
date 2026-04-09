@@ -12,30 +12,27 @@ param(
 Set-StrictMode -Version 3.0
 $ErrorActionPreference = 'Stop'
 
-$BasePath = Join-Path -Path $PSScriptRoot -ChildPath 'PowerShell Script'
+$script:BasePath = ''
+$script:PowerShell7Path = ''
+$script:WindowsPowerShellPath = ''
+$script:ResultPath = ''
 
-try {
-    $CurrentPowerShellPath = (Get-Process -Id $PID -ErrorAction Stop).Path
-}
-catch {
-    $CurrentPowerShellPath = 'pwsh'
-}
+function Resolve-PowerShell7Path {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param()
 
-if ([string]::IsNullOrWhiteSpace($PowerShell7Path)) {
-    $PowerShell7Path = $CurrentPowerShellPath
-}
+    $Command = Get-Command -Name 'pwsh.exe' -ErrorAction SilentlyContinue
+    if ($null -ne $Command) {
+        return $Command.Source
+    }
 
-if ([string]::IsNullOrWhiteSpace($WindowsPowerShellPath)) {
-    $WindowsPowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
-}
+    $KnownPath = Join-Path -Path $env:ProgramFiles -ChildPath 'PowerShell\7\pwsh.exe'
+    if (Test-Path -LiteralPath $KnownPath -PathType Leaf) {
+        return $KnownPath
+    }
 
-if ([string]::IsNullOrWhiteSpace($ResultPath)) {
-    $ResultPath = Join-Path -Path $PSScriptRoot -ChildPath 'artifacts\validation\whatif-validation.txt'
-}
-
-$ResultDirectory = Split-Path -Path $ResultPath -Parent
-if (-not [string]::IsNullOrWhiteSpace($ResultDirectory) -and -not (Test-Path -LiteralPath $ResultDirectory -PathType Container)) {
-    New-Item -ItemType Directory -Path $ResultDirectory -Force | Out-Null
+    return ''
 }
 
 function Get-WhatIfValidationTargetCatalog {
@@ -56,8 +53,8 @@ function Get-WhatIfValidationTargetCatalog {
     ) | ForEach-Object {
         [pscustomobject]@{
             RelativePath = $_.RelativePath
-            ScriptPath   = Join-Path -Path $BasePath -ChildPath $_.RelativePath
-            Engine       = $_.Engine
+            ScriptPath = Join-Path -Path $script:BasePath -ChildPath $_.RelativePath
+            Engine = $_.Engine
         }
     }
 }
@@ -71,11 +68,11 @@ function Resolve-WhatIfShellPath {
 
     switch ($Target.Engine) {
         'PowerShell7' {
-            return $PowerShell7Path
+            return $script:PowerShell7Path
         }
 
         'WindowsPowerShell' {
-            return $WindowsPowerShellPath
+            return $script:WindowsPowerShellPath
         }
 
         default {
@@ -101,11 +98,11 @@ function Invoke-WhatIfValidation {
         if (-not (Test-Path -LiteralPath $Target.ScriptPath -PathType Leaf)) {
             $Results += [pscustomobject]@{
                 RelativePath = $Target.RelativePath
-                ScriptPath   = $Target.ScriptPath
-                Engine       = $Target.Engine
-                ExitCode     = 1
-                Success      = $false
-                Output       = 'Script not found.'
+                ScriptPath = $Target.ScriptPath
+                Engine = $Target.Engine
+                ExitCode = 1
+                Success = $false
+                Output = 'Script not found.'
             }
             $FailureCount++
             continue
@@ -132,12 +129,12 @@ function Invoke-WhatIfValidation {
 
         $Results += [pscustomobject]@{
             RelativePath = $Target.RelativePath
-            ScriptPath   = $Target.ScriptPath
-            Engine       = $Target.Engine
-            ShellPath    = $ShellPath
-            ExitCode     = $ExitCode
-            Success      = ($ExitCode -eq 0)
-            Output       = ($OutputLines -join [Environment]::NewLine)
+            ScriptPath = $Target.ScriptPath
+            Engine = $Target.Engine
+            ShellPath = $ShellPath
+            ExitCode = $ExitCode
+            Success = ($ExitCode -eq 0)
+            Output = ($OutputLines -join [Environment]::NewLine)
         }
 
         if ($ExitCode -ne 0) {
@@ -158,4 +155,43 @@ function Invoke-WhatIfValidation {
     }
 }
 
-Invoke-WhatIfValidation -Targets (Get-WhatIfValidationTargetCatalog) -ResultPath $ResultPath
+try {
+    if (-not [string]::IsNullOrWhiteSpace($PowerShell7Path)) {
+        $script:PowerShell7Path = $PowerShell7Path
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($WindowsPowerShellPath)) {
+        $script:WindowsPowerShellPath = $WindowsPowerShellPath
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($ResultPath)) {
+        $script:ResultPath = $ResultPath
+    }
+
+    if ([string]::IsNullOrWhiteSpace($script:BasePath)) {
+        $script:BasePath = Join-Path -Path $PSScriptRoot -ChildPath 'PowerShell Script'
+    }
+
+    if ([string]::IsNullOrWhiteSpace($script:PowerShell7Path)) {
+        $script:PowerShell7Path = Resolve-PowerShell7Path
+    }
+
+    if ([string]::IsNullOrWhiteSpace($script:WindowsPowerShellPath)) {
+        $script:WindowsPowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+    }
+
+    if ([string]::IsNullOrWhiteSpace($script:ResultPath)) {
+        $script:ResultPath = Join-Path -Path $PSScriptRoot -ChildPath 'artifacts\validation\whatif-validation.txt'
+    }
+
+    $ResultDirectory = Split-Path -Path $script:ResultPath -Parent
+    if (-not [string]::IsNullOrWhiteSpace($ResultDirectory) -and -not (Test-Path -LiteralPath $ResultDirectory -PathType Container)) {
+        New-Item -ItemType Directory -Path $ResultDirectory -Force | Out-Null
+    }
+
+    Invoke-WhatIfValidation -Targets (Get-WhatIfValidationTargetCatalog) -ResultPath $script:ResultPath
+}
+catch {
+    throw
+}
+

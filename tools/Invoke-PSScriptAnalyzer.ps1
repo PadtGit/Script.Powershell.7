@@ -258,6 +258,7 @@ function Get-AnalyzerConfiguration {
 
 function Test-PathMatch {
     [CmdletBinding()]
+    [OutputType([bool])]
     param(
         [Parameter(Mandatory = $true)]
         [string]$PathValue,
@@ -275,6 +276,7 @@ function Test-PathMatch {
 
 function Get-NormalizedStringArray {
     [CmdletBinding()]
+    [OutputType([object[]])]
     param(
         [AllowNull()]
         [AllowEmptyCollection()]
@@ -292,6 +294,7 @@ function Get-NormalizedStringArray {
 
 function Get-TargetFile {
     [CmdletBinding()]
+    [OutputType([object[]])]
     param(
         [Parameter(Mandatory = $true)]
         [string[]]$InputPaths,
@@ -358,6 +361,7 @@ function Get-TargetFile {
 
 function Get-SarifLocation {
     [CmdletBinding()]
+    [OutputType([hashtable])]
     param(
         [Parameter(Mandatory = $true)]
         [object]$Diagnostic,
@@ -398,6 +402,7 @@ function Get-SarifLocation {
 
 function ConvertTo-SarifObject {
     [CmdletBinding()]
+    [OutputType([System.Collections.Specialized.OrderedDictionary])]
     param(
         [Parameter(Mandatory = $true)]
         [AllowEmptyCollection()]

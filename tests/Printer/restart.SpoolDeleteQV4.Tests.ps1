@@ -1,4 +1,4 @@
-﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
+. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
 Describe 'V7 logged spool cleanup behavior' {
 
@@ -72,11 +72,11 @@ Describe 'V7 logged spool cleanup behavior' {
                 $LiteralPath -eq $shdFile.FullName
             }
         } -Parameters @{
-            serviceName    = 'Spooler'
+            serviceName = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
-            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
+            logDirectory = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            logPath = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
         }
     }
 
@@ -104,13 +104,13 @@ Describe 'V7 logged spool cleanup behavior' {
             Mock Remove-Item {}
 
             $invokeParams = @{
-                RequireAdmin   = $true
+                RequireAdmin = $true
                 IsAdministrator = $false
-                ServiceName    = $serviceName
+                ServiceName = $serviceName
                 SpoolDirectory = $spoolDirectory
                 TimeoutSeconds = 30
-                LogDirectory   = $logDirectory
-                LogFilePrefix  = 'print-queue'
+                LogDirectory = $logDirectory
+                LogFilePrefix = 'print-queue'
             }
             if ((Get-Command Invoke-LoggedPrintQueueCleanup).Parameters.ContainsKey('AllowedExtensions')) {
                 $invokeParams.AllowedExtensions = @('.spl', '.shd')
@@ -155,11 +155,11 @@ Describe 'V7 logged spool cleanup behavior' {
             Assert-MockCalled Remove-Item -Times 0 -Exactly -Scope It
             Assert-MockCalled Start-Service -Times 0 -Exactly -Scope It
         } -Parameters @{
-            serviceName    = 'Spooler'
+            serviceName = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
-            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
+            logDirectory = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            logPath = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
         }
     }
 
@@ -209,11 +209,11 @@ Describe 'V7 logged spool cleanup behavior' {
                 $LiteralPath -eq $customFile.FullName
             }
         } -Parameters @{
-            serviceName    = 'Spooler'
+            serviceName = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
-            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-custom.log'
+            logDirectory = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            logPath = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-custom.log'
         }
     }
 
@@ -243,14 +243,14 @@ Describe 'V7 logged spool cleanup behavior' {
             $WhatIfPreference = $false
 
             $invokeParams = @{
-                RequireAdmin   = $false
+                RequireAdmin = $false
                 IsAdministrator = $false
-                ServiceName    = $serviceName
+                ServiceName = $serviceName
                 SpoolDirectory = $spoolDirectory
                 TimeoutSeconds = 30
-                LogDirectory   = $logDirectory
-                LogFilePrefix  = 'print-queue'
-                Confirm        = $false
+                LogDirectory = $logDirectory
+                LogFilePrefix = 'print-queue'
+                Confirm = $false
             }
             if ((Get-Command Invoke-LoggedPrintQueueCleanup).Parameters.ContainsKey('AllowedExtensions')) {
                 $invokeParams.AllowedExtensions = @('.spl', '.shd')
@@ -279,11 +279,11 @@ Describe 'V7 logged spool cleanup behavior' {
             Assert-MockCalled Stop-Service -Times 0 -Exactly -Scope It
             Assert-MockCalled Start-Service -Times 0 -Exactly -Scope It
         } -Parameters @{
-            serviceName    = 'Spooler'
+            serviceName = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
-            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
+            logDirectory = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            logPath = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
         }
     }
 
@@ -318,13 +318,13 @@ Describe 'V7 logged spool cleanup behavior' {
             Mock Remove-Item {}
 
             $invokeParams = @{
-                RequireAdmin   = $false
+                RequireAdmin = $false
                 IsAdministrator = $false
-                ServiceName    = $serviceName
+                ServiceName = $serviceName
                 SpoolDirectory = $spoolDirectory
                 TimeoutSeconds = 30
-                LogDirectory   = $logDirectory
-                LogFilePrefix  = 'print-queue'
+                LogDirectory = $logDirectory
+                LogFilePrefix = 'print-queue'
             }
             if ((Get-Command Invoke-LoggedPrintQueueCleanup).Parameters.ContainsKey('AllowedExtensions')) {
                 $invokeParams.AllowedExtensions = @('.spl', '.shd')
@@ -348,12 +348,13 @@ Describe 'V7 logged spool cleanup behavior' {
             Assert-MockCalled Get-ChildItem -Times 1 -Exactly -Scope It
             Assert-MockCalled Remove-Item -Times 0 -Exactly -Scope It
         } -Parameters @{
-            serviceName    = 'Spooler'
+            serviceName = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
-            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
-            scriptPath     = (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1')
+            logDirectory = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            logPath = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
+            scriptPath = (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1')
         }
     }
 }
+

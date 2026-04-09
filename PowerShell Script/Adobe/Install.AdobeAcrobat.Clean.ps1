@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -240,13 +240,13 @@ function Invoke-AdobeAcrobatRefresh {
 
     if (-not (Test-Path -LiteralPath $PackagePath -PathType Leaf)) {
         return [pscustomobject]@{
-            PackagePath         = $PackagePath
+            PackagePath = $PackagePath
             RemovedProductCount = 0
-            RemovedProducts     = ''
-            RestartRequired     = $false
-            LogDirectory        = $LogDirectory
-            Status              = 'Skipped'
-            Reason              = 'PackagePathNotFound'
+            RemovedProducts = ''
+            RestartRequired = $false
+            LogDirectory = $LogDirectory
+            Status = 'Skipped'
+            Reason = 'PackagePathNotFound'
         }
     }
 
@@ -388,13 +388,13 @@ function Invoke-AdobeAcrobatRefresh {
     elseif ([string]::IsNullOrWhiteSpace($InstallArguments)) {
         if ($WhatIfPreference) {
             return [pscustomobject]@{
-                PackagePath         = $PackagePath
+                PackagePath = $PackagePath
                 RemovedProductCount = $RemovedProducts.Count
-                RemovedProducts     = $RemovedProducts -join '; '
-                RestartRequired     = $RestartRequired
-                LogDirectory        = $SecureLogDirectory
-                Status              = 'Skipped'
-                Reason              = 'PackageArgumentsRequired'
+                RemovedProducts = $RemovedProducts -join '; '
+                RestartRequired = $RestartRequired
+                LogDirectory = $SecureLogDirectory
+                Status = 'Skipped'
+                Reason = 'PackageArgumentsRequired'
             }
         }
 
@@ -418,13 +418,13 @@ function Invoke-AdobeAcrobatRefresh {
     }
 
     [pscustomobject]@{
-        PackagePath         = $PackagePath
+        PackagePath = $PackagePath
         RemovedProductCount = $RemovedProducts.Count
-        RemovedProducts     = $RemovedProducts -join '; '
-        RestartRequired     = $RestartRequired
-        LogDirectory        = $SecureLogDirectory
-        Status              = $Status
-        Reason              = ''
+        RemovedProducts = $RemovedProducts -join '; '
+        RestartRequired = $RestartRequired
+        LogDirectory = $SecureLogDirectory
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -446,3 +446,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

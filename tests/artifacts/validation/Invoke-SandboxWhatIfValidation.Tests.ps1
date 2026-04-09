@@ -43,14 +43,14 @@ Describe 'Sandbox WhatIf validation helper' {
             $summaryPath = Join-Path $outputRoot 'sandbox-whatif-summary.json'
             $targets = @(
                 [pscustomobject]@{
-                    Name   = 'SuccessTarget'
+                    Name = 'SuccessTarget'
                     Engine = 'PowerShell7'
-                    Path   = 'C:\Sandbox\success.ps1'
+                    Path = 'C:\Sandbox\success.ps1'
                 },
                 [pscustomobject]@{
-                    Name   = 'FailureTarget'
+                    Name = 'FailureTarget'
                     Engine = 'PowerShell7'
-                    Path   = 'C:\Sandbox\failure.ps1'
+                    Path = 'C:\Sandbox\failure.ps1'
                 }
             )
 
@@ -73,9 +73,10 @@ Describe 'Sandbox WhatIf validation helper' {
             Test-Path -LiteralPath (Join-Path $outputRoot 'SuccessTarget-sandbox-whatif.txt') | Should -BeTrue
             Test-Path -LiteralPath (Join-Path $outputRoot 'FailureTarget-sandbox-whatif.txt') | Should -BeTrue
         } -Parameters @{
-            tempRoot     = $script:TempRoot
+            tempRoot = $script:TempRoot
             successShell = $script:SuccessShell
             failureShell = $script:FailureShell
         }
     }
 }
+

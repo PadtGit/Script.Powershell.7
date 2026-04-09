@@ -30,7 +30,7 @@ function Write-Status {
     $Prefix = switch ($Level) {
         'Warning' { '[WARN ]' }
         'Success' { '[ OK  ]' }
-        default   { '[INFO ]' }
+        default { '[INFO ]' }
     }
 
     Write-Information -MessageData ('{0} {1}' -f $Prefix, $Message) -InformationAction Continue
@@ -125,11 +125,11 @@ function Install-RequiredModule {
         Initialize-PowerShellGet
 
         $InstallSplat = @{
-            Name         = $Name
-            Scope        = 'CurrentUser'
-            Force        = $true
+            Name = $Name
+            Scope = 'CurrentUser'
+            Force = $true
             AllowClobber = $true
-            ErrorAction  = 'Stop'
+            ErrorAction = 'Stop'
         }
 
         if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
@@ -170,8 +170,8 @@ function Install-RequiredModule {
     }
 
     $ImportSplat = @{
-        Name        = $Name
-        Force       = $true
+        Name = $Name
+        Force = $true
         ErrorAction = 'Stop'
     }
 
@@ -282,3 +282,4 @@ try {
 finally {
     Pop-Location -ErrorAction SilentlyContinue
 }
+

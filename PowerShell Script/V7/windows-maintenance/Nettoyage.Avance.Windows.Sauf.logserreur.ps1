@@ -21,7 +21,7 @@ $FirefoxCacheSpecs = @(
             Where-Object { -not ($_.Attributes -band [System.IO.FileAttributes]::ReparsePoint) } |
             ForEach-Object {
                 @{
-                    Path         = Join-Path $_.FullName 'cache2'
+                    Path = Join-Path $_.FullName 'cache2'
                     AllowedRoots = @($LocalApplicationDataPath)
                 }
             }
@@ -35,7 +35,7 @@ $NewTeamsCacheSpecs = @(
             Where-Object { -not ($_.Attributes -band [System.IO.FileAttributes]::ReparsePoint) } |
             ForEach-Object {
                 @{
-                    Path         = Join-Path $_.FullName 'LocalCache\Microsoft\MSTeams'
+                    Path = Join-Path $_.FullName 'LocalCache\Microsoft\MSTeams'
                     AllowedRoots = @($LocalApplicationDataPath)
                 }
             }
@@ -45,80 +45,80 @@ $NewTeamsCacheSpecs = @(
 $ScriptConfig = @{
     CleanupSpecs = @(
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Temp'
+            Path = Join-Path $LocalApplicationDataPath 'Temp'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'D3DSCache'
+            Path = Join-Path $LocalApplicationDataPath 'D3DSCache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $env:SystemRoot 'Temp'
+            Path = Join-Path $env:SystemRoot 'Temp'
             AllowedRoots = @($env:SystemRoot)
         },
         @{
-            Path         = Join-Path $env:SystemRoot 'SoftwareDistribution\DeliveryOptimization'
+            Path = Join-Path $env:SystemRoot 'SoftwareDistribution\DeliveryOptimization'
             AllowedRoots = @(Join-Path $env:SystemRoot 'SoftwareDistribution')
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Google\Chrome\User Data\Default\Cache'
+            Path = Join-Path $LocalApplicationDataPath 'Google\Chrome\User Data\Default\Cache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Google\Chrome\User Data\Default\Code Cache'
+            Path = Join-Path $LocalApplicationDataPath 'Google\Chrome\User Data\Default\Code Cache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Google\Chrome\User Data\Default\GPUCache'
+            Path = Join-Path $LocalApplicationDataPath 'Google\Chrome\User Data\Default\GPUCache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Microsoft\Edge\User Data\Default\Cache'
+            Path = Join-Path $LocalApplicationDataPath 'Microsoft\Edge\User Data\Default\Cache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Microsoft\Edge\User Data\Default\Code Cache'
+            Path = Join-Path $LocalApplicationDataPath 'Microsoft\Edge\User Data\Default\Code Cache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Microsoft\Edge\User Data\Default\GPUCache'
+            Path = Join-Path $LocalApplicationDataPath 'Microsoft\Edge\User Data\Default\GPUCache'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $RoamingAppDataPath 'Microsoft\Teams\Cache'
+            Path = Join-Path $RoamingAppDataPath 'Microsoft\Teams\Cache'
             AllowedRoots = @($RoamingAppDataPath)
         },
         @{
-            Path         = Join-Path $RoamingAppDataPath 'Microsoft\Teams\blob_storage'
+            Path = Join-Path $RoamingAppDataPath 'Microsoft\Teams\blob_storage'
             AllowedRoots = @($RoamingAppDataPath)
         },
         @{
-            Path         = Join-Path $RoamingAppDataPath 'Microsoft\Teams\databases'
+            Path = Join-Path $RoamingAppDataPath 'Microsoft\Teams\databases'
             AllowedRoots = @($RoamingAppDataPath)
         },
         @{
-            Path         = Join-Path $RoamingAppDataPath 'Microsoft\Teams\GPUCache'
+            Path = Join-Path $RoamingAppDataPath 'Microsoft\Teams\GPUCache'
             AllowedRoots = @($RoamingAppDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Microsoft\Windows\WER\ReportArchive'
+            Path = Join-Path $LocalApplicationDataPath 'Microsoft\Windows\WER\ReportArchive'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'Microsoft\Windows\WER\ReportQueue'
+            Path = Join-Path $LocalApplicationDataPath 'Microsoft\Windows\WER\ReportQueue'
             AllowedRoots = @($LocalApplicationDataPath)
         },
         @{
-            Path         = Join-Path $LocalApplicationDataPath 'CrashDumps'
+            Path = Join-Path $LocalApplicationDataPath 'CrashDumps'
             AllowedRoots = @($LocalApplicationDataPath)
         }
     ) + $FirefoxCacheSpecs + $NewTeamsCacheSpecs
     ThumbCacheDirectory = Join-Path $LocalApplicationDataPath 'Microsoft\Windows\Explorer'
-    ThumbCacheFilter    = 'thumbcache_*.db'
-    WindowsOldPath      = Join-Path $env:SystemDrive 'Windows.old'
-    RemoveWindowsOld    = $false
+    ThumbCacheFilter = 'thumbcache_*.db'
+    WindowsOldPath = Join-Path $env:SystemDrive 'Windows.old'
+    RemoveWindowsOld = $false
     RunComponentCleanup = $true
-    DismPath            = Join-Path $env:SystemRoot 'System32\Dism.exe'
+    DismPath = Join-Path $env:SystemRoot 'System32\Dism.exe'
 }
 
 function Test-PathWithinAllowedRoot {
@@ -256,11 +256,11 @@ function Invoke-AdvancedWindowsCleanup {
     if ($WhatIfPreference -and -not $IsAdministrator) {
         return [pscustomobject]@{
             CleanupPathCount = $CleanupSpecs.Count
-            RemovedCount     = 0
+            RemovedCount = 0
             RemoveWindowsOld = $RemoveWindowsOld
             ComponentCleanup = $RunComponentCleanup
-            Status           = 'Skipped'
-            Reason           = 'AdminPreviewRequired'
+            Status = 'Skipped'
+            Reason = 'AdminPreviewRequired'
         }
     }
 
@@ -341,11 +341,11 @@ function Invoke-AdvancedWindowsCleanup {
 
     [pscustomobject]@{
         CleanupPathCount = $CleanupSpecs.Count
-        RemovedCount     = $RemovedCount
+        RemovedCount = $RemovedCount
         RemoveWindowsOld = $RemoveWindowsOld
         ComponentCleanup = $RunComponentCleanup
-        Status           = $Status
-        Reason           = ''
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -366,3 +366,4 @@ catch {
     Write-Error -ErrorRecord $_
     exit 1
 }
+

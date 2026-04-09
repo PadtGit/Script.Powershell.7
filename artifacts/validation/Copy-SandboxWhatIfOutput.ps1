@@ -51,12 +51,12 @@ function Copy-SandboxWhatIfOutput {
     }
 
     [pscustomobject]@{
-        SourceRoot      = $SourceRoot
+        SourceRoot = $SourceRoot
         DestinationRoot = $DestinationRoot
-        FileCount       = $CopiedFiles.Count
-        Files           = $CopiedFiles
-        RemovedCount    = $RemovedFiles.Count
-        RemovedFiles    = $RemovedFiles
+        FileCount = $CopiedFiles.Count
+        Files = $CopiedFiles
+        RemovedCount = $RemovedFiles.Count
+        RemovedFiles = $RemovedFiles
     }
 }
 
@@ -67,3 +67,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

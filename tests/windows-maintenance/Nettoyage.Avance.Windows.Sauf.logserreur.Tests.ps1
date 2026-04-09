@@ -1,4 +1,4 @@
-﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
+. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
 Describe 'V7 advanced cleanup' {
 
@@ -71,18 +71,18 @@ Describe 'V7 advanced cleanup' {
             }
 
             $invokeParams = @{
-                RequireAdmin       = $false
-                IsAdministrator    = $true
-                CleanupSpecs       = @(
+                RequireAdmin = $false
+                IsAdministrator = $true
+                CleanupSpecs = @(
                     @{ Path = $cleanupPathOne; AllowedRoots = @($localRoot) },
                     @{ Path = $cleanupPathTwo; AllowedRoots = @($localRoot) }
                 )
                 ThumbCacheDirectory = $thumbCacheDirectory
-                ThumbCacheFilter    = 'thumbcache_*.db'
-                WindowsOldPath      = $windowsOldPath
-                RemoveWindowsOld    = $false
+                ThumbCacheFilter = 'thumbcache_*.db'
+                WindowsOldPath = $windowsOldPath
+                RemoveWindowsOld = $false
                 RunComponentCleanup = $false
-                DismPath            = 'C:\Windows\System32\Dism.exe'
+                DismPath = 'C:\Windows\System32\Dism.exe'
             }
             if ((Get-Command Invoke-AdvancedWindowsCleanup).Parameters.ContainsKey('LocalApplicationDataPath')) {
                 $invokeParams.LocalApplicationDataPath = $localRoot
@@ -103,11 +103,12 @@ Describe 'V7 advanced cleanup' {
             Assert-MockCalled Clear-RecycleBin -Times 1 -Exactly -Scope It
             ($script:ResolvedPaths -contains $windowsOldPath) | Should -BeFalse
         } -Parameters @{
-            cleanupPathOne      = 'C:\Users\Bob\AppData\Local\One'
-            cleanupPathTwo      = 'C:\Users\Bob\AppData\Local\Two'
+            cleanupPathOne = 'C:\Users\Bob\AppData\Local\One'
+            cleanupPathTwo = 'C:\Users\Bob\AppData\Local\Two'
             thumbCacheDirectory = 'C:\Users\Bob\AppData\Local\Microsoft\Windows\Explorer'
-            windowsOldPath      = 'C:\Windows.old'
-            localRoot           = 'C:\Users\Bob\AppData\Local'
+            windowsOldPath = 'C:\Windows.old'
+            localRoot = 'C:\Users\Bob\AppData\Local'
         }
     }
 }
+

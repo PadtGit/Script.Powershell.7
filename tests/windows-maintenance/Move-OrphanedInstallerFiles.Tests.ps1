@@ -1,4 +1,4 @@
-﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
+. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
 Describe 'V7 installer orphan move behavior' {
 
@@ -87,13 +87,13 @@ Describe 'V7 installer orphan move behavior' {
 
             Assert-MockCalled Move-Item -Times 0 -Exactly -Scope It
         } -Parameters @{
-            installerPath  = 'C:\TestData\Installer'
-            backupPath     = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            registryRoot   = 'HKLM:\Software\Test'
+            installerPath = 'C:\TestData\Installer'
+            backupPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            registryRoot = 'HKLM:\Software\Test'
             referencedPath = 'C:\TestData\Installer\kept.msi'
-            orphanPath     = 'C:\TestData\Installer\orphan.msi'
-            reparsePath    = 'C:\TestData\Installer\skip.msp'
+            orphanPath = 'C:\TestData\Installer\orphan.msi'
+            reparsePath = 'C:\TestData\Installer\skip.msp'
         }
     }
 
@@ -156,13 +156,13 @@ Describe 'V7 installer orphan move behavior' {
             Assert-MockCalled Move-Item -Times 1 -Exactly -Scope It
             Assert-MockCalled Get-Date -Times 1 -Exactly -Scope It
         } -Parameters @{
-            installerPath           = 'C:\TestData\Installer'
-            backupPath              = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
-            storageRoot             = 'C:\ProgramData\sysadmin-main'
-            registryRoot            = 'HKLM:\Software\Test'
-            orphanPath              = 'C:\TestData\Installer\orphan.msi'
-            destinationPath         = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan.msi'
-            renamedDestinationPath  = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan_20250102030405678.msi'
+            installerPath = 'C:\TestData\Installer'
+            backupPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            registryRoot = 'HKLM:\Software\Test'
+            orphanPath = 'C:\TestData\Installer\orphan.msi'
+            destinationPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan.msi'
+            renamedDestinationPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan_20250102030405678.msi'
         }
     }
 
@@ -200,9 +200,10 @@ Describe 'V7 installer orphan move behavior' {
             Assert-MockCalled Move-Item -Times 0 -Exactly -Scope It
         } -Parameters @{
             installerPath = 'C:\TestData\Installer'
-            backupPath    = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
-            storageRoot   = 'C:\ProgramData\sysadmin-main'
-            registryRoot  = 'HKLM:\Software\Test'
+            backupPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            registryRoot = 'HKLM:\Software\Test'
         }
     }
 }
+

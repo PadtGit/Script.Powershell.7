@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -73,13 +73,13 @@ function Invoke-PrintQueueCleanup {
     }
 
     [pscustomobject]@{
-        ServiceName  = $ServiceName
-        QueuePath    = $SpoolDirectory
-        FileCount    = $Files.Count
+        ServiceName = $ServiceName
+        QueuePath = $SpoolDirectory
+        FileCount = $Files.Count
         DeletedCount = $DeletedCount
         ServiceWasUp = $ServiceWasRunning
-        Status       = $Status
-        Reason       = ''
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -96,3 +96,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

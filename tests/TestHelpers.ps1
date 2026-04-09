@@ -1,4 +1,4 @@
-﻿Set-StrictMode -Version 3.0
+Set-StrictMode -Version 3.0
 
 $env:SYSADMIN_MAIN_REPO_ROOT = Split-Path -Path $PSScriptRoot -Parent
 
@@ -85,7 +85,7 @@ function Global:Import-ScriptModuleForTest {
 
     [pscustomobject]@{
         ModuleName = $Module.Name
-        Module     = $Module
+        Module = $Module
         ScriptPath = $ScriptPath
     }
 }
@@ -130,7 +130,8 @@ function Global:Invoke-WhatIfScriptObject {
 
     [pscustomobject]@{
         OutputLines = $OutputLines
-        Json        = $JsonLine
-        Object      = $Object
+        Json = $JsonLine
+        Object = $Object
     }
 }
+

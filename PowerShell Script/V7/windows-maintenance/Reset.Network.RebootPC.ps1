@@ -11,27 +11,27 @@ $IsAdministrator = ([Security.Principal.WindowsPrincipal] [Security.Principal.Wi
 $ScriptConfig = @{
     Commands = @(
         @{
-            FilePath  = Join-Path -Path $env:SystemRoot -ChildPath 'System32\netsh.exe'
+            FilePath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\netsh.exe'
             Arguments = @('int', 'ip', 'reset')
         },
         @{
-            FilePath  = Join-Path -Path $env:SystemRoot -ChildPath 'System32\netsh.exe'
+            FilePath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\netsh.exe'
             Arguments = @('winsock', 'reset')
         },
         @{
-            FilePath  = Join-Path -Path $env:SystemRoot -ChildPath 'System32\ipconfig.exe'
+            FilePath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\ipconfig.exe'
             Arguments = @('/release')
         },
         @{
-            FilePath  = Join-Path -Path $env:SystemRoot -ChildPath 'System32\ipconfig.exe'
+            FilePath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\ipconfig.exe'
             Arguments = @('/flushdns')
         },
         @{
-            FilePath  = Join-Path -Path $env:SystemRoot -ChildPath 'System32\ipconfig.exe'
+            FilePath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\ipconfig.exe'
             Arguments = @('/renew')
         }
     )
-    ShutdownPath       = Join-Path -Path $env:SystemRoot -ChildPath 'System32\shutdown.exe'
+    ShutdownPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\shutdown.exe'
     RebootDelaySeconds = 5
 }
 
@@ -87,11 +87,11 @@ function Invoke-ResetNetworkAndReboot {
 
     if ($IsWindowsSandbox -and -not $WhatIfPreference) {
         return [pscustomobject]@{
-            CommandCount       = $Commands.Count
-            ExecutedCount      = 0
+            CommandCount = $Commands.Count
+            ExecutedCount = 0
             RebootDelaySeconds = $RebootDelaySeconds
-            Status             = 'Skipped'
-            Reason             = 'NetworkResetUnsupportedInWindowsSandbox'
+            Status = 'Skipped'
+            Reason = 'NetworkResetUnsupportedInWindowsSandbox'
         }
     }
 
@@ -126,11 +126,11 @@ function Invoke-ResetNetworkAndReboot {
     }
 
     [pscustomobject]@{
-        CommandCount       = $Commands.Count
-        ExecutedCount      = $ExecutedCount
+        CommandCount = $Commands.Count
+        ExecutedCount = $ExecutedCount
         RebootDelaySeconds = $RebootDelaySeconds
-        Status             = $Status
-        Reason             = ''
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -147,3 +147,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

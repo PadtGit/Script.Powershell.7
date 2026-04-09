@@ -60,8 +60,8 @@ Describe 'V5 complete cleanup hardening' {
                 -RequireAdmin $false `
                 -IsAdministrator $true `
                 -CleanupSpecs @(
-                    @{ Path = $cleanupPath; AllowedRoots = @($systemRoot) }
-                ) `
+                @{ Path = $cleanupPath; AllowedRoots = @($systemRoot) }
+            ) `
                 -UpdateServiceName 'wuauserv' `
                 -UpdateCachePath $updateCachePath `
                 -ServiceTimeoutSeconds 30 `
@@ -83,8 +83,9 @@ Describe 'V5 complete cleanup hardening' {
             Assert-MockCalled Clear-RecycleBin -Times 0 -Exactly -Scope It
         } -Parameters @{
             updateCachePath = 'C:\Windows\SoftwareDistribution\Download'
-            cleanupPath     = 'C:\Windows\Temp'
-            systemRoot      = 'C:\Windows'
+            cleanupPath = 'C:\Windows\Temp'
+            systemRoot = 'C:\Windows'
         }
     }
 }
+

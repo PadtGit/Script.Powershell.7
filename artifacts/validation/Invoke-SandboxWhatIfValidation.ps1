@@ -29,23 +29,23 @@ function Resolve-PowerShell7Path {
 function Get-SandboxWhatIfTargetCatalog {
     @(
         @{
-            Name   = 'Move-OrphanedInstallerFiles'
-            Path   = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1'
+            Name = 'Move-OrphanedInstallerFiles'
+            Path = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1'
             Engine = 'PowerShell7'
         },
         @{
-            Name   = 'Nettoyage.Avance.Windows.Sauf.logserreur'
-            Path   = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
+            Name = 'Nettoyage.Avance.Windows.Sauf.logserreur'
+            Path = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'
             Engine = 'PowerShell7'
         },
         @{
-            Name   = 'Reset.Network.RebootPC'
-            Path   = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Reset.Network.RebootPC.ps1'
+            Name = 'Reset.Network.RebootPC'
+            Path = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Reset.Network.RebootPC.ps1'
             Engine = 'PowerShell7'
         },
         @{
-            Name   = 'restart.SpoolDeleteQV4'
-            Path   = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1'
+            Name = 'restart.SpoolDeleteQV4'
+            Path = Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\Printer\restart.SpoolDeleteQV4.ps1'
             Engine = 'PowerShell7'
         }
     ) | ForEach-Object { [pscustomobject]$_ }
@@ -117,26 +117,26 @@ function Invoke-SandboxWhatIfValidation {
             & $ShellPath -NoProfile -ExecutionPolicy Bypass -File $Target.Path -WhatIf *> $OutputPath
 
             [pscustomobject]@{
-                Name       = $Target.Name
-                Engine     = $Target.Engine
-                ShellPath  = $ShellPath
+                Name = $Target.Name
+                Engine = $Target.Engine
+                ShellPath = $ShellPath
                 ScriptPath = $Target.Path
                 OutputPath = $OutputPath
-                ExitCode   = $LASTEXITCODE
-                Status     = if ($LASTEXITCODE -eq 0) { 'Completed' } else { 'Failed' }
+                ExitCode = $LASTEXITCODE
+                Status = if ($LASTEXITCODE -eq 0) { 'Completed' } else { 'Failed' }
             }
         }
         catch {
             $_ | Out-String | Set-Content -LiteralPath $ErrorPath -Encoding UTF8
 
             [pscustomobject]@{
-                Name       = $Target.Name
-                Engine     = $Target.Engine
+                Name = $Target.Name
+                Engine = $Target.Engine
                 ScriptPath = $Target.Path
                 OutputPath = $OutputPath
-                ErrorPath  = $ErrorPath
-                ExitCode   = 1
-                Status     = 'Failed'
+                ErrorPath = $ErrorPath
+                ExitCode = 1
+                Status = 'Failed'
             }
         }
     }
@@ -144,11 +144,11 @@ function Invoke-SandboxWhatIfValidation {
     $Results | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $SummaryPath -Encoding UTF8
 
     return [pscustomobject]@{
-        OutputRoot   = $OutputRoot
-        SummaryPath  = $SummaryPath
-        ResultCount  = $Results.Count
+        OutputRoot = $OutputRoot
+        SummaryPath = $SummaryPath
+        ResultCount = $Results.Count
         FailureCount = @($Results | Where-Object { $_.Status -eq 'Failed' }).Count
-        Results      = $Results
+        Results = $Results
     }
 }
 
@@ -162,3 +162,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

@@ -1,8 +1,8 @@
-﻿Describe 'V5 printer export hardening' {
+Describe 'V5 printer export hardening' {
     . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
     BeforeAll {
-$script:BasicModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
+        $script:BasicModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
     }
 
     AfterAll {
@@ -12,7 +12,7 @@ $script:BasicModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerS
     }
 
     It 'uses a secured per-user path and unique file name for the basic export preview' {
-$Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
+        $Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
 
         $Result.Object | Should -Not -BeNullOrEmpty
         $Result.Object.OutputPath | Should -Match 'sysadmin-main\\Exports\\Printers\\printers-basic-'
@@ -20,7 +20,7 @@ $Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Print
     }
 
     It 'uses a secured per-user path and unique file name for the full export preview' {
-$Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.FULL.ps1'
+        $Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.FULL.ps1'
 
         $Result.Object | Should -Not -BeNullOrEmpty
         $Result.Object.OutputPath | Should -Match 'sysadmin-main\\Exports\\Printers\\printers-full-'
@@ -28,8 +28,8 @@ $Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Print
     }
 
     It 'restricts the export directory in code' {
-$BasicContent = Get-Content -LiteralPath (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1') -Raw
-$FullContent = Get-Content -LiteralPath (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\Printer\Export.printer.list.FULL.ps1') -Raw
+        $BasicContent = Get-Content -LiteralPath (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1') -Raw
+        $FullContent = Get-Content -LiteralPath (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\Printer\Export.printer.list.FULL.ps1') -Raw
 
         $BasicContent | Should -Match 'Resolve-SecureDirectory'
         $BasicContent | Should -Match 'Set-RestrictedDirectoryAcl'
@@ -70,7 +70,7 @@ $FullContent = Get-Content -LiteralPath (Join-Path (Get-SysadminMainRepoRoot) 'P
             Assert-MockCalled New-Item -Times 0 -Exactly -Scope It
             Assert-MockCalled Set-RestrictedDirectoryAcl -Times 0 -Exactly -Scope It
         } -Parameters @{
-            storageRoot     = 'C:\Users\Test\AppData\Local\sysadmin-main'
+            storageRoot = 'C:\Users\Test\AppData\Local\sysadmin-main'
             outputDirectory = 'C:\Users\Test\AppData\Local\sysadmin-main\Exports\Printers'
         }
     }
@@ -105,8 +105,9 @@ $FullContent = Get-Content -LiteralPath (Join-Path (Get-SysadminMainRepoRoot) 'P
                 $Path -eq $outputDirectory
             }
         } -Parameters @{
-            storageRoot     = 'C:\Users\Test\AppData\Local\sysadmin-main'
+            storageRoot = 'C:\Users\Test\AppData\Local\sysadmin-main'
             outputDirectory = 'C:\Users\Test\AppData\Local\sysadmin-main\Exports\Printers'
         }
     }
 }
+
