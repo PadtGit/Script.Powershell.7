@@ -104,6 +104,7 @@ Describe 'V7 installer orphan move behavior' {
             param($installerPath, $backupPath, $storageRoot, $registryRoot, $orphanPath, $destinationPath, $renamedDestinationPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $destinationPath, $renamedDestinationPath
 
             $installerDirectory = [System.IO.DirectoryInfo]::new($installerPath)
             $registryKey = [pscustomobject]@{

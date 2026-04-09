@@ -75,6 +75,8 @@ Describe 'V7 network reset and reboot behavior' {
         InModuleScope $moduleName {
             param($commandPath)
 
+            $null = $commandPath
+
             {
                 Invoke-ResetNetworkAndReboot `
                     -RequireAdmin $false `
@@ -100,6 +102,8 @@ Describe 'V7 network reset and reboot behavior' {
 
         InModuleScope $moduleName {
             param($commandPath)
+
+            $null = $commandPath
 
             {
                 Invoke-ResetNetworkAndReboot `

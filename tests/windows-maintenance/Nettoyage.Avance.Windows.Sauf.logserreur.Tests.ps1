@@ -49,6 +49,7 @@ Describe 'V7 advanced cleanup' {
 
             Mock Resolve-TrustedDirectoryPath {
                 param($Path, $AllowedRoots)
+                $null = $AllowedRoots
                 $script:ResolvedPaths += $Path
                 $Path
             }

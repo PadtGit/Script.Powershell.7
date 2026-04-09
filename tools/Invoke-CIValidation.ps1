@@ -3,123 +3,133 @@
 [CmdletBinding()]
 param(
     [switch]$SkipModuleInstall,
-
     [version]$RequiredPSScriptAnalyzerVersion = [version]'1.25.0',
-
     [version]$MinimumPesterVersion = [version]'5.7.1'
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
+$InformationPreference = 'Continue'
 
 $ScriptRoot = Split-Path -Path $PSCommandPath -Parent
 $RepoRoot = Split-Path -Path $ScriptRoot -Parent
-$ValidationRoot = Join-Path -Path $RepoRoot -ChildPath 'artifacts\validation'
+$ValidationRoot = Join-Path -Path $RepoRoot -ChildPath 'artifacts/validation'
 $PesterResultPath = Join-Path -Path $ValidationRoot -ChildPath 'pester-results.xml'
-$WindowsPowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+$WindowsPowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32/WindowsPowerShell/v1.0/powershell.exe'
 
-try {
-    $CurrentPowerShellPath = (Get-Process -Id $PID -ErrorAction Stop).Path
-}
-catch {
-    $CurrentPowerShellPath = if ($PSVersionTable.PSEdition -eq 'Core') { 'pwsh' } else { $WindowsPowerShellPath }
-}
-
-function Write-Section {
-    param([string]$Title)
-
-    Write-Host ''
-    Write-Host ('=' * 72) -ForegroundColor DarkGray
-    Write-Host "  $Title" -ForegroundColor Cyan
-    Write-Host ('=' * 72) -ForegroundColor DarkGray
-}
-
-function Invoke-NativeStep {
+function Write-Status {
+    [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $true)]
+        [string]$Message,
+        [ValidateSet('Info', 'Warning', 'Success')]
+        [string]$Level = 'Info'
+    )
+
+    $Prefix = switch ($Level) {
+        'Warning' { '[WARN ]' }
+        'Success' { '[ OK  ]' }
+        default   { '[INFO ]' }
+    }
+
+    Write-Information -MessageData ('{0} {1}' -f $Prefix, $Message) -InformationAction Continue
+}
+
+function Invoke-ExternalStep {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
         [string]$FilePath,
-
         [string[]]$ArgumentList = @(),
-
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $true)]
         [string]$FailureMessage
     )
 
+    if (-not (Get-Command -Name $FilePath -ErrorAction SilentlyContinue) -and
+        -not (Test-Path -LiteralPath $FilePath -PathType Leaf)) {
+        throw "Required executable or script not found: $FilePath"
+    }
+
     & $FilePath @ArgumentList
     $ExitCode = $LASTEXITCODE
+
     if ($ExitCode -ne 0) {
-        throw "$FailureMessage ExitCode=$ExitCode."
+        throw '{0} ExitCode={1}.' -f $FailureMessage, $ExitCode
     }
 }
 
-function Initialize-PowerShellGallery {
+function Initialize-PowerShellGet {
+    [CmdletBinding()]
+    param()
+
     if ($PSVersionTable.PSEdition -eq 'Desktop') {
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
     }
 
-    if (Get-Command -Name Get-PSRepository -ErrorAction SilentlyContinue) {
-        $Gallery = Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
-        if (-not $Gallery -and (Get-Command -Name Register-PSRepository -ErrorAction SilentlyContinue)) {
-            Register-PSRepository -Default
-            $Gallery = Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
-        }
-
-        if ($Gallery -and $Gallery.InstallationPolicy -ne 'Trusted') {
-            Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+    if (Get-Command -Name Get-PackageProvider -ErrorAction SilentlyContinue) {
+        $NuGetProvider = Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue
+        if (-not $NuGetProvider -or $NuGetProvider.Version -lt [version]'2.8.5.201') {
+            Install-PackageProvider -Name NuGet -MinimumVersion '2.8.5.201' -Scope CurrentUser -Force | Out-Null
         }
     }
 
-    if (Get-Command -Name Install-PackageProvider -ErrorAction SilentlyContinue) {
-        $NuGetProvider = Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue
-        if (-not $NuGetProvider -or $NuGetProvider.Version -lt [version]'2.8.5.201') {
-            Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Scope CurrentUser -Force | Out-Null
+    if (Get-Command -Name Get-PSRepository -ErrorAction SilentlyContinue) {
+        $Gallery = Get-PSRepository -Name 'PSGallery' -ErrorAction SilentlyContinue
+        if (-not $Gallery -and (Get-Command -Name Register-PSRepository -ErrorAction SilentlyContinue)) {
+            Register-PSRepository -Default
+            $Gallery = Get-PSRepository -Name 'PSGallery' -ErrorAction SilentlyContinue
+        }
+
+        if ($Gallery -and $Gallery.InstallationPolicy -ne 'Trusted') {
+            Write-Status -Message 'Setting PSGallery to Trusted for non-interactive module installation.' -Level Warning
+            Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
         }
     }
 }
 
-function Ensure-ModuleInstalled {
+function Install-RequiredModule {
+    [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $true)]
         [string]$Name,
-
         [version]$RequiredVersion,
-
         [version]$MinimumVersion
     )
 
-    $AvailableModules = @(Get-Module -ListAvailable -Name $Name | Sort-Object Version -Descending)
-    $SelectedModule = $null
+    $AvailableModule = $null
 
     if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
-        $SelectedModule = $AvailableModules |
+        $AvailableModule = Get-Module -ListAvailable -Name $Name |
             Where-Object { $_.Version -eq $RequiredVersion } |
+            Sort-Object -Property Version -Descending |
             Select-Object -First 1
     }
     elseif ($PSBoundParameters.ContainsKey('MinimumVersion')) {
-        $SelectedModule = $AvailableModules |
+        $AvailableModule = Get-Module -ListAvailable -Name $Name |
             Where-Object { $_.Version -ge $MinimumVersion } |
+            Sort-Object -Property Version -Descending |
             Select-Object -First 1
     }
     else {
-        $SelectedModule = $AvailableModules | Select-Object -First 1
+        $AvailableModule = Get-Module -ListAvailable -Name $Name |
+            Sort-Object -Property Version -Descending |
+            Select-Object -First 1
     }
 
-    if (-not $SelectedModule) {
+    if (-not $AvailableModule) {
         if ($SkipModuleInstall) {
-            throw "Required module '$Name' is not available and -SkipModuleInstall was specified."
+            throw "Required module '$Name' is not installed and -SkipModuleInstall was specified."
         }
 
-        Write-Host "Installing module '$Name'..." -ForegroundColor DarkGray
-        Initialize-PowerShellGallery
+        Initialize-PowerShellGet
 
         $InstallSplat = @{
-            Name               = $Name
-            Scope              = 'CurrentUser'
-            Force              = $true
-            AllowClobber       = $true
-            SkipPublisherCheck = $true
-            ErrorAction        = 'Stop'
+            Name         = $Name
+            Scope        = 'CurrentUser'
+            Force        = $true
+            AllowClobber = $true
+            ErrorAction  = 'Stop'
         }
 
         if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
@@ -129,25 +139,29 @@ function Ensure-ModuleInstalled {
             $InstallSplat.MinimumVersion = $MinimumVersion
         }
 
+        Write-Status -Message ("Installing module '{0}'." -f $Name)
         Install-Module @InstallSplat
 
-        $AvailableModules = @(Get-Module -ListAvailable -Name $Name | Sort-Object Version -Descending)
         if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
-            $SelectedModule = $AvailableModules |
+            $AvailableModule = Get-Module -ListAvailable -Name $Name |
                 Where-Object { $_.Version -eq $RequiredVersion } |
+                Sort-Object -Property Version -Descending |
                 Select-Object -First 1
         }
         elseif ($PSBoundParameters.ContainsKey('MinimumVersion')) {
-            $SelectedModule = $AvailableModules |
+            $AvailableModule = Get-Module -ListAvailable -Name $Name |
                 Where-Object { $_.Version -ge $MinimumVersion } |
+                Sort-Object -Property Version -Descending |
                 Select-Object -First 1
         }
         else {
-            $SelectedModule = $AvailableModules | Select-Object -First 1
+            $AvailableModule = Get-Module -ListAvailable -Name $Name |
+                Sort-Object -Property Version -Descending |
+                Select-Object -First 1
         }
     }
 
-    if (-not $SelectedModule) {
+    if (-not $AvailableModule) {
         throw "Module '$Name' could not be resolved after installation."
     }
 
@@ -155,194 +169,116 @@ function Ensure-ModuleInstalled {
         Remove-Module -Name Pester -Force -ErrorAction SilentlyContinue
     }
 
+    $ImportSplat = @{
+        Name        = $Name
+        Force       = $true
+        ErrorAction = 'Stop'
+    }
+
     if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
-        Import-Module -Name $Name -RequiredVersion $RequiredVersion -Force -ErrorAction Stop | Out-Null
+        $ImportSplat.RequiredVersion = $RequiredVersion
     }
     elseif ($PSBoundParameters.ContainsKey('MinimumVersion')) {
-        Import-Module -Name $Name -MinimumVersion $MinimumVersion -Force -ErrorAction Stop | Out-Null
+        $ImportSplat.MinimumVersion = $MinimumVersion
     }
-    else {
-        Import-Module -Name $Name -Force -ErrorAction Stop | Out-Null
-    }
+
+    Import-Module @ImportSplat | Out-Null
+
+    Write-Status -Message ("Using module '{0}' version {1}." -f $Name, $AvailableModule.Version) -Level Success
 }
 
-function Ensure-WindowsPowerShellModuleInstalled {
+function Invoke-OptionalScriptStep {
+    [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
-        [string]$Name,
-
-        [version]$RequiredVersion,
-
-        [version]$MinimumVersion
+        [Parameter(Mandatory = $true)]
+        [string]$ScriptPath,
+        [Parameter(Mandatory = $true)]
+        [string]$FailureMessage,
+        [string[]]$ArgumentList = @()
     )
 
-    if (-not (Test-Path -LiteralPath $WindowsPowerShellPath -PathType Leaf)) {
+    if (-not (Test-Path -LiteralPath $ScriptPath -PathType Leaf)) {
+        Write-Status -Message ("Optional step skipped because file was not found: {0}" -f $ScriptPath) -Level Warning
         return
     }
 
-    $RequiredVersionText = if ($PSBoundParameters.ContainsKey('RequiredVersion')) {
-        $RequiredVersion.ToString()
-    }
-    else {
-        ''
-    }
-
-    $MinimumVersionText = if ($PSBoundParameters.ContainsKey('MinimumVersion')) {
-        $MinimumVersion.ToString()
-    }
-    else {
-        ''
-    }
-
-    $AllowInstall = if ($SkipModuleInstall) { '$false' } else { '$true' }
-
-    $CommandText = @"
-`$ErrorActionPreference = 'Stop'
-`$ProgressPreference = 'SilentlyContinue'
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-
-function Get-TargetModule {
-    param(
-        [string]`$Name,
-        [string]`$RequiredVersion,
-        [string]`$MinimumVersion
-    )
-
-    `$AvailableModules = @(Get-Module -ListAvailable -Name `$Name | Sort-Object Version -Descending)
-
-    if (-not [string]::IsNullOrWhiteSpace(`$RequiredVersion)) {
-        return `$AvailableModules |
-            Where-Object { `$_.Version -eq [version]`$RequiredVersion } |
-            Select-Object -First 1
-    }
-
-    if (-not [string]::IsNullOrWhiteSpace(`$MinimumVersion)) {
-        return `$AvailableModules |
-            Where-Object { `$_.Version -ge [version]`$MinimumVersion } |
-            Select-Object -First 1
-    }
-
-    return `$AvailableModules | Select-Object -First 1
-}
-
-`$Module = Get-TargetModule -Name '$Name' -RequiredVersion '$RequiredVersionText' -MinimumVersion '$MinimumVersionText'
-if (-not `$Module) {
-    if (-not $AllowInstall) {
-        throw "Required module '$Name' is not available in Windows PowerShell and -SkipModuleInstall was specified."
-    }
-
-    if (Get-Command -Name Get-PSRepository -ErrorAction SilentlyContinue) {
-        `$Gallery = Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
-        if (-not `$Gallery -and (Get-Command -Name Register-PSRepository -ErrorAction SilentlyContinue)) {
-            Register-PSRepository -Default
-            `$Gallery = Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
-        }
-
-        if (`$Gallery -and `$Gallery.InstallationPolicy -ne 'Trusted') {
-            Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-        }
-    }
-
-    if (Get-Command -Name Install-PackageProvider -ErrorAction SilentlyContinue) {
-        `$NuGetProvider = Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue
-        if (-not `$NuGetProvider -or `$NuGetProvider.Version -lt [version]'2.8.5.201') {
-            Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Scope CurrentUser -Force | Out-Null
-        }
-    }
-
-    `$InstallSplat = @{
-        Name               = '$Name'
-        Scope              = 'CurrentUser'
-        Force              = `$true
-        AllowClobber       = `$true
-        SkipPublisherCheck = `$true
-        ErrorAction        = 'Stop'
-    }
-
-    if (-not [string]::IsNullOrWhiteSpace('$RequiredVersionText')) {
-        `$InstallSplat.RequiredVersion = [version]'$RequiredVersionText'
-    }
-    elseif (-not [string]::IsNullOrWhiteSpace('$MinimumVersionText')) {
-        `$InstallSplat.MinimumVersion = [version]'$MinimumVersionText'
-    }
-
-    Install-Module @InstallSplat
-    `$Module = Get-TargetModule -Name '$Name' -RequiredVersion '$RequiredVersionText' -MinimumVersion '$MinimumVersionText'
-}
-
-if (-not `$Module) {
-    throw "Module '$Name' could not be resolved in Windows PowerShell after installation."
-}
-"@
-
-    Invoke-NativeStep -FilePath $WindowsPowerShellPath -ArgumentList @(
+    Invoke-ExternalStep -FilePath $CurrentPowerShellPath -ArgumentList @(
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
-        '-Command', $CommandText
-    ) -FailureMessage "Failed to provision Windows PowerShell module '$Name'."
+        '-File', $ScriptPath
+    ) + $ArgumentList -FailureMessage $FailureMessage
 }
 
-New-Item -ItemType Directory -Force -Path $ValidationRoot | Out-Null
-
-Push-Location -Path $RepoRoot
 try {
-    Write-Section 'Module Setup'
-    Ensure-ModuleInstalled -Name PSScriptAnalyzer -RequiredVersion $RequiredPSScriptAnalyzerVersion
-    Ensure-ModuleInstalled -Name Pester -MinimumVersion $MinimumPesterVersion
+    if ($SkipModuleInstall) {
+        Write-Status -Message 'Automatic module installation is disabled for this run.' -Level Warning
+    }
 
-    Write-Section 'PSScriptAnalyzer'
-    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
+    try {
+        $CurrentPowerShellPath = (Get-Process -Id $PID -ErrorAction Stop).Path
+    }
+    catch {
+        $CurrentPowerShellPath = 'pwsh'
+    }
+
+    if (-not (Test-Path -LiteralPath $ValidationRoot -PathType Container)) {
+        New-Item -ItemType Directory -Path $ValidationRoot -Force | Out-Null
+    }
+
+    Push-Location -Path $RepoRoot
+
+    Write-Status -Message 'Starting CI validation.'
+    Install-RequiredModule -Name 'PSScriptAnalyzer' -RequiredVersion $RequiredPSScriptAnalyzerVersion
+    Install-RequiredModule -Name 'Pester' -MinimumVersion $MinimumPesterVersion
+
+    $AnalyzerScriptPath = Join-Path -Path $ScriptRoot -ChildPath 'Invoke-PSScriptAnalyzer.ps1'
+    $AnalyzerSettingsPath = Join-Path -Path $ScriptRoot -ChildPath 'PSScriptAnalyzerSettings.psd1'
+
+    Write-Status -Message 'Running PSScriptAnalyzer.'
+    Invoke-ExternalStep -FilePath $CurrentPowerShellPath -ArgumentList @(
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $ScriptRoot -ChildPath 'Invoke-PSScriptAnalyzer.ps1'),
+        '-File', $AnalyzerScriptPath,
         '-Path', $RepoRoot,
         '-Recurse',
-        '-SettingsPath', (Join-Path -Path $ScriptRoot -ChildPath 'PSScriptAnalyzerSettings.psd1'),
+        '-SettingsPath', $AnalyzerSettingsPath,
         '-EnableExit',
         '-ExitCodeMode', 'AllDiagnostics'
     ) -FailureMessage 'PSScriptAnalyzer validation failed.'
 
-    Write-Section 'Pester'
-    $Configuration = New-PesterConfiguration
-    $Configuration.Run.Path = Join-Path -Path $RepoRoot -ChildPath 'tests'
-    $Configuration.Run.PassThru = $true
-    $Configuration.Output.Verbosity = 'Detailed'
-    $Configuration.TestResult.Enabled = $true
-    $Configuration.TestResult.OutputPath = $PesterResultPath
-    $Configuration.TestResult.OutputFormat = 'NUnitXml'
-    $PesterResult = Invoke-Pester -Configuration $Configuration
+    $TestsPath = Join-Path -Path $RepoRoot -ChildPath 'tests'
+    if (Test-Path -LiteralPath $TestsPath -PathType Container) {
+        Write-Status -Message 'Running Pester tests.'
+        $Configuration = New-PesterConfiguration
+        $Configuration.Run.Path = $TestsPath
+        $Configuration.Run.PassThru = $true
+        $Configuration.Output.Verbosity = 'Detailed'
+        $Configuration.TestResult.Enabled = $true
+        $Configuration.TestResult.OutputPath = $PesterResultPath
+        $Configuration.TestResult.OutputFormat = 'NUnitXml'
 
-    if (-not $PesterResult -or $PesterResult.Result -ne 'Passed') {
-        throw "Pester validation failed with result '$($PesterResult.Result)'."
+        $PesterResult = Invoke-Pester -Configuration $Configuration
+        if (-not $PesterResult -or $PesterResult.Result -ne 'Passed') {
+            throw "Pester validation failed with result '$($PesterResult.Result)'."
+        }
+
+        Write-Status -Message 'Pester tests passed.' -Level Success
+    }
+    else {
+        Write-Status -Message 'Pester step skipped because tests folder was not found.' -Level Warning
     }
 
-    Write-Section 'Fixed WhatIf Validation'
-    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
-        '-NoProfile',
-        '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $RepoRoot -ChildPath 'Invoke-WhatIfValidation.ps1'),
+    Invoke-OptionalScriptStep -ScriptPath (Join-Path -Path $RepoRoot -ChildPath 'Invoke-WhatIfValidation.ps1') -FailureMessage 'Fixed WhatIf validation failed.' -ArgumentList @(
         '-PowerShell7Path', $CurrentPowerShellPath,
         '-WindowsPowerShellPath', $WindowsPowerShellPath
-    ) -FailureMessage 'Fixed WhatIf validation failed.'
+    )
 
-    Write-Section 'Trusted V7 Smoke Checks'
-    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
-        '-NoProfile',
-        '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\Printer\Restart.Spool.DeletePrinterQSimple.ps1'),
-        '-WhatIf'
-    ) -FailureMessage 'V7 printer smoke check failed.'
+    Invoke-OptionalScriptStep -ScriptPath (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script/V7/Printer/Restart.Spool.DeletePrinterQSimple.ps1') -FailureMessage 'V7 printer smoke check failed.' -ArgumentList @('-WhatIf')
 
-    Invoke-NativeStep -FilePath $CurrentPowerShellPath -ArgumentList @(
-        '-NoProfile',
-        '-ExecutionPolicy', 'Bypass',
-        '-File', (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script\V7\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1'),
-        '-WhatIf'
-    ) -FailureMessage 'V7 cleanup smoke check failed.'
+    Invoke-OptionalScriptStep -ScriptPath (Join-Path -Path $RepoRoot -ChildPath 'PowerShell Script/V7/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.ps1') -FailureMessage 'V7 cleanup smoke check failed.' -ArgumentList @('-WhatIf')
 
-    Write-Section 'Validation Complete'
-    Write-Host 'All CI validation steps passed.' -ForegroundColor Green
+    Write-Status -Message 'All CI validation steps passed.' -Level Success
 }
 finally {
-    Pop-Location
+    Pop-Location -ErrorAction SilentlyContinue
 }

@@ -80,49 +80,85 @@ function Resolve-TargetShellPath {
     }
 }
 
-$Targets = Get-SandboxWhatIfTargets
+function Invoke-SandboxWhatIfValidation {
+    [CmdletBinding()]
+    param(
+        [Parameter()]
+        [string]$OutputRoot = $script:OutputRoot,
 
-New-Item -ItemType Directory -Force -Path $OutputRoot | Out-Null
+        [Parameter()]
+        [string]$SummaryPath = $script:SummaryPath,
 
-$Results = foreach ($Target in $Targets) {
-    $OutputPath = Join-Path -Path $OutputRoot -ChildPath ('{0}-sandbox-whatif.txt' -f $Target.Name)
-    $ErrorPath = Join-Path -Path $OutputRoot -ChildPath ('{0}-sandbox-error.txt' -f $Target.Name)
+        [Parameter()]
+        [object[]]$Targets = (Get-SandboxWhatIfTargets)
+    )
 
-    if (Test-Path -LiteralPath $OutputPath) {
-        Remove-Item -LiteralPath $OutputPath -Force
+    $SummaryDirectory = Split-Path -Path $SummaryPath -Parent
+    if (-not [string]::IsNullOrWhiteSpace($SummaryDirectory)) {
+        New-Item -ItemType Directory -Force -Path $SummaryDirectory | Out-Null
     }
 
-    if (Test-Path -LiteralPath $ErrorPath) {
-        Remove-Item -LiteralPath $ErrorPath -Force
-    }
+    New-Item -ItemType Directory -Force -Path $OutputRoot | Out-Null
 
-    try {
-        $ShellPath = Resolve-TargetShellPath -Target $Target
-        & $ShellPath -NoProfile -ExecutionPolicy Bypass -File $Target.Path -WhatIf *> $OutputPath
+    $Results = foreach ($Target in @($Targets)) {
+        $OutputPath = Join-Path -Path $OutputRoot -ChildPath ('{0}-sandbox-whatif.txt' -f $Target.Name)
+        $ErrorPath = Join-Path -Path $OutputRoot -ChildPath ('{0}-sandbox-error.txt' -f $Target.Name)
 
-        [pscustomobject]@{
-            Name       = $Target.Name
-            Engine     = $Target.Engine
-            ShellPath  = $ShellPath
-            ScriptPath = $Target.Path
-            OutputPath = $OutputPath
-            ExitCode   = $LASTEXITCODE
-            Status     = if ($LASTEXITCODE -eq 0) { 'Completed' } else { 'Failed' }
+        if (Test-Path -LiteralPath $OutputPath) {
+            Remove-Item -LiteralPath $OutputPath -Force
+        }
+
+        if (Test-Path -LiteralPath $ErrorPath) {
+            Remove-Item -LiteralPath $ErrorPath -Force
+        }
+
+        try {
+            $ShellPath = Resolve-TargetShellPath -Target $Target
+            & $ShellPath -NoProfile -ExecutionPolicy Bypass -File $Target.Path -WhatIf *> $OutputPath
+
+            [pscustomobject]@{
+                Name       = $Target.Name
+                Engine     = $Target.Engine
+                ShellPath  = $ShellPath
+                ScriptPath = $Target.Path
+                OutputPath = $OutputPath
+                ExitCode   = $LASTEXITCODE
+                Status     = if ($LASTEXITCODE -eq 0) { 'Completed' } else { 'Failed' }
+            }
+        }
+        catch {
+            $_ | Out-String | Set-Content -LiteralPath $ErrorPath -Encoding UTF8
+
+            [pscustomobject]@{
+                Name       = $Target.Name
+                Engine     = $Target.Engine
+                ScriptPath = $Target.Path
+                OutputPath = $OutputPath
+                ErrorPath  = $ErrorPath
+                ExitCode   = 1
+                Status     = 'Failed'
+            }
         }
     }
-    catch {
-        $_ | Out-String | Set-Content -LiteralPath $ErrorPath -Encoding UTF8
 
-        [pscustomobject]@{
-            Name       = $Target.Name
-            Engine     = $Target.Engine
-            ScriptPath = $Target.Path
-            OutputPath = $OutputPath
-            ErrorPath  = $ErrorPath
-            ExitCode   = 1
-            Status     = 'Failed'
-        }
+    $Results | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $SummaryPath -Encoding UTF8
+
+    return [pscustomobject]@{
+        OutputRoot   = $OutputRoot
+        SummaryPath  = $SummaryPath
+        ResultCount  = $Results.Count
+        FailureCount = @($Results | Where-Object { $_.Status -eq 'Failed' }).Count
+        Results      = $Results
     }
 }
 
-$Results | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $SummaryPath -Encoding UTF8
+try {
+    $ValidationResult = Invoke-SandboxWhatIfValidation
+    if ($ValidationResult.FailureCount -gt 0) {
+        exit 1
+    }
+}
+catch {
+    Write-Error $_.Exception.Message
+    exit 1
+}

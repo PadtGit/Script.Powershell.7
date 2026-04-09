@@ -90,6 +90,7 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             param($installerPath, $backupFolder, $storageRoot, $registryRoot, $orphanPath, $destinationPath, $renamedDestinationPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $destinationPath, $renamedDestinationPath
 
             $installerDirectory = [System.IO.DirectoryInfo]::new($installerPath)
             $registryKey = [pscustomobject]@{

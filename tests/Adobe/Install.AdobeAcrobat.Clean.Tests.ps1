@@ -23,6 +23,8 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             InModuleScope $moduleName {
                 param($packagePath, $logDirectory, $msiexecPath)
 
+                $null = $packagePath, $logDirectory, $msiexecPath
+
                 Mock Resolve-SecureDirectory { $Path }
                 Mock Start-Process {}
 

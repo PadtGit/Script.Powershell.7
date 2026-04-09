@@ -58,10 +58,10 @@ Engine       : WindowsPowerShell
 ShellPath    : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
 ExitCode     : 0
 Success      : True
-Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260405-204007597.csv".
+Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260408-231312478.csv".
                
                
-               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260405-204007597.csv
+               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260408-231312478.csv
                PrinterCount  : 1
                ExportProfile : Basic
                Status        : WhatIf
@@ -76,10 +76,10 @@ Engine       : WindowsPowerShell
 ShellPath    : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
 ExitCode     : 0
 Success      : True
-Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260405-204008714.csv".
+Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260408-231313456.csv".
                
                
-               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260405-204008714.csv
+               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260408-231313456.csv
                PrinterCount  : 1
                ExportProfile : Full
                Status        : WhatIf
@@ -120,7 +120,8 @@ Output       : What if: Performing the operation "Stop service" on target "Spool
                QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
                FileCount    : 0
                DeletedCount : 0
-               Status       : WhatIf
+               Status       : Skipped
+               Reason       : SpoolDirectoryUnavailable
                
 
 RelativePath : V7\Printer\restart.SpoolDeleteQV4.ps1
@@ -134,14 +135,15 @@ Output       : What if: Performing the operation "Stop Print Spooler" on target 
                ServiceName  : Spooler
                Service      : Spooler
                QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
-               LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260405-204010775-4dcf072c.log
+               LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260408-231315413-b1e34e83.log
                FileCount    : 0
                DeletedCount : 0
                DeletedFiles : 0
                ServiceWasUp : True
-               Status       : WhatIf
-               Success      : True
+               Status       : Skipped
+               Success      : False
                WhatIfRun    : True
+               Reason       : SpoolDirectoryUnavailable
                
 
 RelativePath : V7\windows-maintenance\Move-OrphanedInstallerFiles.ps1
@@ -259,6 +261,7 @@ Success      : True
 Output       : 
                CleanupPathCount : 19
                RemovedCount     : 0
+               FailedCount      : 0
                RemoveWindowsOld : False
                ComponentCleanup : True
                Status           : Skipped
@@ -280,6 +283,7 @@ Output       : What if: Performing the operation "Run network reset command" on 
                
                CommandCount       : 5
                ExecutedCount      : 0
+               WarningCount       : 0
                RebootDelaySeconds : 5
                Status             : WhatIf
                Reason             : 

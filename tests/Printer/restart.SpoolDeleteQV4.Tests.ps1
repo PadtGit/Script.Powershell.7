@@ -35,6 +35,7 @@ Describe 'V7 logged spool cleanup behavior' {
             param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $logPath
 
             $service = [pscustomobject]@{
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
@@ -169,6 +170,7 @@ Describe 'V7 logged spool cleanup behavior' {
             param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $logPath
 
             $service = [pscustomobject]@{
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
@@ -222,6 +224,7 @@ Describe 'V7 logged spool cleanup behavior' {
             param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $logPath
 
             $service = [pscustomobject]@{
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
@@ -291,12 +294,14 @@ Describe 'V7 logged spool cleanup behavior' {
             param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath, $scriptPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $logPath
 
             $service = [pscustomobject]@{
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Running
             }
             Add-Member -InputObject $service -MemberType ScriptMethod -Name WaitForStatus -Value {
                 param($Status, $Timeout)
+                $null = $Status, $Timeout
             } -Force
             Add-Member -InputObject $service -MemberType ScriptMethod -Name Refresh -Value { } -Force
 

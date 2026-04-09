@@ -26,6 +26,7 @@ Describe 'V5 logged spool cleanup behavior' {
             param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $logPath
 
             $service = [pscustomobject]@{
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
