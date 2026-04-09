@@ -217,7 +217,7 @@ function Get-ResolvedPath {
     }
 }
 
-function Get-AnalyzerSettings {
+function Get-AnalyzerConfiguration {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
@@ -290,7 +290,7 @@ function Get-NormalizedStringArray {
     return $NormalizedValues
 }
 
-function Get-TargetFiles {
+function Get-TargetFile {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
@@ -519,7 +519,7 @@ foreach ($OutputPath in @($OutTxtPath, $OutJsonPath, $OutSarifPath)) {
 $LoadedModule = Import-AnalyzerModule -RequiredVersion $RequiredPSScriptAnalyzerVersion -ModulePath $PSScriptAnalyzerModulePath
 Write-Status -Message ("Using PSScriptAnalyzer version {0}." -f $LoadedModule.Version) -Level Success
 
-$Settings = Get-AnalyzerSettings -SettingsFilePath $SettingsPath
+$Settings = Get-AnalyzerConfiguration -SettingsFilePath $SettingsPath
 $NormalizedSettingsIncludeRules = @(Get-NormalizedStringArray -Values $Settings.IncludeRules)
 $NormalizedSettingsExcludeRules = @(Get-NormalizedStringArray -Values $Settings.ExcludeRules)
 $NormalizedSettingsCustomRulePath = @(Get-NormalizedStringArray -Values $Settings.CustomRulePath)
@@ -564,7 +564,7 @@ $DefaultExcludePath = @(
 
 $EffectiveExcludePath = @($ExcludePath) + $DefaultExcludePath
 
-$TargetFiles = Get-TargetFiles -InputPaths $Path -DoRecurse:$Recurse -IncludePatterns $IncludePath -ExcludePatterns $EffectiveExcludePath
+$TargetFiles = Get-TargetFile -InputPaths $Path -DoRecurse:$Recurse -IncludePatterns $IncludePath -ExcludePatterns $EffectiveExcludePath
 
 if (@($TargetFiles).Count -eq 0) {
     $NoFindingsMessage = 'No PowerShell files found for analysis.'

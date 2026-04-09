@@ -24,7 +24,7 @@ Describe 'V7 advanced cleanup' {
 
         $content | Should -Match 'CleanupSpecs'
         $content | Should -Match 'Resolve-TrustedDirectoryPath'
-        $content | Should -Match 'Get-SafeChildItems'
+        $content | Should -Match 'Get-SafeChildItem'
         $content | Should -Match 'Test-IsReparsePoint'
         $content | Should -Not -Match '\$env:TEMP'
 
@@ -53,7 +53,7 @@ Describe 'V7 advanced cleanup' {
                 $script:ResolvedPaths += $Path
                 $Path
             }
-            Mock Get-SafeChildItems {
+            Mock Get-SafeChildItem {
                 param($Path)
                 if ($Path -eq $cleanupPathOne) { return @($cleanupItemSuccess) }
                 if ($Path -eq $cleanupPathTwo) { return @($cleanupItemFailure) }

@@ -1,16 +1,17 @@
 PSScriptAnalyzer Report
-Generated  : 2026-04-09 00:04:44
+Generated  : 2026-04-09 00:09:22
 Settings   : .\tools\PSScriptAnalyzerSettings.psd1
 Module     : PSScriptAnalyzer v1.25.0
 RepoRoot   : C:\Users\Bob\.codex\worktrees\da34\Script.Powershell.7
 
 Summary
 Error       : 0
-Warning     : 364
+Warning     : 359
 Information : 6
-Total       : 370
+Total       : 365
 
 Findings
+[Warning] PSUseConsistentIndentation | Nettoyage.Complet.Caches.Windows.ps1:186 | Indentation not consistent
 [Warning] PSUseConsistentIndentation | Install.AdobeAcrobat.Clean.Tests.ps1:7 | Indentation not consistent
 [Warning] PSUseConsistentIndentation | Deleter.NamePrinter.Tests.ps1:7 | Indentation not consistent
 [Warning] PSUseConsistentIndentation | Export.printer.list.Security.Tests.ps1:5 | Indentation not consistent
@@ -369,15 +370,9 @@ Findings
 [Warning] PSUseConsistentWhitespace | Invoke-CIValidation.ps1:132 | Use space before and after binary and assignment operators.
 [Warning] PSUseConsistentWhitespace | Invoke-CIValidation.ps1:173 | Use space before and after binary and assignment operators.
 [Warning] PSUseConsistentWhitespace | Invoke-CIValidation.ps1:174 | Use space before and after binary and assignment operators.
-[Warning] PSUseSingularNouns | Invoke-WhatIfValidation.ps1:41 | The cmdlet 'Get-WhatIfValidationTargets' uses a plural noun. A singular noun should be used instead.
-[Warning] PSUseSingularNouns | Nettoyage.Avance.Windows.Sauf.logserreur.ps1:199 | The cmdlet 'Get-SafeChildItems' uses a plural noun. A singular noun should be used instead.
-[Warning] PSUseSingularNouns | Nettoyage.Avance.Windows.Sauf.logserreur.ps1:199 | The cmdlet 'Get-SafeChildItems' uses a plural noun. A singular noun should be used instead.
-[Warning] PSUseSingularNouns | Nettoyage.Complet.Caches.Windows.ps1:108 | The cmdlet 'Get-SafeChildItems' uses a plural noun. A singular noun should be used instead.
-[Warning] PSUseSingularNouns | Invoke-PSScriptAnalyzer.ps1:220 | The cmdlet 'Get-AnalyzerSettings' uses a plural noun. A singular noun should be used instead.
-[Warning] PSUseSingularNouns | Invoke-PSScriptAnalyzer.ps1:293 | The cmdlet 'Get-TargetFiles' uses a plural noun. A singular noun should be used instead.
 [Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:269 | The cmdlet 'Test-PathMatch' returns an object of type 'System.Boolean' but this type is not declared in the OutputType attribute.
 [Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:273 | The cmdlet 'Test-PathMatch' returns an object of type 'System.Boolean' but this type is not declared in the OutputType attribute.
 [Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:290 | The cmdlet 'Get-NormalizedStringArray' returns an object of type 'System.Object[]' but this type is not declared in the OutputType attribute.
-[Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:356 | The cmdlet 'Get-TargetFiles' returns an object of type 'System.Object[]' but this type is not declared in the OutputType attribute.
+[Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:356 | The cmdlet 'Get-TargetFile' returns an object of type 'System.Object[]' but this type is not declared in the OutputType attribute.
 [Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:394 | The cmdlet 'Get-SarifLocation' returns an object of type 'System.Collections.Hashtable' but this type is not declared in the OutputType attribute.
 [Information] PSUseOutputTypeCorrectly | Invoke-PSScriptAnalyzer.ps1:448 | The cmdlet 'ConvertTo-SarifObject' returns an object of type 'System.Collections.Specialized.OrderedDictionary' but this type is not declared in the OutputType attribute.

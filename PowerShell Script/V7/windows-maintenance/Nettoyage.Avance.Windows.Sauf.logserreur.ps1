@@ -196,7 +196,7 @@ function Resolve-TrustedDirectoryPath {
     return $DirectoryItem.FullName
 }
 
-function Get-SafeChildItems {
+function Get-SafeChildItem {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Path
@@ -277,7 +277,7 @@ function Invoke-AdvancedWindowsCleanup {
             continue
         }
 
-        foreach ($CleanupItem in (Get-SafeChildItems -Path $CleanupPath)) {
+        foreach ($CleanupItem in (Get-SafeChildItem -Path $CleanupPath)) {
             if ($PSCmdlet.ShouldProcess($CleanupItem.FullName, 'Remove item')) {
                 try {
                     Remove-Item -LiteralPath $CleanupItem.FullName -Recurse -Force -ErrorAction Stop

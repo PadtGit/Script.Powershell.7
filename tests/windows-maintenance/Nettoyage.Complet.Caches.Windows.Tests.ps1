@@ -38,7 +38,7 @@ Describe 'V5 complete cleanup hardening' {
 
             Mock Get-Service { $service }
             Mock Resolve-TrustedDirectoryPath { $Path }
-            Mock Get-SafeChildItems {
+            Mock Get-SafeChildItem {
                 param($Path)
 
                 if ($Path -eq $updateCachePath) { return @($updateItem) }

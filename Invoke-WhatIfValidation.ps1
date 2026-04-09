@@ -38,7 +38,7 @@ if (-not [string]::IsNullOrWhiteSpace($ResultDirectory) -and -not (Test-Path -Li
     New-Item -ItemType Directory -Path $ResultDirectory -Force | Out-Null
 }
 
-function Get-WhatIfValidationTargets {
+function Get-WhatIfValidationTargetCatalog {
     @(
         @{ RelativePath = 'Adobe\Install.AdobeAcrobat.Clean.ps1'; Engine = 'WindowsPowerShell' }
         @{ RelativePath = 'Printer\Delete.all.offline.printer.ps1'; Engine = 'WindowsPowerShell' }
@@ -158,4 +158,4 @@ function Invoke-WhatIfValidation {
     }
 }
 
-Invoke-WhatIfValidation -Targets (Get-WhatIfValidationTargets) -ResultPath $ResultPath
+Invoke-WhatIfValidation -Targets (Get-WhatIfValidationTargetCatalog) -ResultPath $ResultPath

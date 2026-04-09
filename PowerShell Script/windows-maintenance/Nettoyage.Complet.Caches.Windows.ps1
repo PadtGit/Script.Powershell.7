@@ -105,7 +105,7 @@ function Resolve-TrustedDirectoryPath {
     return $DirectoryItem.FullName
 }
 
-function Get-SafeChildItems {
+function Get-SafeChildItem {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Path
@@ -183,7 +183,7 @@ function Invoke-WindowsCacheCleanup {
     try {
         $TrustedUpdateCachePath = Resolve-TrustedDirectoryPath -Path $UpdateCachePath -AllowedRoots @(Join-Path -Path $env:SystemRoot -ChildPath 'SoftwareDistribution')
         if (-not [string]::IsNullOrWhiteSpace($TrustedUpdateCachePath)) {
-            $UpdateItems = Get-SafeChildItems -Path $TrustedUpdateCachePath
+    $UpdateItems = Get-SafeChildItem -Path $TrustedUpdateCachePath
 
             foreach ($UpdateItem in $UpdateItems) {
                 if ($PSCmdlet.ShouldProcess($UpdateItem.FullName, 'Remove update cache item')) {
@@ -211,7 +211,7 @@ function Invoke-WindowsCacheCleanup {
             continue
         }
 
-        $CleanupItems = Get-SafeChildItems -Path $CleanupPath
+        $CleanupItems = Get-SafeChildItem -Path $CleanupPath
 
         foreach ($CleanupItem in $CleanupItems) {
             if ($PSCmdlet.ShouldProcess($CleanupItem.FullName, 'Remove cache item')) {

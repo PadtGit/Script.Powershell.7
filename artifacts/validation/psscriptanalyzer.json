@@ -2,6 +2,63 @@
   {
     "Message": "Indentation not consistent",
     "Extent": {
+      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
+      "StartScriptPosition": {
+        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
+        "LineNumber": 186,
+        "ColumnNumber": 1,
+        "Offset": 0,
+        "Line": "    $UpdateItems = Get-SafeChildItem -Path $TrustedUpdateCachePath\n"
+      },
+      "EndScriptPosition": {
+        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
+        "LineNumber": 186,
+        "ColumnNumber": 5,
+        "Offset": 0,
+        "Line": "    $UpdateItems = Get-SafeChildItem -Path $TrustedUpdateCachePath\n"
+      },
+      "StartLineNumber": 186,
+      "StartColumnNumber": 1,
+      "EndLineNumber": 186,
+      "EndColumnNumber": 5,
+      "StartOffset": 0,
+      "EndOffset": 0,
+      "Text": "    "
+    },
+    "RuleName": "PSUseConsistentIndentation",
+    "Severity": 1,
+    "ScriptName": "Nettoyage.Complet.Caches.Windows.ps1",
+    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
+    "RuleSuppressionID": null,
+    "SuggestedCorrections": [
+      {
+        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
+        "Description": null,
+        "StartLineNumber": 186,
+        "StartColumnNumber": 1,
+        "EndLineNumber": 186,
+        "EndColumnNumber": 17,
+        "Text": "            $UpdateItems",
+        "Lines": [
+          "            $UpdateItems"
+        ],
+        "Start": {
+          "Line": 186,
+          "Column": 1
+        },
+        "End": {
+          "Line": 186,
+          "Column": 17
+        }
+      }
+    ],
+    "IsSuppressed": false,
+    "Line": 186,
+    "Column": 1
+  },
+  {
+    "Message": "Indentation not consistent",
+    "Extent": {
       "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\Adobe\\Install.AdobeAcrobat.Clean.Tests.ps1",
       "StartScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\Adobe\\Install.AdobeAcrobat.Clean.Tests.ps1",
@@ -1718,22 +1775,22 @@
         "LineNumber": 59,
         "ColumnNumber": 26,
         "Line": "            ScriptPath   = Join-Path -Path $BasePath -ChildPath $_.RelativePath\r\n",
-        "Offset": 2681
+        "Offset": 2686
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 59,
         "ColumnNumber": 27,
         "Line": "            ScriptPath   = Join-Path -Path $BasePath -ChildPath $_.RelativePath\r\n",
-        "Offset": 2682
+        "Offset": 2687
       },
       "StartLineNumber": 59,
       "StartColumnNumber": 26,
       "EndLineNumber": 59,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 2681,
-      "EndOffset": 2682
+      "StartOffset": 2686,
+      "EndOffset": 2687
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -1775,22 +1832,22 @@
         "LineNumber": 60,
         "ColumnNumber": 26,
         "Line": "            Engine       = $_.Engine\r\n",
-        "Offset": 2762
+        "Offset": 2767
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 60,
         "ColumnNumber": 27,
         "Line": "            Engine       = $_.Engine\r\n",
-        "Offset": 2763
+        "Offset": 2768
       },
       "StartLineNumber": 60,
       "StartColumnNumber": 26,
       "EndLineNumber": 60,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 2762,
-      "EndOffset": 2763
+      "StartOffset": 2767,
+      "EndOffset": 2768
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -1832,22 +1889,22 @@
         "LineNumber": 104,
         "ColumnNumber": 30,
         "Line": "                ScriptPath   = $Target.ScriptPath\r\n",
-        "Offset": 3774
+        "Offset": 3779
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 104,
         "ColumnNumber": 31,
         "Line": "                ScriptPath   = $Target.ScriptPath\r\n",
-        "Offset": 3775
+        "Offset": 3780
       },
       "StartLineNumber": 104,
       "StartColumnNumber": 30,
       "EndLineNumber": 104,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 3774,
-      "EndOffset": 3775
+      "StartOffset": 3779,
+      "EndOffset": 3780
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -1889,22 +1946,22 @@
         "LineNumber": 105,
         "ColumnNumber": 30,
         "Line": "                Engine       = $Target.Engine\r\n",
-        "Offset": 3825
+        "Offset": 3830
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 105,
         "ColumnNumber": 31,
         "Line": "                Engine       = $Target.Engine\r\n",
-        "Offset": 3826
+        "Offset": 3831
       },
       "StartLineNumber": 105,
       "StartColumnNumber": 30,
       "EndLineNumber": 105,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 3825,
-      "EndOffset": 3826
+      "StartOffset": 3830,
+      "EndOffset": 3831
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -1946,22 +2003,22 @@
         "LineNumber": 106,
         "ColumnNumber": 30,
         "Line": "                ExitCode     = 1\r\n",
-        "Offset": 3872
+        "Offset": 3877
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 106,
         "ColumnNumber": 31,
         "Line": "                ExitCode     = 1\r\n",
-        "Offset": 3873
+        "Offset": 3878
       },
       "StartLineNumber": 106,
       "StartColumnNumber": 30,
       "EndLineNumber": 106,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 3872,
-      "EndOffset": 3873
+      "StartOffset": 3877,
+      "EndOffset": 3878
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2003,22 +2060,22 @@
         "LineNumber": 107,
         "ColumnNumber": 30,
         "Line": "                Success      = $false\r\n",
-        "Offset": 3906
+        "Offset": 3911
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 107,
         "ColumnNumber": 31,
         "Line": "                Success      = $false\r\n",
-        "Offset": 3907
+        "Offset": 3912
       },
       "StartLineNumber": 107,
       "StartColumnNumber": 30,
       "EndLineNumber": 107,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 3906,
-      "EndOffset": 3907
+      "StartOffset": 3911,
+      "EndOffset": 3912
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2060,22 +2117,22 @@
         "LineNumber": 108,
         "ColumnNumber": 30,
         "Line": "                Output       = 'Script not found.'\r\n",
-        "Offset": 3945
+        "Offset": 3950
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 108,
         "ColumnNumber": 31,
         "Line": "                Output       = 'Script not found.'\r\n",
-        "Offset": 3946
+        "Offset": 3951
       },
       "StartLineNumber": 108,
       "StartColumnNumber": 30,
       "EndLineNumber": 108,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 3945,
-      "EndOffset": 3946
+      "StartOffset": 3950,
+      "EndOffset": 3951
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2117,22 +2174,22 @@
         "LineNumber": 135,
         "ColumnNumber": 26,
         "Line": "            ScriptPath   = $Target.ScriptPath\r\n",
-        "Offset": 4811
+        "Offset": 4816
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 135,
         "ColumnNumber": 27,
         "Line": "            ScriptPath   = $Target.ScriptPath\r\n",
-        "Offset": 4812
+        "Offset": 4817
       },
       "StartLineNumber": 135,
       "StartColumnNumber": 26,
       "EndLineNumber": 135,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 4811,
-      "EndOffset": 4812
+      "StartOffset": 4816,
+      "EndOffset": 4817
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2174,22 +2231,22 @@
         "LineNumber": 136,
         "ColumnNumber": 26,
         "Line": "            Engine       = $Target.Engine\r\n",
-        "Offset": 4858
+        "Offset": 4863
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 136,
         "ColumnNumber": 27,
         "Line": "            Engine       = $Target.Engine\r\n",
-        "Offset": 4859
+        "Offset": 4864
       },
       "StartLineNumber": 136,
       "StartColumnNumber": 26,
       "EndLineNumber": 136,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 4858,
-      "EndOffset": 4859
+      "StartOffset": 4863,
+      "EndOffset": 4864
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2231,22 +2288,22 @@
         "LineNumber": 137,
         "ColumnNumber": 26,
         "Line": "            ShellPath    = $ShellPath\r\n",
-        "Offset": 4901
+        "Offset": 4906
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 137,
         "ColumnNumber": 27,
         "Line": "            ShellPath    = $ShellPath\r\n",
-        "Offset": 4902
+        "Offset": 4907
       },
       "StartLineNumber": 137,
       "StartColumnNumber": 26,
       "EndLineNumber": 137,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 4901,
-      "EndOffset": 4902
+      "StartOffset": 4906,
+      "EndOffset": 4907
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2288,22 +2345,22 @@
         "LineNumber": 138,
         "ColumnNumber": 26,
         "Line": "            ExitCode     = $ExitCode\r\n",
-        "Offset": 4940
+        "Offset": 4945
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 138,
         "ColumnNumber": 27,
         "Line": "            ExitCode     = $ExitCode\r\n",
-        "Offset": 4941
+        "Offset": 4946
       },
       "StartLineNumber": 138,
       "StartColumnNumber": 26,
       "EndLineNumber": 138,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 4940,
-      "EndOffset": 4941
+      "StartOffset": 4945,
+      "EndOffset": 4946
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2345,22 +2402,22 @@
         "LineNumber": 139,
         "ColumnNumber": 26,
         "Line": "            Success      = ($ExitCode -eq 0)\r\n",
-        "Offset": 4978
+        "Offset": 4983
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 139,
         "ColumnNumber": 27,
         "Line": "            Success      = ($ExitCode -eq 0)\r\n",
-        "Offset": 4979
+        "Offset": 4984
       },
       "StartLineNumber": 139,
       "StartColumnNumber": 26,
       "EndLineNumber": 139,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 4978,
-      "EndOffset": 4979
+      "StartOffset": 4983,
+      "EndOffset": 4984
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -2402,22 +2459,22 @@
         "LineNumber": 140,
         "ColumnNumber": 26,
         "Line": "            Output       = ($OutputLines -join [Environment]::NewLine)\r\n",
-        "Offset": 5024
+        "Offset": 5029
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
         "LineNumber": 140,
         "ColumnNumber": 27,
         "Line": "            Output       = ($OutputLines -join [Environment]::NewLine)\r\n",
-        "Offset": 5025
+        "Offset": 5030
       },
       "StartLineNumber": 140,
       "StartColumnNumber": 26,
       "EndLineNumber": 140,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 5024,
-      "EndOffset": 5025
+      "StartOffset": 5029,
+      "EndOffset": 5030
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -9014,22 +9071,22 @@
         "LineNumber": 259,
         "ColumnNumber": 30,
         "Line": "            RemovedCount     = 0\r\n",
-        "Offset": 9115
+        "Offset": 9113
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 259,
         "ColumnNumber": 31,
         "Line": "            RemovedCount     = 0\r\n",
-        "Offset": 9116
+        "Offset": 9114
       },
       "StartLineNumber": 259,
       "StartColumnNumber": 30,
       "EndLineNumber": 259,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 9115,
-      "EndOffset": 9116
+      "StartOffset": 9113,
+      "EndOffset": 9114
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -9071,22 +9128,22 @@
         "LineNumber": 262,
         "ColumnNumber": 30,
         "Line": "            Status           = 'Skipped'\r\n",
-        "Offset": 9252
+        "Offset": 9250
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 262,
         "ColumnNumber": 31,
         "Line": "            Status           = 'Skipped'\r\n",
-        "Offset": 9253
+        "Offset": 9251
       },
       "StartLineNumber": 262,
       "StartColumnNumber": 30,
       "EndLineNumber": 262,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 9252,
-      "EndOffset": 9253
+      "StartOffset": 9250,
+      "EndOffset": 9251
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -9128,22 +9185,22 @@
         "LineNumber": 263,
         "ColumnNumber": 30,
         "Line": "            Reason           = 'AdminPreviewRequired'\r\n",
-        "Offset": 9294
+        "Offset": 9292
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 263,
         "ColumnNumber": 31,
         "Line": "            Reason           = 'AdminPreviewRequired'\r\n",
-        "Offset": 9295
+        "Offset": 9293
       },
       "StartLineNumber": 263,
       "StartColumnNumber": 30,
       "EndLineNumber": 263,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 9294,
-      "EndOffset": 9295
+      "StartOffset": 9292,
+      "EndOffset": 9293
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -9185,22 +9242,22 @@
         "LineNumber": 344,
         "ColumnNumber": 26,
         "Line": "        RemovedCount     = $RemovedCount\r\n",
-        "Offset": 12475
+        "Offset": 12471
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 344,
         "ColumnNumber": 27,
         "Line": "        RemovedCount     = $RemovedCount\r\n",
-        "Offset": 12476
+        "Offset": 12472
       },
       "StartLineNumber": 344,
       "StartColumnNumber": 26,
       "EndLineNumber": 344,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 12475,
-      "EndOffset": 12476
+      "StartOffset": 12471,
+      "EndOffset": 12472
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -9242,22 +9299,22 @@
         "LineNumber": 347,
         "ColumnNumber": 26,
         "Line": "        Status           = $Status\r\n",
-        "Offset": 12612
+        "Offset": 12608
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 347,
         "ColumnNumber": 27,
         "Line": "        Status           = $Status\r\n",
-        "Offset": 12613
+        "Offset": 12609
       },
       "StartLineNumber": 347,
       "StartColumnNumber": 26,
       "EndLineNumber": 347,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 12612,
-      "EndOffset": 12613
+      "StartOffset": 12608,
+      "EndOffset": 12609
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -9299,22 +9356,22 @@
         "LineNumber": 348,
         "ColumnNumber": 26,
         "Line": "        Reason           = ''\r\n",
-        "Offset": 12648
+        "Offset": 12644
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 348,
         "ColumnNumber": 27,
         "Line": "        Reason           = ''\r\n",
-        "Offset": 12649
+        "Offset": 12645
       },
       "StartLineNumber": 348,
       "StartColumnNumber": 26,
       "EndLineNumber": 348,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 12648,
-      "EndOffset": 12649
+      "StartOffset": 12644,
+      "EndOffset": 12645
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12149,22 +12206,22 @@
         "LineNumber": 259,
         "ColumnNumber": 30,
         "Line": "            RemovedCount     = 0\r\n",
-        "Offset": 9117
+        "Offset": 9115
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 259,
         "ColumnNumber": 31,
         "Line": "            RemovedCount     = 0\r\n",
-        "Offset": 9118
+        "Offset": 9116
       },
       "StartLineNumber": 259,
       "StartColumnNumber": 30,
       "EndLineNumber": 259,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 9117,
-      "EndOffset": 9118
+      "StartOffset": 9115,
+      "EndOffset": 9116
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12206,22 +12263,22 @@
         "LineNumber": 262,
         "ColumnNumber": 30,
         "Line": "            Status           = 'Skipped'\r\n",
-        "Offset": 9254
+        "Offset": 9252
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 262,
         "ColumnNumber": 31,
         "Line": "            Status           = 'Skipped'\r\n",
-        "Offset": 9255
+        "Offset": 9253
       },
       "StartLineNumber": 262,
       "StartColumnNumber": 30,
       "EndLineNumber": 262,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 9254,
-      "EndOffset": 9255
+      "StartOffset": 9252,
+      "EndOffset": 9253
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12263,22 +12320,22 @@
         "LineNumber": 263,
         "ColumnNumber": 30,
         "Line": "            Reason           = 'AdminPreviewRequired'\r\n",
-        "Offset": 9296
+        "Offset": 9294
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 263,
         "ColumnNumber": 31,
         "Line": "            Reason           = 'AdminPreviewRequired'\r\n",
-        "Offset": 9297
+        "Offset": 9295
       },
       "StartLineNumber": 263,
       "StartColumnNumber": 30,
       "EndLineNumber": 263,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 9296,
-      "EndOffset": 9297
+      "StartOffset": 9294,
+      "EndOffset": 9295
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12320,22 +12377,22 @@
         "LineNumber": 344,
         "ColumnNumber": 26,
         "Line": "        RemovedCount     = $RemovedCount\r\n",
-        "Offset": 12477
+        "Offset": 12473
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 344,
         "ColumnNumber": 27,
         "Line": "        RemovedCount     = $RemovedCount\r\n",
-        "Offset": 12478
+        "Offset": 12474
       },
       "StartLineNumber": 344,
       "StartColumnNumber": 26,
       "EndLineNumber": 344,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 12477,
-      "EndOffset": 12478
+      "StartOffset": 12473,
+      "EndOffset": 12474
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12377,22 +12434,22 @@
         "LineNumber": 347,
         "ColumnNumber": 26,
         "Line": "        Status           = $Status\r\n",
-        "Offset": 12614
+        "Offset": 12610
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 347,
         "ColumnNumber": 27,
         "Line": "        Status           = $Status\r\n",
-        "Offset": 12615
+        "Offset": 12611
       },
       "StartLineNumber": 347,
       "StartColumnNumber": 26,
       "EndLineNumber": 347,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 12614,
-      "EndOffset": 12615
+      "StartOffset": 12610,
+      "EndOffset": 12611
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12434,22 +12491,22 @@
         "LineNumber": 348,
         "ColumnNumber": 26,
         "Line": "        Reason           = ''\r\n",
-        "Offset": 12650
+        "Offset": 12646
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
         "LineNumber": 348,
         "ColumnNumber": 27,
         "Line": "        Reason           = ''\r\n",
-        "Offset": 12651
+        "Offset": 12647
       },
       "StartLineNumber": 348,
       "StartColumnNumber": 26,
       "EndLineNumber": 348,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 12650,
-      "EndOffset": 12651
+      "StartOffset": 12646,
+      "EndOffset": 12647
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12662,22 +12719,22 @@
         "LineNumber": 165,
         "ColumnNumber": 30,
         "Line": "            RemovedCount     = 0\r\n",
-        "Offset": 5023
+        "Offset": 5021
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 165,
         "ColumnNumber": 31,
         "Line": "            RemovedCount     = 0\r\n",
-        "Offset": 5024
+        "Offset": 5022
       },
       "StartLineNumber": 165,
       "StartColumnNumber": 30,
       "EndLineNumber": 165,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 5023,
-      "EndOffset": 5024
+      "StartOffset": 5021,
+      "EndOffset": 5022
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12719,22 +12776,22 @@
         "LineNumber": 166,
         "ColumnNumber": 30,
         "Line": "            FlushDns         = $FlushDns\r\n",
-        "Offset": 5057
+        "Offset": 5055
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 166,
         "ColumnNumber": 31,
         "Line": "            FlushDns         = $FlushDns\r\n",
-        "Offset": 5058
+        "Offset": 5056
       },
       "StartLineNumber": 166,
       "StartColumnNumber": 30,
       "EndLineNumber": 166,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 5057,
-      "EndOffset": 5058
+      "StartOffset": 5055,
+      "EndOffset": 5056
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12776,22 +12833,22 @@
         "LineNumber": 167,
         "ColumnNumber": 30,
         "Line": "            ClearRecycleBin  = $ClearRecycleBin\r\n",
-        "Offset": 5099
+        "Offset": 5097
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 167,
         "ColumnNumber": 31,
         "Line": "            ClearRecycleBin  = $ClearRecycleBin\r\n",
-        "Offset": 5100
+        "Offset": 5098
       },
       "StartLineNumber": 167,
       "StartColumnNumber": 30,
       "EndLineNumber": 167,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 5099,
-      "EndOffset": 5100
+      "StartOffset": 5097,
+      "EndOffset": 5098
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12833,22 +12890,22 @@
         "LineNumber": 168,
         "ColumnNumber": 30,
         "Line": "            Status           = 'Skipped'\r\n",
-        "Offset": 5148
+        "Offset": 5146
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 168,
         "ColumnNumber": 31,
         "Line": "            Status           = 'Skipped'\r\n",
-        "Offset": 5149
+        "Offset": 5147
       },
       "StartLineNumber": 168,
       "StartColumnNumber": 30,
       "EndLineNumber": 168,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 5148,
-      "EndOffset": 5149
+      "StartOffset": 5146,
+      "EndOffset": 5147
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12890,22 +12947,22 @@
         "LineNumber": 169,
         "ColumnNumber": 30,
         "Line": "            Reason           = 'AdminPreviewRequired'\r\n",
-        "Offset": 5190
+        "Offset": 5188
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 169,
         "ColumnNumber": 31,
         "Line": "            Reason           = 'AdminPreviewRequired'\r\n",
-        "Offset": 5191
+        "Offset": 5189
       },
       "StartLineNumber": 169,
       "StartColumnNumber": 30,
       "EndLineNumber": 169,
       "EndColumnNumber": 31,
       "Text": "=",
-      "StartOffset": 5190,
-      "EndOffset": 5191
+      "StartOffset": 5188,
+      "EndOffset": 5189
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -12947,22 +13004,22 @@
         "LineNumber": 247,
         "ColumnNumber": 26,
         "Line": "        RemovedCount     = $RemovedCount\r\n",
-        "Offset": 8453
+        "Offset": 8441
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 247,
         "ColumnNumber": 27,
         "Line": "        RemovedCount     = $RemovedCount\r\n",
-        "Offset": 8454
+        "Offset": 8442
       },
       "StartLineNumber": 247,
       "StartColumnNumber": 26,
       "EndLineNumber": 247,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 8453,
-      "EndOffset": 8454
+      "StartOffset": 8441,
+      "EndOffset": 8442
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -13004,22 +13061,22 @@
         "LineNumber": 248,
         "ColumnNumber": 26,
         "Line": "        FlushDns         = $FlushDns\r\n",
-        "Offset": 8495
+        "Offset": 8483
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 248,
         "ColumnNumber": 27,
         "Line": "        FlushDns         = $FlushDns\r\n",
-        "Offset": 8496
+        "Offset": 8484
       },
       "StartLineNumber": 248,
       "StartColumnNumber": 26,
       "EndLineNumber": 248,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 8495,
-      "EndOffset": 8496
+      "StartOffset": 8483,
+      "EndOffset": 8484
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -13061,22 +13118,22 @@
         "LineNumber": 249,
         "ColumnNumber": 26,
         "Line": "        ClearRecycleBin  = $ClearRecycleBin\r\n",
-        "Offset": 8533
+        "Offset": 8521
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 249,
         "ColumnNumber": 27,
         "Line": "        ClearRecycleBin  = $ClearRecycleBin\r\n",
-        "Offset": 8534
+        "Offset": 8522
       },
       "StartLineNumber": 249,
       "StartColumnNumber": 26,
       "EndLineNumber": 249,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 8533,
-      "EndOffset": 8534
+      "StartOffset": 8521,
+      "EndOffset": 8522
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -13118,22 +13175,22 @@
         "LineNumber": 250,
         "ColumnNumber": 26,
         "Line": "        Status           = $Status\r\n",
-        "Offset": 8578
+        "Offset": 8566
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
         "LineNumber": 250,
         "ColumnNumber": 27,
         "Line": "        Status           = $Status\r\n",
-        "Offset": 8579
+        "Offset": 8567
       },
       "StartLineNumber": 250,
       "StartColumnNumber": 26,
       "EndLineNumber": 250,
       "EndColumnNumber": 27,
       "Text": "=",
-      "StartOffset": 8578,
-      "EndOffset": 8579
+      "StartOffset": 8566,
+      "EndOffset": 8567
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18134,22 +18191,22 @@
         "LineNumber": 74,
         "ColumnNumber": 36,
         "Line": "                RequireAdmin       = $false\r\n",
-        "Offset": 3386
+        "Offset": 3382
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 74,
         "ColumnNumber": 37,
         "Line": "                RequireAdmin       = $false\r\n",
-        "Offset": 3387
+        "Offset": 3383
       },
       "StartLineNumber": 74,
       "StartColumnNumber": 36,
       "EndLineNumber": 74,
       "EndColumnNumber": 37,
       "Text": "=",
-      "StartOffset": 3386,
-      "EndOffset": 3387
+      "StartOffset": 3382,
+      "EndOffset": 3383
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18191,22 +18248,22 @@
         "LineNumber": 75,
         "ColumnNumber": 36,
         "Line": "                IsAdministrator    = $true\r\n",
-        "Offset": 3431
+        "Offset": 3427
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 75,
         "ColumnNumber": 37,
         "Line": "                IsAdministrator    = $true\r\n",
-        "Offset": 3432
+        "Offset": 3428
       },
       "StartLineNumber": 75,
       "StartColumnNumber": 36,
       "EndLineNumber": 75,
       "EndColumnNumber": 37,
       "Text": "=",
-      "StartOffset": 3431,
-      "EndOffset": 3432
+      "StartOffset": 3427,
+      "EndOffset": 3428
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18248,22 +18305,22 @@
         "LineNumber": 76,
         "ColumnNumber": 36,
         "Line": "                CleanupSpecs       = @(\r\n",
-        "Offset": 3475
+        "Offset": 3471
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 76,
         "ColumnNumber": 37,
         "Line": "                CleanupSpecs       = @(\r\n",
-        "Offset": 3476
+        "Offset": 3472
       },
       "StartLineNumber": 76,
       "StartColumnNumber": 36,
       "EndLineNumber": 76,
       "EndColumnNumber": 37,
       "Text": "=",
-      "StartOffset": 3475,
-      "EndOffset": 3476
+      "StartOffset": 3471,
+      "EndOffset": 3472
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18305,22 +18362,22 @@
         "LineNumber": 81,
         "ColumnNumber": 37,
         "Line": "                ThumbCacheFilter    = 'thumbcache_*.db'\r\n",
-        "Offset": 3755
+        "Offset": 3751
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 81,
         "ColumnNumber": 38,
         "Line": "                ThumbCacheFilter    = 'thumbcache_*.db'\r\n",
-        "Offset": 3756
+        "Offset": 3752
       },
       "StartLineNumber": 81,
       "StartColumnNumber": 37,
       "EndLineNumber": 81,
       "EndColumnNumber": 38,
       "Text": "=",
-      "StartOffset": 3755,
-      "EndOffset": 3756
+      "StartOffset": 3751,
+      "EndOffset": 3752
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18362,22 +18419,22 @@
         "LineNumber": 82,
         "ColumnNumber": 37,
         "Line": "                WindowsOldPath      = $windowsOldPath\r\n",
-        "Offset": 3812
+        "Offset": 3808
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 82,
         "ColumnNumber": 38,
         "Line": "                WindowsOldPath      = $windowsOldPath\r\n",
-        "Offset": 3813
+        "Offset": 3809
       },
       "StartLineNumber": 82,
       "StartColumnNumber": 37,
       "EndLineNumber": 82,
       "EndColumnNumber": 38,
       "Text": "=",
-      "StartOffset": 3812,
-      "EndOffset": 3813
+      "StartOffset": 3808,
+      "EndOffset": 3809
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18419,22 +18476,22 @@
         "LineNumber": 83,
         "ColumnNumber": 37,
         "Line": "                RemoveWindowsOld    = $false\r\n",
-        "Offset": 3867
+        "Offset": 3863
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 83,
         "ColumnNumber": 38,
         "Line": "                RemoveWindowsOld    = $false\r\n",
-        "Offset": 3868
+        "Offset": 3864
       },
       "StartLineNumber": 83,
       "StartColumnNumber": 37,
       "EndLineNumber": 83,
       "EndColumnNumber": 38,
       "Text": "=",
-      "StartOffset": 3867,
-      "EndOffset": 3868
+      "StartOffset": 3863,
+      "EndOffset": 3864
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18476,22 +18533,22 @@
         "LineNumber": 85,
         "ColumnNumber": 37,
         "Line": "                DismPath            = 'C:\\Windows\\System32\\Dism.exe'\r\n",
-        "Offset": 3959
+        "Offset": 3955
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 85,
         "ColumnNumber": 38,
         "Line": "                DismPath            = 'C:\\Windows\\System32\\Dism.exe'\r\n",
-        "Offset": 3960
+        "Offset": 3956
       },
       "StartLineNumber": 85,
       "StartColumnNumber": 37,
       "EndLineNumber": 85,
       "EndColumnNumber": 38,
       "Text": "=",
-      "StartOffset": 3959,
-      "EndOffset": 3960
+      "StartOffset": 3955,
+      "EndOffset": 3956
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18533,22 +18590,22 @@
         "LineNumber": 106,
         "ColumnNumber": 33,
         "Line": "            cleanupPathOne      = 'C:\\Users\\Bob\\AppData\\Local\\One'\r\n",
-        "Offset": 5013
+        "Offset": 5009
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 106,
         "ColumnNumber": 34,
         "Line": "            cleanupPathOne      = 'C:\\Users\\Bob\\AppData\\Local\\One'\r\n",
-        "Offset": 5014
+        "Offset": 5010
       },
       "StartLineNumber": 106,
       "StartColumnNumber": 33,
       "EndLineNumber": 106,
       "EndColumnNumber": 34,
       "Text": "=",
-      "StartOffset": 5013,
-      "EndOffset": 5014
+      "StartOffset": 5009,
+      "EndOffset": 5010
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18590,22 +18647,22 @@
         "LineNumber": 107,
         "ColumnNumber": 33,
         "Line": "            cleanupPathTwo      = 'C:\\Users\\Bob\\AppData\\Local\\Two'\r\n",
-        "Offset": 5081
+        "Offset": 5077
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 107,
         "ColumnNumber": 34,
         "Line": "            cleanupPathTwo      = 'C:\\Users\\Bob\\AppData\\Local\\Two'\r\n",
-        "Offset": 5082
+        "Offset": 5078
       },
       "StartLineNumber": 107,
       "StartColumnNumber": 33,
       "EndLineNumber": 107,
       "EndColumnNumber": 34,
       "Text": "=",
-      "StartOffset": 5081,
-      "EndOffset": 5082
+      "StartOffset": 5077,
+      "EndOffset": 5078
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18647,22 +18704,22 @@
         "LineNumber": 109,
         "ColumnNumber": 33,
         "Line": "            windowsOldPath      = 'C:\\Windows.old'\r\n",
-        "Offset": 5240
+        "Offset": 5236
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 109,
         "ColumnNumber": 34,
         "Line": "            windowsOldPath      = 'C:\\Windows.old'\r\n",
-        "Offset": 5241
+        "Offset": 5237
       },
       "StartLineNumber": 109,
       "StartColumnNumber": 33,
       "EndLineNumber": 109,
       "EndColumnNumber": 34,
       "Text": "=",
-      "StartOffset": 5240,
-      "EndOffset": 5241
+      "StartOffset": 5236,
+      "EndOffset": 5237
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18704,22 +18761,22 @@
         "LineNumber": 110,
         "ColumnNumber": 33,
         "Line": "            localRoot           = 'C:\\Users\\Bob\\AppData\\Local'\r\n",
-        "Offset": 5292
+        "Offset": 5288
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1",
         "LineNumber": 110,
         "ColumnNumber": 34,
         "Line": "            localRoot           = 'C:\\Users\\Bob\\AppData\\Local'\r\n",
-        "Offset": 5293
+        "Offset": 5289
       },
       "StartLineNumber": 110,
       "StartColumnNumber": 33,
       "EndLineNumber": 110,
       "EndColumnNumber": 34,
       "Text": "=",
-      "StartOffset": 5292,
-      "EndOffset": 5293
+      "StartOffset": 5288,
+      "EndOffset": 5289
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18761,22 +18818,22 @@
         "LineNumber": 86,
         "ColumnNumber": 29,
         "Line": "            cleanupPath     = 'C:\\Windows\\Temp'\r\n",
-        "Offset": 3711
+        "Offset": 3709
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.Tests.ps1",
         "LineNumber": 86,
         "ColumnNumber": 30,
         "Line": "            cleanupPath     = 'C:\\Windows\\Temp'\r\n",
-        "Offset": 3712
+        "Offset": 3710
       },
       "StartLineNumber": 86,
       "StartColumnNumber": 29,
       "EndLineNumber": 86,
       "EndColumnNumber": 30,
       "Text": "=",
-      "StartOffset": 3711,
-      "EndOffset": 3712
+      "StartOffset": 3709,
+      "EndOffset": 3710
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -18818,22 +18875,22 @@
         "LineNumber": 87,
         "ColumnNumber": 29,
         "Line": "            systemRoot      = 'C:\\Windows'\r\n",
-        "Offset": 3760
+        "Offset": 3758
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tests\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.Tests.ps1",
         "LineNumber": 87,
         "ColumnNumber": 30,
         "Line": "            systemRoot      = 'C:\\Windows'\r\n",
-        "Offset": 3761
+        "Offset": 3759
       },
       "StartLineNumber": 87,
       "StartColumnNumber": 29,
       "EndLineNumber": 87,
       "EndColumnNumber": 30,
       "Text": "=",
-      "StartOffset": 3760,
-      "EndOffset": 3761
+      "StartOffset": 3758,
+      "EndOffset": 3759
     },
     "RuleName": "PSUseConsistentWhitespace",
     "Severity": 1,
@@ -20406,348 +20463,6 @@
     "Column": 21
   },
   {
-    "Message": "The cmdlet 'Get-WhatIfValidationTargets' uses a plural noun. A singular noun should be used instead.",
-    "Extent": {
-      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
-      "StartScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
-        "LineNumber": 41,
-        "ColumnNumber": 10,
-        "Line": "function Get-WhatIfValidationTargets {\r\n",
-        "Offset": 1180
-      },
-      "EndScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
-        "LineNumber": 41,
-        "ColumnNumber": 37,
-        "Line": "function Get-WhatIfValidationTargets {\r\n",
-        "Offset": 1207
-      },
-      "StartLineNumber": 41,
-      "StartColumnNumber": 10,
-      "EndLineNumber": 41,
-      "EndColumnNumber": 37,
-      "Text": "Get-WhatIfValidationTargets",
-      "StartOffset": 1180,
-      "EndOffset": 1207
-    },
-    "RuleName": "PSUseSingularNouns",
-    "Severity": 1,
-    "ScriptName": "Invoke-WhatIfValidation.ps1",
-    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
-    "RuleSuppressionID": "Get-WhatIfValidationTargets",
-    "SuggestedCorrections": [
-      {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\Invoke-WhatIfValidation.ps1",
-        "Description": "Singularized correction of 'Get-WhatIfValidationTargets'",
-        "StartLineNumber": 41,
-        "StartColumnNumber": 10,
-        "EndLineNumber": 41,
-        "EndColumnNumber": 37,
-        "Text": "Get-WhatIfValidationTarget",
-        "Lines": [
-          "Get-WhatIfValidationTarget"
-        ],
-        "Start": {
-          "Line": 41,
-          "Column": 10
-        },
-        "End": {
-          "Line": 41,
-          "Column": 37
-        }
-      }
-    ],
-    "IsSuppressed": false,
-    "Line": 41,
-    "Column": 10
-  },
-  {
-    "Message": "The cmdlet 'Get-SafeChildItems' uses a plural noun. A singular noun should be used instead.",
-    "Extent": {
-      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-      "StartScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-        "LineNumber": 199,
-        "ColumnNumber": 10,
-        "Line": "function Get-SafeChildItems {\r\n",
-        "Offset": 7535
-      },
-      "EndScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-        "LineNumber": 199,
-        "ColumnNumber": 28,
-        "Line": "function Get-SafeChildItems {\r\n",
-        "Offset": 7553
-      },
-      "StartLineNumber": 199,
-      "StartColumnNumber": 10,
-      "EndLineNumber": 199,
-      "EndColumnNumber": 28,
-      "Text": "Get-SafeChildItems",
-      "StartOffset": 7535,
-      "EndOffset": 7553
-    },
-    "RuleName": "PSUseSingularNouns",
-    "Severity": 1,
-    "ScriptName": "Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-    "RuleSuppressionID": "Get-SafeChildItems",
-    "SuggestedCorrections": [
-      {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\V7\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-        "Description": "Singularized correction of 'Get-SafeChildItems'",
-        "StartLineNumber": 199,
-        "StartColumnNumber": 10,
-        "EndLineNumber": 199,
-        "EndColumnNumber": 28,
-        "Text": "Get-SafeChildItem",
-        "Lines": [
-          "Get-SafeChildItem"
-        ],
-        "Start": {
-          "Line": 199,
-          "Column": 10
-        },
-        "End": {
-          "Line": 199,
-          "Column": 28
-        }
-      }
-    ],
-    "IsSuppressed": false,
-    "Line": 199,
-    "Column": 10
-  },
-  {
-    "Message": "The cmdlet 'Get-SafeChildItems' uses a plural noun. A singular noun should be used instead.",
-    "Extent": {
-      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-      "StartScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-        "LineNumber": 199,
-        "ColumnNumber": 10,
-        "Line": "function Get-SafeChildItems {\r\n",
-        "Offset": 7535
-      },
-      "EndScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-        "LineNumber": 199,
-        "ColumnNumber": 28,
-        "Line": "function Get-SafeChildItems {\r\n",
-        "Offset": 7553
-      },
-      "StartLineNumber": 199,
-      "StartColumnNumber": 10,
-      "EndLineNumber": 199,
-      "EndColumnNumber": 28,
-      "Text": "Get-SafeChildItems",
-      "StartOffset": 7535,
-      "EndOffset": 7553
-    },
-    "RuleName": "PSUseSingularNouns",
-    "Severity": 1,
-    "ScriptName": "Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-    "RuleSuppressionID": "Get-SafeChildItems",
-    "SuggestedCorrections": [
-      {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Avance.Windows.Sauf.logserreur.ps1",
-        "Description": "Singularized correction of 'Get-SafeChildItems'",
-        "StartLineNumber": 199,
-        "StartColumnNumber": 10,
-        "EndLineNumber": 199,
-        "EndColumnNumber": 28,
-        "Text": "Get-SafeChildItem",
-        "Lines": [
-          "Get-SafeChildItem"
-        ],
-        "Start": {
-          "Line": 199,
-          "Column": 10
-        },
-        "End": {
-          "Line": 199,
-          "Column": 28
-        }
-      }
-    ],
-    "IsSuppressed": false,
-    "Line": 199,
-    "Column": 10
-  },
-  {
-    "Message": "The cmdlet 'Get-SafeChildItems' uses a plural noun. A singular noun should be used instead.",
-    "Extent": {
-      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
-      "StartScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
-        "LineNumber": 108,
-        "ColumnNumber": 10,
-        "Line": "function Get-SafeChildItems {\r\n",
-        "Offset": 3537
-      },
-      "EndScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
-        "LineNumber": 108,
-        "ColumnNumber": 28,
-        "Line": "function Get-SafeChildItems {\r\n",
-        "Offset": 3555
-      },
-      "StartLineNumber": 108,
-      "StartColumnNumber": 10,
-      "EndLineNumber": 108,
-      "EndColumnNumber": 28,
-      "Text": "Get-SafeChildItems",
-      "StartOffset": 3537,
-      "EndOffset": 3555
-    },
-    "RuleName": "PSUseSingularNouns",
-    "Severity": 1,
-    "ScriptName": "Nettoyage.Complet.Caches.Windows.ps1",
-    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
-    "RuleSuppressionID": "Get-SafeChildItems",
-    "SuggestedCorrections": [
-      {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\PowerShell Script\\windows-maintenance\\Nettoyage.Complet.Caches.Windows.ps1",
-        "Description": "Singularized correction of 'Get-SafeChildItems'",
-        "StartLineNumber": 108,
-        "StartColumnNumber": 10,
-        "EndLineNumber": 108,
-        "EndColumnNumber": 28,
-        "Text": "Get-SafeChildItem",
-        "Lines": [
-          "Get-SafeChildItem"
-        ],
-        "Start": {
-          "Line": 108,
-          "Column": 10
-        },
-        "End": {
-          "Line": 108,
-          "Column": 28
-        }
-      }
-    ],
-    "IsSuppressed": false,
-    "Line": 108,
-    "Column": 10
-  },
-  {
-    "Message": "The cmdlet 'Get-AnalyzerSettings' uses a plural noun. A singular noun should be used instead.",
-    "Extent": {
-      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-      "StartScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-        "LineNumber": 220,
-        "ColumnNumber": 10,
-        "Line": "function Get-AnalyzerSettings {\r\n",
-        "Offset": 7333
-      },
-      "EndScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-        "LineNumber": 220,
-        "ColumnNumber": 30,
-        "Line": "function Get-AnalyzerSettings {\r\n",
-        "Offset": 7353
-      },
-      "StartLineNumber": 220,
-      "StartColumnNumber": 10,
-      "EndLineNumber": 220,
-      "EndColumnNumber": 30,
-      "Text": "Get-AnalyzerSettings",
-      "StartOffset": 7333,
-      "EndOffset": 7353
-    },
-    "RuleName": "PSUseSingularNouns",
-    "Severity": 1,
-    "ScriptName": "Invoke-PSScriptAnalyzer.ps1",
-    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-    "RuleSuppressionID": "Get-AnalyzerSettings",
-    "SuggestedCorrections": [
-      {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-        "Description": "Singularized correction of 'Get-AnalyzerSettings'",
-        "StartLineNumber": 220,
-        "StartColumnNumber": 10,
-        "EndLineNumber": 220,
-        "EndColumnNumber": 30,
-        "Text": "Get-AnalyzerSetting",
-        "Lines": [
-          "Get-AnalyzerSetting"
-        ],
-        "Start": {
-          "Line": 220,
-          "Column": 10
-        },
-        "End": {
-          "Line": 220,
-          "Column": 30
-        }
-      }
-    ],
-    "IsSuppressed": false,
-    "Line": 220,
-    "Column": 10
-  },
-  {
-    "Message": "The cmdlet 'Get-TargetFiles' uses a plural noun. A singular noun should be used instead.",
-    "Extent": {
-      "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-      "StartScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-        "LineNumber": 293,
-        "ColumnNumber": 10,
-        "Line": "function Get-TargetFiles {\r\n",
-        "Offset": 9361
-      },
-      "EndScriptPosition": {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-        "LineNumber": 293,
-        "ColumnNumber": 25,
-        "Line": "function Get-TargetFiles {\r\n",
-        "Offset": 9376
-      },
-      "StartLineNumber": 293,
-      "StartColumnNumber": 10,
-      "EndLineNumber": 293,
-      "EndColumnNumber": 25,
-      "Text": "Get-TargetFiles",
-      "StartOffset": 9361,
-      "EndOffset": 9376
-    },
-    "RuleName": "PSUseSingularNouns",
-    "Severity": 1,
-    "ScriptName": "Invoke-PSScriptAnalyzer.ps1",
-    "ScriptPath": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-    "RuleSuppressionID": "Get-TargetFiles",
-    "SuggestedCorrections": [
-      {
-        "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
-        "Description": "Singularized correction of 'Get-TargetFiles'",
-        "StartLineNumber": 293,
-        "StartColumnNumber": 10,
-        "EndLineNumber": 293,
-        "EndColumnNumber": 25,
-        "Text": "Get-TargetFile",
-        "Lines": [
-          "Get-TargetFile"
-        ],
-        "Start": {
-          "Line": 293,
-          "Column": 10
-        },
-        "End": {
-          "Line": 293,
-          "Column": 25
-        }
-      }
-    ],
-    "IsSuppressed": false,
-    "Line": 293,
-    "Column": 10
-  },
-  {
     "Message": "The cmdlet 'Test-PathMatch' returns an object of type 'System.Boolean' but this type is not declared in the OutputType attribute.",
     "Extent": {
       "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
@@ -20756,22 +20471,22 @@
         "LineNumber": 269,
         "ColumnNumber": 13,
         "Line": "            return $true\r\n",
-        "Offset": 8911
+        "Offset": 8915
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
         "LineNumber": 269,
         "ColumnNumber": 25,
         "Line": "            return $true\r\n",
-        "Offset": 8923
+        "Offset": 8927
       },
       "StartLineNumber": 269,
       "StartColumnNumber": 13,
       "EndLineNumber": 269,
       "EndColumnNumber": 25,
       "Text": "return $true",
-      "StartOffset": 8911,
-      "EndOffset": 8923
+      "StartOffset": 8915,
+      "EndOffset": 8927
     },
     "RuleName": "PSUseOutputTypeCorrectly",
     "Severity": 0,
@@ -20792,22 +20507,22 @@
         "LineNumber": 273,
         "ColumnNumber": 5,
         "Line": "    return $false\r\n",
-        "Offset": 8949
+        "Offset": 8953
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
         "LineNumber": 273,
         "ColumnNumber": 18,
         "Line": "    return $false\r\n",
-        "Offset": 8962
+        "Offset": 8966
       },
       "StartLineNumber": 273,
       "StartColumnNumber": 5,
       "EndLineNumber": 273,
       "EndColumnNumber": 18,
       "Text": "return $false",
-      "StartOffset": 8949,
-      "EndOffset": 8962
+      "StartOffset": 8953,
+      "EndOffset": 8966
     },
     "RuleName": "PSUseOutputTypeCorrectly",
     "Severity": 0,
@@ -20828,22 +20543,22 @@
         "LineNumber": 290,
         "ColumnNumber": 5,
         "Line": "    return $NormalizedValues\r\n",
-        "Offset": 9321
+        "Offset": 9325
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
         "LineNumber": 290,
         "ColumnNumber": 29,
         "Line": "    return $NormalizedValues\r\n",
-        "Offset": 9345
+        "Offset": 9349
       },
       "StartLineNumber": 290,
       "StartColumnNumber": 5,
       "EndLineNumber": 290,
       "EndColumnNumber": 29,
       "Text": "return $NormalizedValues",
-      "StartOffset": 9321,
-      "EndOffset": 9345
+      "StartOffset": 9325,
+      "EndOffset": 9349
     },
     "RuleName": "PSUseOutputTypeCorrectly",
     "Severity": 0,
@@ -20856,7 +20571,7 @@
     "Column": 5
   },
   {
-    "Message": "The cmdlet 'Get-TargetFiles' returns an object of type 'System.Object[]' but this type is not declared in the OutputType attribute.",
+    "Message": "The cmdlet 'Get-TargetFile' returns an object of type 'System.Object[]' but this type is not declared in the OutputType attribute.",
     "Extent": {
       "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
       "StartScriptPosition": {
@@ -20864,22 +20579,22 @@
         "LineNumber": 356,
         "ColumnNumber": 5,
         "Line": "    return @($Result | Sort-Object)\r\n",
-        "Offset": 11583
+        "Offset": 11585
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
         "LineNumber": 356,
         "ColumnNumber": 36,
         "Line": "    return @($Result | Sort-Object)\r\n",
-        "Offset": 11614
+        "Offset": 11616
       },
       "StartLineNumber": 356,
       "StartColumnNumber": 5,
       "EndLineNumber": 356,
       "EndColumnNumber": 36,
       "Text": "return @($Result | Sort-Object)",
-      "StartOffset": 11583,
-      "EndOffset": 11614
+      "StartOffset": 11585,
+      "EndOffset": 11616
     },
     "RuleName": "PSUseOutputTypeCorrectly",
     "Severity": 0,
@@ -20900,22 +20615,22 @@
         "LineNumber": 394,
         "ColumnNumber": 5,
         "Line": "    return @{\r\n",
-        "Offset": 12761
+        "Offset": 12763
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
         "LineNumber": 396,
         "ColumnNumber": 6,
         "Line": "    }\r\n",
-        "Offset": 12823
+        "Offset": 12825
       },
       "StartLineNumber": 394,
       "StartColumnNumber": 5,
       "EndLineNumber": 396,
       "EndColumnNumber": 6,
       "Text": "return @{\r\n        physicalLocation = $PhysicalLocation\r\n    }",
-      "StartOffset": 12761,
-      "EndOffset": 12823
+      "StartOffset": 12763,
+      "EndOffset": 12825
     },
     "RuleName": "PSUseOutputTypeCorrectly",
     "Severity": 0,
@@ -20936,22 +20651,22 @@
         "LineNumber": 448,
         "ColumnNumber": 5,
         "Line": "    return [ordered]@{\r\n",
-        "Offset": 14442
+        "Offset": 14444
       },
       "EndScriptPosition": {
         "File": "C:\\Users\\Bob\\.codex\\worktrees\\da34\\Script.Powershell.7\\tools\\Invoke-PSScriptAnalyzer.ps1",
         "LineNumber": 463,
         "ColumnNumber": 6,
         "Line": "    }\r\n",
-        "Offset": 14950
+        "Offset": 14952
       },
       "StartLineNumber": 448,
       "StartColumnNumber": 5,
       "EndLineNumber": 463,
       "EndColumnNumber": 6,
       "Text": "return [ordered]@{\r\n        '$schema' = 'https://json.schemastore.org/sarif-2.1.0.json'\r\n        version = '2.1.0'\r\n        runs = @(\r\n            @{\r\n                tool = @{\r\n                    driver = @{\r\n                        name = 'PSScriptAnalyzer'\r\n                        semanticVersion = $ToolVersion\r\n                        rules = @($RuleTable.Values | Sort-Object -Property id)\r\n                    }\r\n                }\r\n                results = $Results\r\n            }\r\n        )\r\n    }",
-      "StartOffset": 14442,
-      "EndOffset": 14950
+      "StartOffset": 14444,
+      "EndOffset": 14952
     },
     "RuleName": "PSUseOutputTypeCorrectly",
     "Severity": 0,

@@ -26,7 +26,7 @@ function Resolve-PowerShell7Path {
     return $null
 }
 
-function Get-SandboxWhatIfTargets {
+function Get-SandboxWhatIfTargetCatalog {
     @(
         @{
             Name   = 'Move-OrphanedInstallerFiles'
@@ -90,7 +90,7 @@ function Invoke-SandboxWhatIfValidation {
         [string]$SummaryPath = $script:SummaryPath,
 
         [Parameter()]
-        [object[]]$Targets = (Get-SandboxWhatIfTargets)
+        [object[]]$Targets = (Get-SandboxWhatIfTargetCatalog)
     )
 
     $SummaryDirectory = Split-Path -Path $SummaryPath -Parent
