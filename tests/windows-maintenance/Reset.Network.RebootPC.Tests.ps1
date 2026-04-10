@@ -32,11 +32,11 @@ Describe 'V7 network reset and reboot behavior' {
                 -IsAdministrator $false `
                 -IsWindowsSandbox $true `
                 -Commands @(
-                    @{
-                        FilePath  = 'C:\DoesNotExist\netsh.exe'
-                        Arguments = @('int', 'ip', 'reset')
-                    }
-                ) `
+                @{
+                    FilePath = 'C:\DoesNotExist\netsh.exe'
+                    Arguments = @('int', 'ip', 'reset')
+                }
+            ) `
                 -ShutdownPath 'C:\Windows\System32\shutdown.exe' `
                 -RebootDelaySeconds 5
 
@@ -57,11 +57,11 @@ Describe 'V7 network reset and reboot behavior' {
                     -IsAdministrator $false `
                     -IsWindowsSandbox $false `
                     -Commands @(
-                        @{
-                            FilePath  = 'C:\Windows\System32\netsh.exe'
-                            Arguments = @('winsock', 'reset')
-                        }
-                    ) `
+                    @{
+                        FilePath = 'C:\Windows\System32\netsh.exe'
+                        Arguments = @('winsock', 'reset')
+                    }
+                ) `
                     -ShutdownPath 'C:\Windows\System32\shutdown.exe' `
                     -RebootDelaySeconds 5 `
                     -Confirm:$false
@@ -75,17 +75,19 @@ Describe 'V7 network reset and reboot behavior' {
         InModuleScope $moduleName {
             param($commandPath)
 
+            $null = $commandPath
+
             {
                 Invoke-ResetNetworkAndReboot `
                     -RequireAdmin $false `
                     -IsAdministrator $true `
                     -IsWindowsSandbox $false `
                     -Commands @(
-                        @{
-                            FilePath  = $commandPath
-                            Arguments = @('/c', 'exit', '23')
-                        }
-                    ) `
+                    @{
+                        FilePath = $commandPath
+                        Arguments = @('/c', 'exit', '23')
+                    }
+                ) `
                     -ShutdownPath 'C:\Windows\System32\shutdown.exe' `
                     -RebootDelaySeconds 5 `
                     -Confirm:$false
@@ -101,17 +103,19 @@ Describe 'V7 network reset and reboot behavior' {
         InModuleScope $moduleName {
             param($commandPath)
 
+            $null = $commandPath
+
             {
                 Invoke-ResetNetworkAndReboot `
                     -RequireAdmin $false `
                     -IsAdministrator $true `
                     -IsWindowsSandbox $false `
                     -Commands @(
-                        @{
-                            FilePath  = $commandPath
-                            Arguments = @('/c', 'exit', '0')
-                        }
-                    ) `
+                    @{
+                        FilePath = $commandPath
+                        Arguments = @('/c', 'exit', '0')
+                    }
+                ) `
                     -ShutdownPath $commandPath `
                     -RebootDelaySeconds 5 `
                     -Confirm:$false
@@ -121,3 +125,4 @@ Describe 'V7 network reset and reboot behavior' {
         }
     }
 }
+

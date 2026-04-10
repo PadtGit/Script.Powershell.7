@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -34,10 +34,10 @@ function Invoke-OfflinePrinterRemoval {
         if ($WhatIfPreference) {
             return [pscustomobject]@{
                 PrinterStatus = $PrinterStatus
-                PrinterCount  = 0
-                RemovedCount  = 0
-                Status        = 'Skipped'
-                Reason        = 'GetPrinterUnavailable'
+                PrinterCount = 0
+                RemovedCount = 0
+                Status = 'Skipped'
+                Reason = 'GetPrinterUnavailable'
             }
         }
 
@@ -60,10 +60,10 @@ function Invoke-OfflinePrinterRemoval {
 
     [pscustomobject]@{
         PrinterStatus = $PrinterStatus
-        PrinterCount  = $Printers.Count
-        RemovedCount  = $RemovedCount
-        Status        = $Status
-        Reason        = ''
+        PrinterCount = $Printers.Count
+        RemovedCount = $RemovedCount
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -77,3 +77,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

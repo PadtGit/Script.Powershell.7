@@ -198,12 +198,12 @@ function Invoke-OrphanedInstallerMove {
     if ($KnownPackages.Count -eq 0) {
         return [pscustomobject]@{
             InstallerPath = $InstallerPath
-            BackupPath    = $BackupPath
-            FileCount     = 0
-            OrphanCount   = 0
-            MovedCount    = 0
-            Status        = 'Skipped'
-            Reason        = 'NoReferencesFound'
+            BackupPath = $BackupPath
+            FileCount = 0
+            OrphanCount = 0
+            MovedCount = 0
+            Status = 'Skipped'
+            Reason = 'NoReferencesFound'
         }
     }
 
@@ -238,12 +238,12 @@ function Invoke-OrphanedInstallerMove {
 
     [pscustomobject]@{
         InstallerPath = $InstallerPath
-        BackupPath    = $SecureBackupPath
-        FileCount     = $InstallerFiles.Count
-        OrphanCount   = $OrphanCount
-        MovedCount    = $MovedCount
-        Status        = $Status
-        Reason        = ''
+        BackupPath = $SecureBackupPath
+        FileCount = $InstallerFiles.Count
+        OrphanCount = $OrphanCount
+        MovedCount = $MovedCount
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -260,3 +260,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

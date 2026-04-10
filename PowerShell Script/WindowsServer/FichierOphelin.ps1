@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -198,12 +198,12 @@ function Invoke-InstallerOrphanMove {
     if ($KnownPackages.Count -eq 0) {
         return [pscustomobject]@{
             InstallerPath = $InstallerPath
-            BackupFolder  = $BackupFolder
-            FileCount     = 0
-            OrphanCount   = 0
-            MovedCount    = 0
-            Status        = 'Skipped'
-            Reason        = 'NoReferencesFound'
+            BackupFolder = $BackupFolder
+            FileCount = 0
+            OrphanCount = 0
+            MovedCount = 0
+            Status = 'Skipped'
+            Reason = 'NoReferencesFound'
         }
     }
 
@@ -238,12 +238,12 @@ function Invoke-InstallerOrphanMove {
 
     [pscustomobject]@{
         InstallerPath = $InstallerPath
-        BackupFolder  = $SecureBackupFolder
-        FileCount     = $InstallerFiles.Count
-        OrphanCount   = $OrphanCount
-        MovedCount    = $MovedCount
-        Status        = $Status
-        Reason        = ''
+        BackupFolder = $SecureBackupFolder
+        FileCount = $InstallerFiles.Count
+        OrphanCount = $OrphanCount
+        MovedCount = $MovedCount
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -260,3 +260,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

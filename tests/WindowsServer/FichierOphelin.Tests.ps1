@@ -1,10 +1,10 @@
-﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
+. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
 Describe 'V5 installer orphan cleanup behavior' {
 
     BeforeAll {
         . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
-$script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\WindowsServer\FichierOphelin.ps1'
+        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\WindowsServer\FichierOphelin.ps1'
     }
 
     AfterAll {
@@ -73,13 +73,13 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
 
             Assert-MockCalled Move-Item -Times 0 -Exactly -Scope It
         } -Parameters @{
-            installerPath  = 'C:\TestData\Installer'
-            backupFolder   = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            registryRoot   = 'HKLM:\Software\Test'
+            installerPath = 'C:\TestData\Installer'
+            backupFolder = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            registryRoot = 'HKLM:\Software\Test'
             referencedPath = 'C:\TestData\Installer\kept.msi'
-            orphanPath     = 'C:\TestData\Installer\orphan.msi'
-            reparsePath    = 'C:\TestData\Installer\skip.msp'
+            orphanPath = 'C:\TestData\Installer\orphan.msi'
+            reparsePath = 'C:\TestData\Installer\skip.msp'
         }
     }
 
@@ -90,6 +90,7 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             param($installerPath, $backupFolder, $storageRoot, $registryRoot, $orphanPath, $destinationPath, $renamedDestinationPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $destinationPath, $renamedDestinationPath
 
             $installerDirectory = [System.IO.DirectoryInfo]::new($installerPath)
             $registryKey = [pscustomobject]@{
@@ -140,13 +141,13 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             Assert-MockCalled Move-Item -Times 1 -Exactly -Scope It
             Assert-MockCalled Get-Date -Times 1 -Exactly -Scope It
         } -Parameters @{
-            installerPath           = 'C:\TestData\Installer'
-            backupFolder            = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
-            storageRoot             = 'C:\ProgramData\sysadmin-main'
-            registryRoot            = 'HKLM:\Software\Test'
-            orphanPath              = 'C:\TestData\Installer\orphan.msi'
-            destinationPath         = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan.msi'
-            renamedDestinationPath  = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan_20250102030405678.msi'
+            installerPath = 'C:\TestData\Installer'
+            backupFolder = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            registryRoot = 'HKLM:\Software\Test'
+            orphanPath = 'C:\TestData\Installer\orphan.msi'
+            destinationPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan.msi'
+            renamedDestinationPath = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\orphan_20250102030405678.msi'
         }
     }
 
@@ -185,9 +186,10 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             Assert-MockCalled Move-Item -Times 0 -Exactly -Scope It
         } -Parameters @{
             installerPath = 'C:\TestData\Installer'
-            backupFolder  = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
-            storageRoot   = 'C:\ProgramData\sysadmin-main'
-            registryRoot  = 'HKLM:\Software\Test'
+            backupFolder = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            registryRoot = 'HKLM:\Software\Test'
         }
     }
 }
+

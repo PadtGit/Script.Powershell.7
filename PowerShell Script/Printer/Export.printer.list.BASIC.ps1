@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -182,11 +182,11 @@ function Invoke-BasicPrinterExport {
     catch {
         if ($WhatIfPreference) {
             return [pscustomobject]@{
-                OutputPath    = $OutputPath
-                PrinterCount  = 0
+                OutputPath = $OutputPath
+                PrinterCount = 0
                 ExportProfile = 'Basic'
-                Status        = 'Skipped'
-                Reason        = 'GetPrinterUnavailable'
+                Status = 'Skipped'
+                Reason = 'GetPrinterUnavailable'
             }
         }
 
@@ -198,11 +198,11 @@ function Invoke-BasicPrinterExport {
     }
 
     [pscustomobject]@{
-        OutputPath    = $OutputPath
-        PrinterCount  = $Printers.Count
+        OutputPath = $OutputPath
+        PrinterCount = $Printers.Count
         ExportProfile = 'Basic'
-        Status        = $(if ($WhatIfPreference) { 'WhatIf' } else { 'Completed' })
-        Reason        = ''
+        Status = $(if ($WhatIfPreference) { 'WhatIf' } else { 'Completed' })
+        Reason = ''
     }
 }
 
@@ -216,3 +216,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

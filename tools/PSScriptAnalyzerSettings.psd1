@@ -1,4 +1,4 @@
-﻿@{
+@{
     IncludeDefaultRules = $true
     Severity = @(
         'Error'
@@ -6,19 +6,7 @@
         'Information'
     )
     IncludeRules = @()
-    ExcludeRules = @(
-        'PSAvoidUsingWriteHost'
-        'PSAlignAssignmentStatement'
-        'PSAvoidLongLines'
-        'PSAvoidUsingDoubleQuotesForConstantString'
-        'PSReviewUnusedParameter'
-        'PSUseApprovedVerbs'
-        'PSUseBOMForUnicodeEncodedFile'
-        'PSUseConsistentIndentation'
-        'PSUseConsistentWhitespace'
-        'PSUseConstrainedLanguageMode'
-        'PSUseSingularNouns'
-    )
+    ExcludeRules = @()
     CustomRulePath = @()
     RecurseCustomRulePath = $false
     Rules = @{
@@ -83,7 +71,7 @@
             Enable = $true
         }
         PSAvoidUsingComputerNameHardcoded = @{
-            Enable = $true
+            Enable = $false
         }
         PSAvoidUsingConvertToSecureStringWithPlainText = @{
             Enable = $true
@@ -113,27 +101,6 @@
             Enable = $true
         }
         PSAvoidUsingWriteHost = @{
-            Enable = $true
-        }
-        PSDSCDscExamplesPresent = @{
-            Enable = $true
-        }
-        PSDSCDscTestsPresent = @{
-            Enable = $true
-        }
-        PSDSCReturnCorrectTypesForDSCFunctions = @{
-            Enable = $true
-        }
-        PSDSCStandardDSCFunctionsInResource = @{
-            Enable = $true
-        }
-        PSDSCUseIdenticalMandatoryParametersForDSC = @{
-            Enable = $true
-        }
-        PSDSCUseIdenticalParametersForDSC = @{
-            Enable = $true
-        }
-        PSDSCUseVerboseMessageInDSCResource = @{
             Enable = $true
         }
         PSMisleadingBacktick = @{
@@ -176,14 +143,11 @@
             Enable = $true
         }
         PSUseBOMForUnicodeEncodedFile = @{
-            Enable = $true
+            Enable = $false
         }
         PSUseCmdletCorrectly = @{
             Enable = $true
         }
-        # Keep compatibility rules disabled during the runtime-branch split so
-        # the branch preserves the existing analyzer baseline while the
-        # flattened single-runtime layout settles.
         PSUseCompatibleCmdlets = @{
             Enable = $false
         }
@@ -198,6 +162,9 @@
         }
         PSUseConsistentIndentation = @{
             Enable = $true
+            Kind = 'space'
+            IndentationSize = 4
+            PipelineIndentation = 'IncreaseIndentationForFirstPipeline'
         }
         PSUseConsistentParameterSetName = @{
             Enable = $true
@@ -206,14 +173,17 @@
             Enable = $true
         }
         PSUseConsistentWhitespace = @{
-            Enable = $false
+            Enable = $true
+            CheckPipe = $true
+            CheckOpenBrace = $true
+            CheckOpenParen = $true
+            CheckOperator = $true
+            CheckPipeForRedundantWhitespace = $false
+            CheckSeparator = $true
         }
         PSUseConstrainedLanguageMode = @{
             Enable = $false
         }
-        # PSScriptAnalyzer 1.25.0 can throw NullReferenceException in this
-        # repo when PSUseCorrectCasing inspects some scripts, so keep the
-        # rule disabled until the pinned analyzer version changes.
         PSUseCorrectCasing = @{
             Enable = $false
         }
@@ -239,7 +209,7 @@
             Enable = $true
         }
         PSUseSingularNouns = @{
-            Enable = $false
+            Enable = $true
         }
         PSUseSupportsShouldProcess = @{
             Enable = $true

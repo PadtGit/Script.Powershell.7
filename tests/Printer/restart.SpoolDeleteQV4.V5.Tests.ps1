@@ -26,6 +26,7 @@ Describe 'V5 logged spool cleanup behavior' {
             param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
+            $null = $logPath
 
             $service = [pscustomobject]@{
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
@@ -62,11 +63,12 @@ Describe 'V5 logged spool cleanup behavior' {
                 $LiteralPath -eq $shdFile.FullName
             }
         } -Parameters @{
-            serviceName    = 'Spooler'
+            serviceName = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
-            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
-            storageRoot    = 'C:\ProgramData\sysadmin-main'
-            logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
+            logDirectory = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            logPath = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
         }
     }
 }
+

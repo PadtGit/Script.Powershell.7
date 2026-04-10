@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -29,11 +29,11 @@ function Invoke-NamedPrinterRemoval {
 
     if ([string]::IsNullOrWhiteSpace($NamePattern) -or $NamePattern -eq '*NAMEPRINTER*') {
         return [pscustomobject]@{
-            NamePattern  = $NamePattern
+            NamePattern = $NamePattern
             PrinterCount = 0
             RemovedCount = 0
-            Status       = 'Skipped'
-            Reason       = 'NamePatternNotConfigured'
+            Status = 'Skipped'
+            Reason = 'NamePatternNotConfigured'
         }
     }
 
@@ -43,11 +43,11 @@ function Invoke-NamedPrinterRemoval {
     catch {
         if ($WhatIfPreference) {
             return [pscustomobject]@{
-                NamePattern  = $NamePattern
+                NamePattern = $NamePattern
                 PrinterCount = 0
                 RemovedCount = 0
-                Status       = 'Skipped'
-                Reason       = 'GetPrinterUnavailable'
+                Status = 'Skipped'
+                Reason = 'GetPrinterUnavailable'
             }
         }
 
@@ -69,11 +69,11 @@ function Invoke-NamedPrinterRemoval {
     }
 
     [pscustomobject]@{
-        NamePattern  = $NamePattern
+        NamePattern = $NamePattern
         PrinterCount = $Printers.Count
         RemovedCount = $RemovedCount
-        Status       = $Status
-        Reason       = ''
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -87,3 +87,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

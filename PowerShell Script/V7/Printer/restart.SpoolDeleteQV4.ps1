@@ -259,17 +259,17 @@ function Invoke-LoggedPrintQueueCleanup {
     }
 
     [pscustomobject]@{
-        ServiceName  = $ServiceName
-        Service      = $ServiceName
-        QueuePath    = $SpoolDirectory
-        LogPath      = $LogPath
-        FileCount    = $Files.Count
+        ServiceName = $ServiceName
+        Service = $ServiceName
+        QueuePath = $SpoolDirectory
+        LogPath = $LogPath
+        FileCount = $Files.Count
         DeletedCount = $DeletedCount
         DeletedFiles = $DeletedCount
         ServiceWasUp = $ServiceWasRunning
-        Status       = $Status
-        Success      = $true
-        WhatIfRun    = [bool]$WhatIfPreference
+        Status = $Status
+        Success = $true
+        WhatIfRun = [bool]$WhatIfPreference
     }
 }
 
@@ -289,3 +289,4 @@ catch {
     Write-Error -ErrorRecord $_
     exit 1
 }
+

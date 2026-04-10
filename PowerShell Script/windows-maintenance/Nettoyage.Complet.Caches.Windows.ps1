@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -12,15 +12,15 @@ $RequireAdmin = $true
 $IsAdministrator = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 $CleanupSpecs = @(
     @{
-        Path         = Join-Path -Path $LocalApplicationDataPath -ChildPath 'Temp'
+        Path = Join-Path -Path $LocalApplicationDataPath -ChildPath 'Temp'
         AllowedRoots = @($LocalApplicationDataPath)
     },
     @{
-        Path         = Join-Path -Path $env:SystemRoot -ChildPath 'Temp'
+        Path = Join-Path -Path $env:SystemRoot -ChildPath 'Temp'
         AllowedRoots = @($env:SystemRoot)
     },
     @{
-        Path         = Join-Path -Path $env:SystemRoot -ChildPath 'Prefetch'
+        Path = Join-Path -Path $env:SystemRoot -ChildPath 'Prefetch'
         AllowedRoots = @($env:SystemRoot)
     }
 )
@@ -105,7 +105,7 @@ function Resolve-TrustedDirectoryPath {
     return $DirectoryItem.FullName
 }
 
-function Get-SafeChildItems {
+function Get-SafeChildItem {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Path
@@ -162,11 +162,11 @@ function Invoke-WindowsCacheCleanup {
     if ($WhatIfPreference -and -not $IsAdministrator) {
         return [pscustomobject]@{
             CleanupPathCount = $CleanupSpecs.Count
-            RemovedCount     = 0
-            FlushDns         = $FlushDns
-            ClearRecycleBin  = $ClearRecycleBin
-            Status           = 'Skipped'
-            Reason           = 'AdminPreviewRequired'
+            RemovedCount = 0
+            FlushDns = $FlushDns
+            ClearRecycleBin = $ClearRecycleBin
+            Status = 'Skipped'
+            Reason = 'AdminPreviewRequired'
         }
     }
 
@@ -183,12 +183,17 @@ function Invoke-WindowsCacheCleanup {
     try {
         $TrustedUpdateCachePath = Resolve-TrustedDirectoryPath -Path $UpdateCachePath -AllowedRoots @(Join-Path -Path $env:SystemRoot -ChildPath 'SoftwareDistribution')
         if (-not [string]::IsNullOrWhiteSpace($TrustedUpdateCachePath)) {
-            $UpdateItems = Get-SafeChildItems -Path $TrustedUpdateCachePath
+            $UpdateItems = Get-SafeChildItem -Path $TrustedUpdateCachePath
 
             foreach ($UpdateItem in $UpdateItems) {
                 if ($PSCmdlet.ShouldProcess($UpdateItem.FullName, 'Remove update cache item')) {
-                    Remove-Item -LiteralPath $UpdateItem.FullName -Recurse -Force -ErrorAction SilentlyContinue
-                    $RemovedCount++
+                    try {
+                        Remove-Item -LiteralPath $UpdateItem.FullName -Recurse -Force -ErrorAction Stop
+                        $RemovedCount++
+                    }
+                    catch {
+                        Write-Verbose ('Failed to remove update cache item: {0}' -f $UpdateItem.FullName)
+                    }
                 }
             }
         }
@@ -206,12 +211,17 @@ function Invoke-WindowsCacheCleanup {
             continue
         }
 
-        $CleanupItems = Get-SafeChildItems -Path $CleanupPath
+        $CleanupItems = Get-SafeChildItem -Path $CleanupPath
 
         foreach ($CleanupItem in $CleanupItems) {
             if ($PSCmdlet.ShouldProcess($CleanupItem.FullName, 'Remove cache item')) {
-                Remove-Item -LiteralPath $CleanupItem.FullName -Recurse -Force -ErrorAction SilentlyContinue
-                $RemovedCount++
+                try {
+                    Remove-Item -LiteralPath $CleanupItem.FullName -Recurse -Force -ErrorAction Stop
+                    $RemovedCount++
+                }
+                catch {
+                    Write-Verbose ('Failed to remove cache item: {0}' -f $CleanupItem.FullName)
+                }
             }
         }
     }
@@ -234,10 +244,10 @@ function Invoke-WindowsCacheCleanup {
 
     [pscustomobject]@{
         CleanupPathCount = $CleanupSpecs.Count
-        RemovedCount     = $RemovedCount
-        FlushDns         = $FlushDns
-        ClearRecycleBin  = $ClearRecycleBin
-        Status           = $Status
+        RemovedCount = $RemovedCount
+        FlushDns = $FlushDns
+        ClearRecycleBin = $ClearRecycleBin
+        Status = $Status
     }
 }
 
@@ -257,3 +267,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

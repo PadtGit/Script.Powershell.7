@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -72,11 +72,11 @@ function Invoke-NetworkReset {
 
     if ($IsWindowsSandbox -and -not $WhatIfPreference) {
         return [pscustomobject]@{
-            CommandCount       = $Commands.Count
-            ExecutedCount      = 0
+            CommandCount = $Commands.Count
+            ExecutedCount = 0
             RebootDelaySeconds = $RebootDelaySeconds
-            Status             = 'Skipped'
-            Reason             = 'NetworkResetUnsupportedInWindowsSandbox'
+            Status = 'Skipped'
+            Reason = 'NetworkResetUnsupportedInWindowsSandbox'
         }
     }
 
@@ -106,11 +106,11 @@ function Invoke-NetworkReset {
     }
 
     [pscustomobject]@{
-        CommandCount        = $Commands.Count
-        ExecutedCount       = $ExecutedCount
-        RebootDelaySeconds  = $RebootDelaySeconds
-        Status              = $Status
-        Reason              = ''
+        CommandCount = $Commands.Count
+        ExecutedCount = $ExecutedCount
+        RebootDelaySeconds = $RebootDelaySeconds
+        Status = $Status
+        Reason = ''
     }
 }
 
@@ -127,3 +127,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+

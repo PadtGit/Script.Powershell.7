@@ -1,10 +1,10 @@
-﻿. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
+. (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
 Describe 'V5 Adobe Acrobat refresh behavior' {
 
     BeforeAll {
         . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
-$script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Adobe\Install.AdobeAcrobat.Clean.ps1'
+        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Adobe\Install.AdobeAcrobat.Clean.ps1'
     }
 
     AfterAll {
@@ -22,6 +22,8 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
         try {
             InModuleScope $moduleName {
                 param($packagePath, $logDirectory, $msiexecPath)
+
+                $null = $packagePath, $logDirectory, $msiexecPath
 
                 Mock Resolve-SecureDirectory { $Path }
                 Mock Start-Process {}
@@ -44,9 +46,9 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
                 Assert-MockCalled Resolve-SecureDirectory -Times 0 -Exactly -Scope It
                 Assert-MockCalled Start-Process -Times 0 -Exactly -Scope It
             } -Parameters @{
-                packagePath  = $packagePath
+                packagePath = $packagePath
                 logDirectory = 'C:\ProgramData\sysadmin-main\Logs\AdobeAcrobat'
-                msiexecPath  = 'C:\Windows\System32\msiexec.exe'
+                msiexecPath = 'C:\Windows\System32\msiexec.exe'
             }
         }
         finally {
@@ -91,10 +93,10 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             }
             Assert-MockCalled Start-Process -Times 0 -Exactly -Scope It
         } -Parameters @{
-            packagePath  = 'C:\Windows\System32\notepad.exe'
+            packagePath = 'C:\Windows\System32\notepad.exe'
             logDirectory = 'C:\ProgramData\sysadmin-main\Logs\AdobeAcrobat'
-            storageRoot  = 'C:\ProgramData\sysadmin-main'
-            msiexecPath  = 'C:\Windows\System32\msiexec.exe'
+            storageRoot = 'C:\ProgramData\sysadmin-main'
+            msiexecPath = 'C:\Windows\System32\msiexec.exe'
         }
     }
 
@@ -127,9 +129,10 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             Assert-MockCalled Resolve-SecureDirectory -Times 0 -Exactly -Scope It
             Assert-MockCalled Start-Process -Times 0 -Exactly -Scope It
         } -Parameters @{
-            packagePath  = 'C:\Install\Adobe\MissingInstaller.msi'
+            packagePath = 'C:\Install\Adobe\MissingInstaller.msi'
             logDirectory = 'C:\ProgramData\sysadmin-main\Logs\AdobeAcrobat'
-            msiexecPath  = 'C:\Windows\System32\msiexec.exe'
+            msiexecPath = 'C:\Windows\System32\msiexec.exe'
         }
     }
 }
+

@@ -4,7 +4,7 @@ Describe 'V5 named printer removal behavior' {
 
     BeforeAll {
         . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
-$script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Deleter.NamePrinter.ps1'
+        $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Deleter.NamePrinter.ps1'
     }
 
     AfterAll {

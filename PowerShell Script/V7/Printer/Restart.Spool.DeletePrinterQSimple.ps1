@@ -67,11 +67,11 @@ function Invoke-SimplePrintQueueCleanup {
     }
 
     [pscustomobject]@{
-        ServiceName  = $ServiceName
-        QueuePath    = $SpoolDirectory
-        FileCount    = $Files.Count
+        ServiceName = $ServiceName
+        QueuePath = $SpoolDirectory
+        FileCount = $Files.Count
         DeletedCount = $DeletedCount
-        Status       = $Status
+        Status = $Status
     }
 }
 
@@ -87,3 +87,4 @@ catch {
     Write-Error $_.Exception.Message
     exit 1
 }
+
