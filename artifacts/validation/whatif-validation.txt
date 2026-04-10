@@ -58,10 +58,10 @@ Engine       : WindowsPowerShell
 ShellPath    : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
 ExitCode     : 0
 Success      : True
-Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260409-000907390.csv".
+Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260409-212442817.csv".
                
                
-               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260409-000907390.csv
+               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260409-212442817.csv
                PrinterCount  : 1
                ExportProfile : Basic
                Status        : WhatIf
@@ -76,10 +76,10 @@ Engine       : WindowsPowerShell
 ShellPath    : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
 ExitCode     : 0
 Success      : True
-Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260409-000908470.csv".
+Output       : What if: Performing the operation "Export printer list" on target "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260409-212443629.csv".
                
                
-               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260409-000908470.csv
+               OutputPath    : C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260409-212443629.csv
                PrinterCount  : 1
                ExportProfile : Full
                Status        : WhatIf
@@ -134,7 +134,7 @@ Output       : What if: Performing the operation "Stop Print Spooler" on target 
                ServiceName  : Spooler
                Service      : Spooler
                QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
-               LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260409-000910595-47abdc75.log
+               LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260409-212445629-3ccdf2b9.log
                FileCount    : 0
                DeletedCount : 0
                DeletedFiles : 0

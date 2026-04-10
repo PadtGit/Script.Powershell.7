@@ -202,11 +202,13 @@ function Invoke-OptionalScriptStep {
         return
     }
 
-    Invoke-ExternalStep -FilePath $CurrentPowerShellPath -ArgumentList @(
+    $StepArguments = @(
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
         '-File', $ScriptPath
-    ) + $ArgumentList -FailureMessage $FailureMessage
+    ) + $ArgumentList
+
+    Invoke-ExternalStep -FilePath $CurrentPowerShellPath -ArgumentList $StepArguments -FailureMessage $FailureMessage
 }
 
 try {
